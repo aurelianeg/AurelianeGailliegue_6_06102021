@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&display=swap" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
     <title>FishEye</title>
@@ -20,19 +20,32 @@
 
 <body>
     
-    <header>
+    <div class="header_nav_container">
 
-    </header>
+        <header class="header header--homepage">
+            <img class="header_logo" src="assets/pictures/logo/FishEye_logo.svg" alt="FishEye" />
+        </header>
+    
+        <nav>
+            <span class="nav_content"></span>
+        </nav>
 
-    <nav>
+    </div>
 
-    </nav>
+    <main class="main">
+        <h1 class="photographers_title">Nos photographes</h1>
 
-    <main>
-
+        <div class="photographer_card">
+            <img class="photographer_card_profilepicture" src="" alt ="" />
+            <h1 class="photographer_card_name"></h1>
+            <h2 class="photographer_card_location"></h2>
+            <h3 class="photographer_card_description"></h3>
+            <h3 class="photographer_card_price"></h3>
+            <div class="photographer_card_tags"></div>
+        </div>
     </main>
 
-    <!--<script src="script.js"></script>-->
+    <script src="js/homepage.js"></script>
     
 </body>
 
