@@ -1,0 +1,50 @@
+.header_nav_container
+{
+    @include flex-row(space-between, stretch);
+    width: calc(100% - 400px);
+}
+
+.photographers_title
+{
+    color: $primary-color;
+    padding: 30px;
+    width: 500px;
+    @include flex-row(center, center);
+}
+
+.photographer_card
+{
+    width: 450px;
+    padding: 40px;
+
+    &_profilepicture
+    {
+        border-radius: 50px;
+        box-shadow: rgba(0, 0, 0, 0.25);
+    }
+
+    &_name
+    {
+        color: $secondary-color;
+    }
+
+    &_location
+    {
+        color: $primary-color;
+    }
+
+    &_description
+    {
+        color: $text-grey;
+    }
+
+    &_price
+    {
+        color: $price-grey;
+    }
+
+    &_tags
+    {
+        color: $primary-color;
+    }
+}

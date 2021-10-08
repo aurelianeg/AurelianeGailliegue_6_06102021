@@ -1,0 +1,78 @@
+/* --------------- Flex disposition --------------- */
+/* In rows */
+/* In columns */
+/* --------------- Responsive --------------- */
+/* Under a given breakpoint */
+/* Between two given breakpoints */
+/* Above a given breakpoint */
+/* --------------- Color chart --------------- */
+/* --------------- Breakpoints --------------- */
+/* --------------- Sizes --------------- */
+html {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  font-size: 55px;
+}
+
+body {
+  background-color: #FAFAFA;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.header_logo {
+  padding: 50px;
+  width: 350px;
+  margin-left: 50px;
+}
+
+.header_nav_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  width: calc(100% - 400px);
+}
+
+.photographers_title {
+  color: #901C1C;
+  padding: 30px;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.photographer_card {
+  width: 450px;
+  padding: 40px;
+}
+.photographer_card_profilepicture {
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.25);
+}
+.photographer_card_name {
+  color: #D3573C;
+}
+.photographer_card_location {
+  color: #901C1C;
+}
+.photographer_card_description {
+  color: #525252;
+}
+.photographer_card_price {
+  color: #757575;
+}
+.photographer_card_tags {
+  color: #901C1C;
+}
+
+/*# sourceMappingURL=styles.css.map */

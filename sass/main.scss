@@ -5,11 +5,11 @@
 @import "./base/fonts";
 
 @import "./components/buttons";
+@import "./components/contact_modal";
+@import "./components/lightbox_modal";
 
 @import "./layout/header";
 @import "./layout/general";
 
 @import "./pages/homepage";
-@import "./pages/photopage";
-@import "./pages/lightbox";
-@import "./pages/contact";
+@import "./pages/photographer_page";
