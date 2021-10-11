@@ -54,6 +54,7 @@ setTimeout(() => {
         
         // Change text in HTML by data in JSON
         photographerCardProfilePicture.src = "assets/pictures/photographers/" + photographers[i].portrait;
+        photographerCardProfilePicture.alt = (photographers[i].portrait).split(".")[0] + "'s profile picture";
         photographerCardName.innerHTML = photographers[i].name;
         photographerCardLocation.innerHTML = photographers[i].city + ', ' + photographers[i].country;
         photographerCardDescription.innerHTML = photographers[i].tagline;
