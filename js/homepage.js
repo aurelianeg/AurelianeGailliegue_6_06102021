@@ -9,7 +9,7 @@ const photographerCard = document.querySelector(".photographer_card");
 
 // Get data from JSON file
 
-let jsonUrl = "./assets/data/data.json";
+let jsonUrl = "assets/data/data.json";
 
 fetch(jsonUrl)
 .then((response) => response.json())
@@ -53,7 +53,7 @@ setTimeout(() => {
         [photographerCardProfilePicture, photographerCardName, photographerCardLocation, photographerCardDescription, photographerCardPrice, photographerCardTags] = photographerCards[i].children;
         
         // Change text in HTML by data in JSON
-        photographerCardProfilePicture.src = "./assets/pictures/photographers/" + photographers[i].portrait;
+        photographerCardProfilePicture.src = "assets/pictures/photographers/" + photographers[i].portrait;
         photographerCardName.innerHTML = photographers[i].name;
         photographerCardLocation.innerHTML = photographers[i].city + ', ' + photographers[i].country;
         photographerCardDescription.innerHTML = photographers[i].tagline;

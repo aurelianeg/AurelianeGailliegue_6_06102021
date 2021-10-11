@@ -15,7 +15,7 @@
       "id": 930,
       "city": "Paris",
       "country": "France",
-      "tags": ["sports", "architecture"],
+      "tags": ["sport", "architecture"],
       "tagline": "Capturer des compositions complexes",
       "price": 250,
       "portrait": "EllieRoseWilkens.jpg"
@@ -45,7 +45,7 @@
       "id": 925,
       "city": "Barcelona",
       "country": "Spain",
-      "tags": ["sports", "fashion", "events", "animals"],
+      "tags": ["sport", "fashion", "events", "animals"],
       "tagline": "Je crée des souvenirs",
       "price": 275,
       "portrait": "RhodeDubois.jpg"
