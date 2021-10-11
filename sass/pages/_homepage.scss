@@ -1,50 +1,95 @@
 .header_nav_container
 {
+    width: 65%;
     @include flex-row(space-between, stretch);
-    width: calc(100% - 400px);
+}
+
+.nav
+{
+    @include flex-row(center, center);
+
+    & div
+    {
+        color: $primary-color;
+        border: 0.5px solid $border-grey;
+        border-radius: 11px;
+        margin: 2px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }
 
 .photographers_title
 {
     color: $primary-color;
+    margin: 0px;
     padding: 30px;
-    width: 500px;
+    width: 350px;
     @include flex-row(center, center);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.photographers_list
+{
+    @include flex-row(space-between, space-between);
+    flex-wrap: wrap;
 }
 
 .photographer_card
 {
-    width: 450px;
-    padding: 40px;
+    width: 30%;
+    padding: 20px;
+    @include flex-col(center, center);
 
     &_profilepicture
     {
-        border-radius: 50px;
-        box-shadow: rgba(0, 0, 0, 0.25);
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin: 20px;
+        border-radius: 100px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
     }
 
     &_name
     {
         color: $secondary-color;
+        margin: 2px;
     }
 
     &_location
     {
         color: $primary-color;
+        margin: 2px;
     }
 
     &_description
     {
         color: $text-grey;
+        margin: 2px;
     }
 
     &_price
     {
         color: $price-grey;
+        margin: 2px;
+        margin-bottom: 5px;
     }
 
     &_tags
     {
+        @include flex-row(center, center);
+    }
+
+    &_tags div
+    {
         color: $primary-color;
+        border: 0.5px solid $border-grey;
+        border-radius: 11px;
+        margin: 2px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }

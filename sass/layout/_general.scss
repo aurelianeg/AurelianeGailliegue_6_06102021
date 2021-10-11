@@ -1,16 +1,6 @@
 body
 {
     background-color: $background-grey;
-    max-width: 1440px;
-    @include flex-row(center, stretch);
-}
-
-.header
-{
-    &_logo
-    {
-        padding: 50px;
-        width: 350px;
-        margin-left: 50px;
-    }
+    @include flex-col(space-between, stretch);
+    margin: 0px;
 }
