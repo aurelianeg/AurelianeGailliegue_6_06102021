@@ -48,6 +48,7 @@ setTimeout(() => {
 
         // Get last photographer card created
         const photographerCards = document.querySelectorAll(".photographer_card");
+        photographerCards[i].href = "#";
 
         // Get all HTML children
         [photographerCardProfilePicture, photographerCardName, photographerCardLocation, photographerCardDescription, photographerCardPrice, photographerCardTags] = photographerCards[i].children;
