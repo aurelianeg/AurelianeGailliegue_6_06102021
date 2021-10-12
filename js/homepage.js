@@ -12,21 +12,24 @@ const photographerCard = document.querySelector(".photographer_card");
 let jsonUrl = "assets/data/data.json";
 
 fetch(jsonUrl)
-.then((response) => response.json())
-.then((data) => {
-    window.data = data;     // Get data as global variable
-})
-.catch(error => {
-    console.log("Error:" + error.message);
-});
+    .then(function(response) {
+        if (response.ok) {
+            return response.json();
+        }
+    })
+    .then(function(value) {
+        //console.log("value", value);
+        window.data = value;    // Get data as global variable
+    })
+    .catch(function(error) {
+        console.log("Error:" + error.message);
+    });
 
 
 // Save global variables after fetch operation
 
-setTimeout(() => {
+setTimeout(function() {
 
-    let data = window.data;
-    console.log("data", data);
     let photographers = data.photographers;
     let media = data.media;
     let nbPhotographers = photographers.length;
@@ -48,14 +51,14 @@ setTimeout(() => {
 
         // Get last photographer card created
         const photographerCards = document.querySelectorAll(".photographer_card");
-        photographerCards[i].href = "#";
 
         // Get all HTML children
-        [photographerCardProfilePicture, photographerCardName, photographerCardLocation, photographerCardDescription, photographerCardPrice, photographerCardTags] = photographerCards[i].children;
-        
+        [photographerCardLink, photographerCardLocation, photographerCardDescription, photographerCardPrice, photographerCardTags] = photographerCards[i].children;
+        [photographerCardProfilePicture, photographerCardName] = photographerCardLink.children
+
         // Change text in HTML by data in JSON
+        photographerCardLink.href = "#";        // !!!!!!! TO CHANGE ONCE PHOTOGRAPHER PAGES ARE CREATED
         photographerCardProfilePicture.src = "assets/pictures/photographers/" + photographers[i].portrait;
-        photographerCardProfilePicture.alt = (photographers[i].portrait).split(".")[0] + "'s profile picture";
         photographerCardName.innerHTML = photographers[i].name;
         photographerCardLocation.innerHTML = photographers[i].city + ', ' + photographers[i].country;
         photographerCardDescription.innerHTML = photographers[i].tagline;
@@ -63,8 +66,8 @@ setTimeout(() => {
         // Empty tags
         photographerCardTags.innerHTML = '';
         for (let j = 0; j < photographers[i].tags.length; j++) {
-            // Create a new div for each tag
-            const photographerCardTag = document.createElement("div");
+            // Create a new span for each tag
+            const photographerCardTag = document.createElement("span");
             photographerCardTag.innerHTML = "#" + photographers[i].tags[j];
             photographerCardTags.appendChild(photographerCardTag);
             // Check if the tag is already in the navigation bar
@@ -77,7 +80,7 @@ setTimeout(() => {
 
     // Create navigation filters
     for (let k = 0; k < navTags.length; k++) {
-        const navTag = document.createElement("div");
+        const navTag = document.createElement("span");
         navTag.innerHTML = navTags[k];
         nav.appendChild(navTag);
     }
