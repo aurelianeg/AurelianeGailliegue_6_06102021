@@ -2,7 +2,20 @@
 {
     &_logo
     {
-        padding: 50px;
         width: 250px;
+        height: 70px;
+        padding: 50px;
+
+        @include media-between("tablet-min", "desktop-max")
+        {
+            padding-bottom: 25px;
+        }
+
+        @include media-under("mobile-max")
+        {
+            width: 125px;
+            height: 40px;
+            padding: 25px;
+        }
     }
 }

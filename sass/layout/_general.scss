@@ -4,8 +4,14 @@ a, a:visited
     text-decoration: none;
 }
 
+html
+{
+    min-height: 100%;
+}
+
 body
 {
+    height: 100vh;                               /* To remove the blank space under footer */
     background-color: $background-grey;
     @include flex-col(space-between, stretch);
     margin: 0px;

@@ -21,8 +21,8 @@
 
 /* --------------- Responsive --------------- */
 
-/* Under a given breakpoint */
-@mixin media-min($_key)
+/* Above a given breakpoint */
+@mixin media-above($_key)
 {
     @media screen and (min-width: map-get($breakpoints, $_key))
     {
@@ -39,8 +39,8 @@
     }
 }
 
-/* Above a given breakpoint */
-@mixin media-max($_key)
+/* Under a given breakpoint */
+@mixin media-under($_key)
 {
     @media screen and (max-width: map-get($breakpoints, $_key))
     {

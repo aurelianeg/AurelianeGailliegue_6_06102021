@@ -2,34 +2,61 @@
 {
     width: 65%;
     @include flex-row(space-between, stretch);
+
+    @include media-under("desktop-max")
+    {
+        width: 100%;
+        @include flex-col(space-between, stretch);
+        flex-wrap: wrap;
+    }
 }
 
 .nav
 {
     @include flex-row(center, center);
+    @include media-under("mobile-max")
+    {
+        width: 90%;
+        align-self: center;
+        flex-wrap: wrap;
+    }
 
-    & div
+    & span
     {
         color: $primary-color;
         border: 0.5px solid $border-grey;
         border-radius: 20px;
         margin: 2px;
-        padding: 3px;
-        padding-left: 9px;
-        padding-right: 9px;
+        padding: 2px;
+        padding-left: 7px;
+        padding-right: 7px;
     }
 }
 
 .photographers_title
 {
-    color: $primary-color;
+    height: 70px;
     margin: 0px;
-    padding: 30px;
-    width: 350px;
+    padding: 50px;
+    @include media-between("tablet-min", "desktop-max")
+    {
+        padding-bottom: 25px;
+    }
+    @include media-under("mobile-max")
+    {
+        height: 40px;
+        padding: 25px;
+    }
+
     @include flex-row(center, center);
     position: absolute;
     top: 0px;
     right: 0px;
+    color: $primary-color;
+    & h1
+    {
+        margin: 0px;
+    }
 }
 
 .photographers_list
@@ -41,8 +68,30 @@
 .photographer_card
 {
     width: 30%;
+    @include media-between("tablet-min", "desktop-max") {
+        width: 44%;
+    }
+    @include media-under("mobile-max") {
+        width: 100%;
+    }
     padding: 20px;
     @include flex-col(center, center);
+
+    &_link
+    {
+        @include flex-col(center, center);
+        &:hover
+        {
+            .photographer_card_profilepicture
+            {
+                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+            }
+            .photographer_card_name
+            {
+                color: $primary-color;
+            }
+        }
+    }
 
     &_profilepicture
     {
@@ -52,11 +101,13 @@
         margin: 20px;
         border-radius: 100px;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+        transition: box-shadow 300ms;
     }
 
     &_name
     {
         color: $secondary-color;
+        transition: color 300ms;
         margin: 2px;
     }
 
@@ -84,7 +135,7 @@
         @include flex-row(center, center);
     }
 
-    &_tags div
+    &_tags span
     {
         color: $primary-color;
         border: 0.5px solid $border-grey;

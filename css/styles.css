@@ -2,9 +2,9 @@
 /* In rows */
 /* In columns */
 /* --------------- Responsive --------------- */
-/* Under a given breakpoint */
-/* Between two given breakpoints */
 /* Above a given breakpoint */
+/* Between two given breakpoints */
+/* Under a given breakpoint */
 /* --------------- Color chart --------------- */
 /* --------------- Breakpoints --------------- */
 /* --------------- Sizes --------------- */
@@ -16,6 +16,12 @@ html {
 
 h1 {
   font-size: 36px;
+}
+
+@media screen and (max-width: 767px) {
+  .photographers_title h1 {
+    font-size: 15px;
+  }
 }
 
 h2 {
@@ -30,13 +36,26 @@ h4 {
   font-size: 9px;
 }
 
-.photographer_card_tags {
+.photographer_card_tags, nav {
   font-size: 12px;
 }
 
 .header_logo {
-  padding: 50px;
   width: 250px;
+  height: 70px;
+  padding: 50px;
+}
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .header_logo {
+    padding-bottom: 25px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header_logo {
+    width: 125px;
+    height: 40px;
+    padding: 25px;
+  }
 }
 
 a, a:visited {
@@ -44,13 +63,23 @@ a, a:visited {
   text-decoration: none;
 }
 
+html {
+  min-height: 100%;
+}
+
 body {
+  height: 100vh;
+  /* To remove the blank space under footer */
   background-color: #FAFAFA;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   margin: 0px;
+}
+
+.footer {
+  padding: 30px;
 }
 
 .header_nav_container {
@@ -60,6 +89,16 @@ body {
   justify-content: space-between;
   align-items: stretch;
 }
+@media screen and (max-width: 1439px) {
+  .header_nav_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+}
 
 .nav {
   display: flex;
@@ -67,21 +106,27 @@ body {
   justify-content: center;
   align-items: center;
 }
-.nav div {
+@media screen and (max-width: 767px) {
+  .nav {
+    width: 90%;
+    align-self: center;
+    flex-wrap: wrap;
+  }
+}
+.nav span {
   color: #901C1C;
   border: 0.5px solid #C4C4C4;
   border-radius: 20px;
   margin: 2px;
-  padding: 3px;
-  padding-left: 9px;
-  padding-right: 9px;
+  padding: 2px;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
 .photographers_title {
-  color: #901C1C;
+  height: 70px;
   margin: 0px;
-  padding: 30px;
-  width: 350px;
+  padding: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -89,6 +134,21 @@ body {
   position: absolute;
   top: 0px;
   right: 0px;
+  color: #901C1C;
+}
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .photographers_title {
+    padding-bottom: 25px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .photographers_title {
+    height: 40px;
+    padding: 25px;
+  }
+}
+.photographers_title h1 {
+  margin: 0px;
 }
 
 .photographers_list {
@@ -107,6 +167,28 @@ body {
   justify-content: center;
   align-items: center;
 }
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .photographer_card {
+    width: 44%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .photographer_card {
+    width: 100%;
+  }
+}
+.photographer_card_link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.photographer_card_link:hover .photographer_card_profilepicture {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+}
+.photographer_card_link:hover .photographer_card_name {
+  color: #901C1C;
+}
 .photographer_card_profilepicture {
   width: 200px;
   height: 200px;
@@ -114,9 +196,11 @@ body {
   margin: 20px;
   border-radius: 100px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 300ms;
 }
 .photographer_card_name {
   color: #D3573C;
+  transition: color 300ms;
   margin: 2px;
 }
 .photographer_card_location {
@@ -138,7 +222,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.photographer_card_tags div {
+.photographer_card_tags span {
   color: #901C1C;
   border: 0.5px solid #C4C4C4;
   border-radius: 11px;
