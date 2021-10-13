@@ -5,9 +5,16 @@ html
     font-style: normal;
 }
 
-h1
+// h1
+
+.photographer_card_name
 {
     font-size: 36px;
+}
+
+.presentation_photographer_name
+{
+    font-size: 64px;
 }
 
 .photographers_title h1
@@ -18,22 +25,50 @@ h1
     }
 }
 
-h2
+// h2
+
+.photographer_card_location
 {
     font-size: 13px;
 }
 
-h3
+.presentation_photographer_location, .gallery_element_legend_title, .presentation_bottom_bar h2
+{
+    font-size: 24px;
+}
+
+// h3
+
+.photographer_card_description
 {
     font-size: 10px;
 }
 
-h4
+.presentation_photographer_description
+{
+    font-size: 18px;
+}
+
+// h4
+
+.photographer_card_price
 {
     font-size: 9px;
 }
 
+// Others
+
 .photographer_card_tags, nav
 {
     font-size: 12px;
+}
+
+.presentation_photographer_tags
+{
+    font-size: 18px;
+}
+
+.gallery_element_legend_likes_number
+{
+    font-size: 16px;
 }

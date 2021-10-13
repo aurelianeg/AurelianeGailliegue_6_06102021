@@ -14,8 +14,12 @@ html {
   font-style: normal;
 }
 
-h1 {
+.photographer_card_name {
   font-size: 36px;
+}
+
+.presentation_photographer_name {
+  font-size: 64px;
 }
 
 @media screen and (max-width: 767px) {
@@ -24,20 +28,36 @@ h1 {
   }
 }
 
-h2 {
+.photographer_card_location {
   font-size: 13px;
 }
 
-h3 {
+.presentation_photographer_location, .gallery_element_legend_title, .presentation_bottom_bar h2 {
+  font-size: 24px;
+}
+
+.photographer_card_description {
   font-size: 10px;
 }
 
-h4 {
+.presentation_photographer_description {
+  font-size: 18px;
+}
+
+.photographer_card_price {
   font-size: 9px;
 }
 
 .photographer_card_tags, nav {
   font-size: 12px;
+}
+
+.presentation_photographer_tags {
+  font-size: 18px;
+}
+
+.gallery_element_legend_likes_number {
+  font-size: 16px;
 }
 
 .header_logo {
@@ -55,48 +75,6 @@ h4 {
     width: 125px;
     height: 40px;
     padding: 25px;
-  }
-}
-
-a, a:visited {
-  color: inherit;
-  text-decoration: none;
-}
-
-html {
-  min-height: 100%;
-}
-
-body {
-  height: 100vh;
-  /* To remove the blank space under footer */
-  background-color: #FAFAFA;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  margin: 0px;
-}
-
-.footer {
-  padding: 30px;
-}
-
-.header_nav_container {
-  width: 65%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-}
-@media screen and (max-width: 1439px) {
-  .header_nav_container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-    flex-wrap: wrap;
   }
 }
 
@@ -121,6 +99,47 @@ body {
   padding: 2px;
   padding-left: 7px;
   padding-right: 7px;
+}
+
+a, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  height: 100vh;
+  /* To remove the blank space under footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0px;
+}
+
+.footer {
+  padding: 30px;
+}
+
+.top_container {
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+@media screen and (max-width: 1439px) {
+  .top_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
 }
 
 .photographers_title {
@@ -229,6 +248,128 @@ body {
   margin: 2px;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.presentation {
+  height: 300px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: #FAFAFA;
+}
+.presentation_photographer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.presentation_photographer_name {
+  color: #D3573C;
+  transition: color 300ms;
+  margin: 2px;
+}
+.presentation_photographer_location {
+  color: #901C1C;
+  margin: 2px;
+}
+.presentation_photographer_description {
+  color: #525252;
+  margin: 2px;
+}
+.presentation_photographer_tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.presentation_photographer_tags span {
+  color: #901C1C;
+  border: 0.5px solid #C4C4C4;
+  border-radius: 11px;
+  margin: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.presentation_contact {
+  padding: 20px;
+}
+.presentation_profilepicture {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 20px;
+  border-radius: 100px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 300ms;
+}
+.presentation_bottom_bar {
+  width: 380px;
+  height: 90px;
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #DB8876;
+  color: #000000;
+}
+.presentation_bottom_bar_likes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.presentation_bottom_bar_likes_heart {
+  width: 18px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.gallery_sorting {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.gallery_sorting_text {
+  color: #000000;
+}
+.gallery_sorting_input {
+  background-color: #901C1C;
+}
+.gallery_element {
+  width: 350px;
+}
+.gallery_element_picture {
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.gallery_element_legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.gallery_element_legend_title {
+  color: #901C1C;
+}
+.gallery_element_legend_likes_number {
+  color: #000000;
+}
+.gallery_element_legend_likes_heart {
+  color: #901C1C;
 }
 
 /*# sourceMappingURL=styles.css.map */
