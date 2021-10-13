@@ -1,4 +1,4 @@
-.header_nav_container
+.top_container
 {
     width: 65%;
     @include flex-row(space-between, stretch);
@@ -8,28 +8,6 @@
         width: 100%;
         @include flex-col(space-between, stretch);
         flex-wrap: wrap;
-    }
-}
-
-.nav
-{
-    @include flex-row(center, center);
-    @include media-under("mobile-max")
-    {
-        width: 90%;
-        align-self: center;
-        flex-wrap: wrap;
-    }
-
-    & span
-    {
-        color: $primary-color;
-        border: 0.5px solid $border-grey;
-        border-radius: 20px;
-        margin: 2px;
-        padding: 2px;
-        padding-left: 7px;
-        padding-right: 7px;
     }
 }
 

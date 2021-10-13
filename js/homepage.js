@@ -43,6 +43,8 @@ setTimeout(function() {
 
     for (let i = 0; i < nbPhotographers; i++) {
 
+        let photographer = photographers[i];
+
         // Create a clone of the original photographer card
         if (i != 0) {
             photographerCardNew = photographerCard.cloneNode(true);
@@ -57,21 +59,20 @@ setTimeout(function() {
         [photographerCardProfilePicture, photographerCardName] = photographerCardLink.children
 
         // Change text in HTML by data in JSON
-        photographerCardLink.href = "#";        // !!!!!!! TO CHANGE ONCE PHOTOGRAPHER PAGES ARE CREATED
-        photographerCardProfilePicture.src = "assets/pictures/photographers/" + photographers[i].portrait;
-        photographerCardName.innerHTML = photographers[i].name;
-        photographerCardLocation.innerHTML = photographers[i].city + ', ' + photographers[i].country;
-        photographerCardDescription.innerHTML = photographers[i].tagline;
-        photographerCardPrice.innerHTML = photographers[i].price + " € / jour";
+        photographerCardProfilePicture.src = "assets/pictures/photographers/" + photographer.portrait;
+        photographerCardName.innerHTML = photographer.name;
+        photographerCardLocation.innerHTML = photographer.city + ', ' + photographer.country;
+        photographerCardDescription.innerHTML = photographer.tagline;
+        photographerCardPrice.innerHTML = photographer.price + " € / jour";
         // Empty tags
         photographerCardTags.innerHTML = '';
-        for (let j = 0; j < photographers[i].tags.length; j++) {
+        for (let j = 0; j < photographer.tags.length; j++) {
             // Create a new span for each tag
             const photographerCardTag = document.createElement("span");
-            photographerCardTag.innerHTML = "#" + photographers[i].tags[j];
+            photographerCardTag.innerHTML = "#" + photographer.tags[j];
             photographerCardTags.appendChild(photographerCardTag);
             // Check if the tag is already in the navigation bar
-            const navTagName = "#" + photographers[i].tags[j].charAt(0).toUpperCase() + photographers[i].tags[j].slice(1);
+            const navTagName = "#" + photographer.tags[j].charAt(0).toUpperCase() + photographer.tags[j].slice(1);
             if (navTags.includes(navTagName) == false) {
                 navTags.push(navTagName);
             }
