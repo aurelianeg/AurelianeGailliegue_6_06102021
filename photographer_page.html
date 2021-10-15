@@ -13,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
     <title>FishEye</title>
@@ -26,30 +28,35 @@
 
     <section class="presentation">
         <div class="presentation_photographer">
-            <!-- !!!!!!! Erase text for tests -->
-            <h1 class="presentation_photographer_name">Mimi Keel</h1>
-            <h2 class="presentation_photographer_location">London, UK</h2>
-            <h3 class="presentation_photographer_description">Voir le beau dans le quotidien</h3>
+            <h1 class="presentation_photographer_name"></h1>
+            <h2 class="presentation_photographer_location"></h2>
+            <h3 class="presentation_photographer_description"></h3>
             <div class="presentation_photographer_tags"></div>
         </div>
-        <button class="presentation_contact">Contactez-moi</button>
+        <button class="presentation_contact"><h3>Contactez-moi</h3></button>
         <img class="presentation_profilepicture" src="" alt ="" />
 
         <div class="presentation_bottom_bar">
             <div class="presentation_bottom_bar_likes">
                 <h2 class="presentation_bottom_bar_likes_number"></h2>
-                <img class="presentation_bottom_bar_likes_heart" src="" alt ="" />
+                <div class="presentation_bottom_bar_likes_heart">
+                    <i class="fas fa-heart"></i>
+                </div>
             </div>
             <h2 class="presentation_bottom_bar_price"></h2>
         </div>
     </section>
 
-    <section class="gallery">
+    <section class="sorting">
+        <label for="sorting_select">Trier par</label>
+        <select name="choix" class="sorting_select">
+            <option value="popularity">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+        </select>
+    </section>
 
-        <div class="gallery_sorting">
-            <h3 class="gallery_sorting_text">Trier par</h3>
-            <input class="gallery_sorting_input">
-        </div>
+    <section class="gallery">
 
         <div class="gallery_element">
             <img class="gallery_element_picture" src="" alt="" />
@@ -57,18 +64,18 @@
                 <h2 class="gallery_element_legend_title"></h2>
                 <div class="gallery_element_legend_likes">
                     <p class="gallery_element_legend_likes_number"></p>
-                    <img class="gallery_element_legend_likes_heart" src="" alt="" />
+                    <div class="gallery_element_legend_likes_heart">
+                        <i class="fas fa-heart"></i>
+                    </div>
                 </div>
             </div>
         </div>
 
     </section>
 
-    
-
     <footer class="footer"></footer>
 
-    <script src="js/photographer_page.js"></script>
+    <script src="js/photographerpage.js"></script>
     
 </body>
 

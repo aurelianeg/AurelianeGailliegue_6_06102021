@@ -1,8 +1,13 @@
-html
+html, .sorting_select
 {
     font-family: "DM Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+body
+{
+    font-weight: 400;
 }
 
 // h1
@@ -44,7 +49,7 @@ html
     font-size: 10px;
 }
 
-.presentation_photographer_description
+.presentation_photographer_description, .presentation_contact h3, .sorting, .sorting_select
 {
     font-size: 18px;
 }
@@ -71,4 +76,10 @@ html
 .gallery_element_legend_likes_number
 {
     font-size: 16px;
+}
+
+
+.sorting label
+{
+    font-weight: 500;
 }

@@ -1,9 +1,8 @@
 .presentation
 {
-    height: 300px;
     margin-left: 50px;
     margin-right: 50px;
-    padding: 20px;
+    padding: 50px;
     @include flex-row(space-between, stretch);
     background-color: $background-grey;
 
@@ -32,23 +31,42 @@
 
         &_tags
         {
-            @include flex-row(center, center);
-        }
+            @include flex-row(normal, center);
 
-        &_tags span
-        {
-            color: $primary-color;
-            border: 0.5px solid $border-grey;
-            border-radius: 11px;
-            margin: 2px;
-            padding-left: 5px;
-            padding-right: 5px;
+            & span     // !!!!!!! METTRE EN GRAS
+            {
+                color: $primary-color;
+                border: 0.5px solid $border-grey;
+                border-radius: 12px;
+                margin: 3px;
+                padding-left: 6px;
+                padding-right: 6px;
+            }
         }
     }
 
     &_contact
     {
-        padding: 20px;
+        height: 68px;
+        padding: 20px 15px 20px 15px;
+        color: #FFFFFF;
+        background-color: $primary-color;
+        border: none;
+        border-radius: 5px;
+        position: relative;
+        top: 10px;
+        right: 100px;       // !!!!!! GÉRER LE PROBLÈME DE SUPERPOSITION LORS DU RESPONSIVE
+
+        & h3
+        {
+            margin: 0px;
+        }
+
+        &:hover
+        {
+            background-color: $tertiary-color;
+            color: #000000;
+        }
     }
 
     &_profilepicture
@@ -64,19 +82,28 @@
 
     &_bottom_bar
     {
-        width: 380px;
-        height: 90px;
-        position: absolute;
+        width: 310px;
+        height: 70px;
+        padding-left: 30px;
+        padding-right: 30px;
+        position: fixed;
         bottom: 0px;
-        right: 20px;
+        right: 130px;
         @include flex-row(space-between, center);
         background-color: $tertiary-color;
         color: #000000;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
 
         &_likes
         {
             @include flex-row(space-between, center);
-            //&_number
+
+            &_number
+            {
+                margin-right: 10px;
+            }
+
             &_heart
             {
                 width: 18px;
@@ -86,32 +113,42 @@
     }
 }
 
+.sorting
+{
+    width: 100%;
+    padding: 50px;
+    @include flex-row(flex-start, center);
+
+    & label     // !!!!!!! METTRE EN GRAS
+    {
+        color: #000000;
+        margin-right: 30px;
+    }
+
+    &_select
+    {
+        height: 50px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: $primary-color;
+        color: #FFFFFF;
+    }
+}
+
 .gallery
 {
-    @include flex-col(space-between, stretch);
-
-    &_sorting
-    {
-        width: 100%;
-        @include flex-row(flex-start, stretch);
-
-        &_text
-        {
-            color: #000000;
-        }
-
-        &_input
-        {
-            background-color: $primary-color;
-        }
-    }
+    margin: 30px;
+    @include flex-row(space-between, stretch);
+    flex-wrap: wrap;
 
     &_element
     {
-        width: 350px;
+        padding: 20px;
 
         &_picture
         {
+            width: 350px;
             height: 300px;
             object-fit: cover;
             border-radius: 5px;
@@ -119,17 +156,25 @@
 
         &_legend
         {
-            @include flex-row(space-between, stretch);
+            width: 350px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            @include flex-row(space-between, center);
 
             &_title
             {
+                margin: 0px;
                 color: $primary-color;
             }
 
             &_likes
             {
+                @include flex-row(space-between, center);
+
                 &_number
                 {
+                    margin: 0px;
+                    margin-right: 10px;
                     color: #000000;
                 }
 
