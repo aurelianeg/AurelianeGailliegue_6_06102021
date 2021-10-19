@@ -143,3 +143,28 @@ setTimeout(function() {
     console.log("All done for the photographer page!");
 
 }, 500);
+
+
+// ========== EVENTS ==========
+
+// Increase the number of likes (on the picture and total)
+// if the user likes a picture
+
+setTimeout(function() {
+
+    const galleryElementLikesHearts = document.querySelectorAll(".gallery_element_legend_likes_heart");
+    const photographerTotalLikes = document.querySelector(".presentation_bottom_bar_likes_number");
+
+    galleryElementLikesHearts.forEach((heart) => heart.addEventListener("click", function() {
+        console.log("Heart clicked!");
+        // Get likes number for the picture and increase it
+        const likesNumber = heart.parentNode.children[0];
+        likesNumber.innerHTML = parseInt(likesNumber.innerHTML) + 1;
+        // Increase total number of likes
+        photographerTotalLikes.innerHTML = parseInt(photographerTotalLikes.innerHTML) + 1;
+    }))
+
+    // CAN BE CLICKED MULTIPLE TIMES???
+    // WRITTEN IN JSON FILE???
+
+}, 1000);
