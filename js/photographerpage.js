@@ -75,8 +75,16 @@ const galleryElement = document.querySelector(".gallery_element");
         // Check if video or image
         if (photographerMedia.image != undefined) {
             galleryElementPicture.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.image;
+            //console.log("width", window.innerWidth);
+            //console.log("height", window.innerHeight);
             galleryElementPicture.style.width = "350px";
             galleryElementPicture.style.height = "300px";
+            /*if (window.innerHeight >= 1024) {
+                galleryElementPicture.style.height = "300px";
+            }
+            else {
+                galleryElementPicture.style.height = "190px";
+            }*/
             galleryElementPicture.style.visibility = "visible";
             galleryElementVideoSource.src = "";
             galleryElementVideo.style.width = "0px";

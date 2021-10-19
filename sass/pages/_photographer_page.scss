@@ -5,6 +5,13 @@
     padding: 50px;
     @include flex-row(space-between, stretch);
     background-color: $background-grey;
+    @include media-under("mobile-max")
+    {
+        width: calc(100% - 100px);
+        padding: 50px;
+        margin: 0px;
+        background-color: #FFFFFF;
+    }
 
     &_photographer
     {
@@ -32,6 +39,7 @@
         &_tags
         {
             @include flex-row(normal, center);
+            flex-wrap: wrap;
 
             & span     // !!!!!!! METTRE EN GRAS
             {
@@ -57,6 +65,13 @@
         top: 10px;
         right: 100px;       // !!!!!! GÉRER LE PROBLÈME DE SUPERPOSITION LORS DU RESPONSIVE
 
+        @include media-under("desktop-max")
+        {
+            position: fixed;
+            left: 50%;
+            bottom: 100px;
+        }
+
         & h3
         {
             margin: 0px;
@@ -73,6 +88,16 @@
     {
         width: 200px;
         height: 200px;
+        @include media-between("tablet-min", "desktop-max")
+        {
+            width: 150px;
+            height: 150px;
+        }
+        @include media-under("mobile-max")
+        {
+            width: 100px;
+            height: 100px;
+        }
         object-fit: cover;
         margin: 20px;
         border-radius: 100px;
@@ -86,6 +111,13 @@
         height: 70px;
         padding-left: 30px;
         padding-right: 30px;
+        @include media-under("tablet-max")
+        {
+            width: 200px;
+            height: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
         position: fixed;
         bottom: 0px;
         right: 60px;
@@ -145,6 +177,16 @@
     &_element
     {
         padding: 20px;
+        width: 30%;
+        @include media-between("tablet-min", "desktop-max")
+        {
+            width: 40%;
+        }
+        @include media-under("mobile-max")
+        {
+            width: 100%;
+        }
+        @include flex-col(space-between, center);
 
         &_picture
         {

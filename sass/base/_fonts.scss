@@ -20,6 +20,10 @@ body
 .presentation_photographer_name
 {
     font-size: 64px;
+    @include media-under("tablet-max")
+    {
+        font-size: 36px;
+    }
 }
 
 .photographers_title h1
@@ -40,6 +44,10 @@ body
 .presentation_photographer_location, .gallery_element_legend_title, .presentation_bottom_bar h2
 {
     font-size: 24px;
+    @include media-under("tablet-max")
+    {
+        font-size: 18px;
+    }
 }
 
 // h3
@@ -52,6 +60,10 @@ body
 .presentation_photographer_description, .presentation_contact h3, .sorting, .sorting_select
 {
     font-size: 18px;
+    @include media-under("tablet-max")
+    {
+        font-size: 12px;
+    }
 }
 
 // h4
@@ -71,11 +83,19 @@ body
 .presentation_photographer_tags
 {
     font-size: 18px;
+    @include media-under("tablet-max")
+    {
+        font-size: 12px;
+    }
 }
 
 .gallery_element_legend_likes_number
 {
     font-size: 22px;
+    @include media-under("tablet-max")
+    {
+        font-size: 18px;
+    }
 }
 
 
