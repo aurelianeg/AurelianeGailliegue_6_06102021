@@ -122,4 +122,11 @@
         padding-left: 5px;
         padding-right: 5px;
     }
+
+    &_id
+    {
+        width: 0px;
+        height: 0px;
+        visibility: hidden;
+    }
 }

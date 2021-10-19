@@ -88,7 +88,7 @@
         padding-right: 30px;
         position: fixed;
         bottom: 0px;
-        right: 130px;
+        right: 60px;
         @include flex-row(space-between, center);
         background-color: $tertiary-color;
         color: #000000;
@@ -148,8 +148,18 @@
 
         &_picture
         {
-            width: 350px;
-            height: 300px;
+            width: 0px;
+            height: 0px;
+            visibility: hidden;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        &_video
+        {
+            width: 0px;
+            height: 0px;
+            visibility: hidden;
             object-fit: cover;
             border-radius: 5px;
         }
@@ -160,11 +170,11 @@
             padding-top: 10px;
             padding-bottom: 10px;
             @include flex-row(space-between, center);
+            color: $primary-color;
 
             &_title
             {
                 margin: 0px;
-                color: $primary-color;
             }
 
             &_likes
@@ -175,12 +185,6 @@
                 {
                     margin: 0px;
                     margin-right: 10px;
-                    color: #000000;
-                }
-
-                &_heart
-                {
-                    color: $primary-color;
                 }
             }
         }

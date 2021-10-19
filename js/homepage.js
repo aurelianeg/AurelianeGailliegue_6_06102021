@@ -8,14 +8,14 @@ const photographerCard = document.querySelector(".photographer_card");
 // ========== FUNCTIONS ==========
 
 /**
- * Apply the data taken from the JSON file to the HTML elements on the homepage
+ * Apply the data taken from the JSON file to the HTML elements on the homepage for each photographer
  * @param {array} photographer 
  * @param {HTML element} photographerCard 
  */
 function applyDataToPhotographerHomePage(photographer, photographerCard) {
 
     // Get all HTML children
-    [photographerCardLink, photographerCardLocation, photographerCardDescription, photographerCardPrice, photographerCardTags] = photographerCard.children;
+    [photographerCardLink, photographerCardLocation, photographerCardDescription, photographerCardPrice, photographerCardTags, photographerCardId] = photographerCard.children;
     [photographerCardProfilePicture, photographerCardName] = photographerCardLink.children;
 
     // Change text in HTML by data in JSON
@@ -24,6 +24,7 @@ function applyDataToPhotographerHomePage(photographer, photographerCard) {
     photographerCardLocation.innerHTML = photographer.city + ', ' + photographer.country;
     photographerCardDescription.innerHTML = photographer.tagline;
     photographerCardPrice.innerHTML = photographer.price + " € / jour";
+    photographerCardId.innerHTML = photographer.id;
     // Empty tags
     photographerCardTags.innerHTML = '';
     for (let j = 0; j < photographer.tags.length; j++) {
@@ -35,7 +36,7 @@ function applyDataToPhotographerHomePage(photographer, photographerCard) {
 }
 
 /**
- * Initialize homepage with photographers
+ * Initialize homepage with all photographers
  * @param {list} photographers - Data list from JSON file
  * @param {HTML element} photographersList - HTML element for all photographers
  * @param {HTML element} photographerCard - HTML element for each photographer
@@ -76,8 +77,6 @@ function getHomepageData(photographers, photographersList, photographerCard, nav
         navTag.innerHTML = navTags[k];
         nav.appendChild(navTag);
     }
-
-    console.log("All done for the homepage!");
 }
 
 
@@ -106,9 +105,28 @@ setTimeout(function() {
     let photographers = data.photographers;
     let media = data.media;
     
-    console.log("photographers", photographers);
-    console.log("media", media);
+    //console.log("photographers", photographers);
+    //console.log("media", media);
 
     getHomepageData(photographers, photographersList, photographerCard, nav);
 
+    console.log("All done for the homepage!");
+
 }, 500);
+
+
+// ========== EVENTS ==========
+
+// Get photographer ID at the click on each card
+// to send information for photographer page launching
+
+setTimeout(function() {
+
+    const photographerCards = document.querySelectorAll(".photographer_card");
+
+    photographerCards.forEach((card) => card.addEventListener("click", function() {
+        localStorage["chosenPhotographerId"] = card.children[5].innerHTML;
+        console.log("Saved ID", card.children[5].innerHTML);
+    }))
+
+}, 1000);

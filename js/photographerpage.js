@@ -1,6 +1,8 @@
 // ========== DOM ELEMENTS ==========
 
 const presentation = document.querySelector(".presentation");
+const gallery = document.querySelector(".gallery");
+const galleryElement = document.querySelector(".gallery_element");
 
 
 // ========== FUNCTIONS ==========
@@ -8,9 +10,10 @@ const presentation = document.querySelector(".presentation");
 /**
  * Apply the data taken from the JSON file to the HTML elements on the photographer page
  * @param {array} photographer 
- * @param {HTML element} photographerCard 
+ * @param {HTML element} presentation 
+ * @param {array} media
  */
- function applyDataToPhotographerPage(photographer, presentation) {
+ function applyDataToPhotographerPage(photographer, presentation, media) {
 
     // Get all HTML children
     [photographerPresentation, contactForm, photographerProfilePicture, photographerBottomBar] = presentation.children;
@@ -32,26 +35,68 @@ const presentation = document.querySelector(".presentation");
         photographerCardTag.innerHTML = "#" + photographer.tags[j];
         photographerTags.appendChild(photographerCardTag);
     }
-    // Total likes
-    // !!!!!!!!! TO DO
 
+    const photographerId = photographer.id;
+    let photographerSumLikes = 0;
+    let photographerMedias = [];
+    for (let k = 0; k < media.length; k++) {
+        if (media[k].photographerId == photographerId) {
+            // Pictures
+            photographerMedias.push(media[k]);
+            // Total likes
+            photographerSumLikes += media[k].likes;
+        }
+    }
+    photographerTotalLikes.innerHTML = photographerSumLikes;
 
-    // !!!!!! GET PICTURES TAKEN BY THIS PHOTOGRAPHER
-}
+    // Get photographer pictures in HTML
+    for (let l = 0; l < photographerMedias.length; l++) {
 
-/**
- * Initialize photographer page with photographer
- * @param {list} photographers 
- * @param {HTML element} presentation 
- */
-function getPhotographerPageData(photographers, presentation) {
+        let photographerMedia = photographerMedias[l];
 
-    // !!!!!!! TO CHANGE
-    let photographer = photographers[0];        
+        // Create a clone of the original gallery element
+        if (l != 0) {
+            galleryElementNew = galleryElement.cloneNode(true);
+            gallery.appendChild(galleryElementNew);
+        }
 
-    applyDataToPhotographerPage(photographer, presentation);
+        // Get last gallery element created
+        const galleryElements = document.querySelectorAll(".gallery_element");
 
-    console.log("All done for the photographer page!");
+        // Get all HTML children
+        [galleryElementPicture, galleryElementVideo, galleryElementLegend] = galleryElements[l].children;
+        galleryElementVideoSource = galleryElementVideo.children[0];
+        galleryElementLegendTitle = galleryElementLegend.children[0];
+        galleryElementLegendLikesNumber = galleryElementLegend.children[1].children[0];
+
+        // Change text in HTML by data in JSON
+        const folderName = (photographer.name).split(' ')[0].replace('-', ' ');
+
+        // Check if video or image
+        if (photographerMedia.image != undefined) {
+            galleryElementPicture.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.image;
+            galleryElementPicture.style.width = "350px";
+            galleryElementPicture.style.height = "300px";
+            galleryElementPicture.style.visibility = "visible";
+            galleryElementVideoSource.src = "";
+            galleryElementVideo.style.width = "0px";
+            galleryElementVideo.style.height = "0px";
+            galleryElementVideo.style.visibility = "hidden";
+        }
+        else {
+            console.log("video", photographerMedia.video);
+            galleryElementVideoSource.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.video + "#t=0.5";
+            galleryElementVideo.style.width = "350px";
+            galleryElementVideo.style.height = "300px";
+            galleryElementVideo.style.visibility = "visible";
+            galleryElementPicture.src = "";
+            galleryElementPicture.style.width = "0px";
+            galleryElementPicture.style.height = "0px";
+            galleryElementPicture.style.visibility = "hidden";
+        }
+        galleryElementLegendTitle.innerHTML = photographerMedia.title;
+        galleryElementLegendLikesNumber.innerHTML = photographerMedia.likes;
+    }
 }
 
 
@@ -80,9 +125,21 @@ setTimeout(function() {
     let photographers = data.photographers;
     let media = data.media;
     
-    console.log("photographers", photographers);
-    console.log("media", media);
+    //console.log("photographers", photographers);
+    //console.log("media", media);
 
-    getPhotographerPageData(photographers, presentation);
+    const chosenId = localStorage["chosenPhotographerId"];
+    console.log("Found ID", chosenId);
+    for (i = 0; i < photographers.length; i++) {
+        if (photographers[i].id == chosenId) {
+            window.photographer = photographers[i];
+        }    
+    }
+
+    const photographer = window.photographer;
+
+    applyDataToPhotographerPage(photographer, presentation, media);
+
+    console.log("All done for the photographer page!");
 
 }, 500);
