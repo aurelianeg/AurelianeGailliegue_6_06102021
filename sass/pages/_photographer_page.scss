@@ -186,7 +186,7 @@
         {
             width: 100%;
         }
-        @include flex-col(space-between, center);
+        @include flex-col(start, center);
 
         &_picture
         {

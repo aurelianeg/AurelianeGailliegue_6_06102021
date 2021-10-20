@@ -79,7 +79,7 @@ const galleryElement = document.querySelector(".gallery_element");
             //console.log("height", window.innerHeight);
             galleryElementPicture.style.width = "350px";
             galleryElementPicture.style.height = "300px";
-            /*if (window.innerHeight >= 1024) {
+            /*if (window.innerWidth >= 1024) {
                 galleryElementPicture.style.height = "300px";
             }
             else {
@@ -137,10 +137,11 @@ setTimeout(function() {
     //console.log("photographers", photographers);
     //console.log("media", media);
 
-    const chosenId = localStorage["chosenPhotographerId"];
+    // Get photographer ID from URL and search for the right data in JSON
+    const id = new URLSearchParams(window.location.search).get("id");
     
     for (i = 0; i < photographers.length; i++) {
-        if (photographers[i].id == chosenId) {
+        if (photographers[i].id == id) {
             window.photographer = photographers[i];
         }    
     }
@@ -151,7 +152,7 @@ setTimeout(function() {
 
     console.log("All done for the photographer page!");
 
-}, 500);
+}, 300);
 
 
 // ========== EVENTS ==========

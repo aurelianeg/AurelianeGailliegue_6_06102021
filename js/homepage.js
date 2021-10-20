@@ -112,7 +112,7 @@ setTimeout(function() {
 
     console.log("All done for the homepage!");
 
-}, 500);
+}, 300);
 
 
 // ========== EVENTS ==========
@@ -125,8 +125,9 @@ setTimeout(function() {
     const photographerCards = document.querySelectorAll(".photographer_card");
 
     photographerCards.forEach((card) => card.addEventListener("click", function() {
-        localStorage["chosenPhotographerId"] = card.children[5].innerHTML;
-        console.log("Saved ID", card.children[5].innerHTML);
+        link = card.children[0];
+        id = card.children[5];
+        link.href += "?id=" + id.innerHTML;
     }))
 
 }, 1000);
