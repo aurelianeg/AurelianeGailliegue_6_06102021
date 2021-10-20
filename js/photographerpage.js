@@ -90,6 +90,7 @@ const galleryElement = document.querySelector(".gallery_element");
             galleryElementVideo.style.width = "0px";
             galleryElementVideo.style.height = "0px";
             galleryElementVideo.style.visibility = "hidden";
+            // !!!! AJOUTER DISPLAY: NONE
         }
         else {
             console.log("video", photographerMedia.video);
@@ -137,7 +138,7 @@ setTimeout(function() {
     //console.log("media", media);
 
     const chosenId = localStorage["chosenPhotographerId"];
-    console.log("Found ID", chosenId);
+    
     for (i = 0; i < photographers.length; i++) {
         if (photographers[i].id == chosenId) {
             window.photographer = photographers[i];

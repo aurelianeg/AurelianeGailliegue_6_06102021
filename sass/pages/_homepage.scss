@@ -1,6 +1,6 @@
 .top_container
 {
-    width: 65%;
+    width: 100%;
     @include flex-row(space-between, stretch);
 
     @include media-under("desktop-max")
@@ -16,6 +16,15 @@
     height: 70px;
     margin: 0px;
     padding: 50px;
+    @include flex-row(center, center);
+    color: $primary-color;
+
+    @include media-under("desktop-max")
+    {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
     @include media-between("tablet-min", "desktop-max")
     {
         padding-bottom: 25px;
@@ -26,11 +35,6 @@
         padding: 25px;
     }
 
-    @include flex-row(center, center);
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    color: $primary-color;
     & h1
     {
         margin: 0px;
