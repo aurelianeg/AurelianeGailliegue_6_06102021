@@ -3,6 +3,7 @@
 const presentation = document.querySelector(".presentation");
 const gallery = document.querySelector(".gallery");
 const galleryElement = document.querySelector(".gallery_element");
+const bottomBar = document.querySelector(".bottom_bar");
 
 
 // ========== FUNCTIONS ==========
@@ -13,13 +14,14 @@ const galleryElement = document.querySelector(".gallery_element");
  * @param {HTML element} presentation 
  * @param {array} media
  */
- function applyDataToPhotographerPage(photographer, presentation, media) {
+ function applyDataToPhotographerPage(photographer, presentation, bottomBar, media) {
 
     // Get all HTML children
-    [photographerPresentation, contactForm, photographerProfilePicture, photographerBottomBar] = presentation.children;
+    [photographerPresentation, contactForm, photographerProfilePicture] = presentation.children;
     [photographerName, photographerLocation, photographerDescription, photographerTags] = photographerPresentation.children;
-    photographerTotalLikes = photographerBottomBar.children[0].children[0];
-    photographerPrice = photographerBottomBar.children[1];
+    
+    [photographerLikes, photographerPrice] = bottomBar.children;
+    photographerTotalLikes = photographerLikes.children[0];
 
     // Change text in HTML by data in JSON
     photographerProfilePicture.src = "assets/pictures/photographers/" + photographer.portrait;
@@ -64,47 +66,32 @@ const galleryElement = document.querySelector(".gallery_element");
         const galleryElements = document.querySelectorAll(".gallery_element");
 
         // Get all HTML children
-        [galleryElementPicture, galleryElementVideo, galleryElementLegend] = galleryElements[l].children;
-        galleryElementVideoSource = galleryElementVideo.children[0];
+        [galleryElementPicture, galleryElementLegend] = galleryElements[l].children;
         galleryElementLegendTitle = galleryElementLegend.children[0];
         galleryElementLegendLikesNumber = galleryElementLegend.children[1].children[0];
 
         // Change text in HTML by data in JSON
-        const folderName = (photographer.name).split(' ')[0].replace('-', ' ');
-
-        // Check if video or image
-        if (photographerMedia.image != undefined) {
-            galleryElementPicture.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.image;
-            //console.log("width", window.innerWidth);
-            //console.log("height", window.innerHeight);
-            galleryElementPicture.style.width = "350px";
-            galleryElementPicture.style.height = "300px";
-            /*if (window.innerWidth >= 1024) {
-                galleryElementPicture.style.height = "300px";
-            }
-            else {
-                galleryElementPicture.style.height = "190px";
-            }*/
-            galleryElementPicture.style.visibility = "visible";
-            galleryElementVideoSource.src = "";
-            galleryElementVideo.style.width = "0px";
-            galleryElementVideo.style.height = "0px";
-            galleryElementVideo.style.visibility = "hidden";
-            // !!!! AJOUTER DISPLAY: NONE
-        }
-        else {
-            console.log("video", photographerMedia.video);
-            galleryElementVideoSource.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.video + "#t=0.5";
-            galleryElementVideo.style.width = "350px";
-            galleryElementVideo.style.height = "300px";
-            galleryElementVideo.style.visibility = "visible";
-            galleryElementPicture.src = "";
-            galleryElementPicture.style.width = "0px";
-            galleryElementPicture.style.height = "0px";
-            galleryElementPicture.style.visibility = "hidden";
-        }
         galleryElementLegendTitle.innerHTML = photographerMedia.title;
         galleryElementLegendLikesNumber.innerHTML = photographerMedia.likes;
+
+        const folderName = (photographer.name).split(' ')[0].replace('-', ' ');
+        // Check if video or image
+        if (l != 0) {       // Remove child cloned with the element
+            galleryElementPicture.removeChild(galleryElementPicture.lastChild);
+        }
+        if (photographerMedia.image != undefined) {
+            const galleryElementPictureImage = document.createElement("img");
+            galleryElementPicture.appendChild(galleryElementPictureImage);
+            galleryElementPictureImage.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.image;
+        }
+        else {
+            const galleryElementPictureVideo = document.createElement("video");
+            galleryElementPicture.appendChild(galleryElementPictureVideo);
+            const galleryElementPictureVideoSource = document.createElement("source");
+            galleryElementPictureVideo.appendChild(galleryElementPictureVideoSource);
+            galleryElementPictureVideoSource.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.video + "#t=0.5";
+        }
+        
     }
 }
 
@@ -148,7 +135,7 @@ setTimeout(function() {
 
     const photographer = window.photographer;
 
-    applyDataToPhotographerPage(photographer, presentation, media);
+    applyDataToPhotographerPage(photographer, presentation, bottomBar, media);
 
     console.log("All done for the photographer page!");
 
@@ -163,7 +150,7 @@ setTimeout(function() {
 setTimeout(function() {
 
     const galleryElementLikesHearts = document.querySelectorAll(".gallery_element_legend_likes_heart");
-    const photographerTotalLikes = document.querySelector(".presentation_bottom_bar_likes_number");
+    const photographerTotalLikes = document.querySelector(".bottom_bar_likes_number");
 
     galleryElementLikesHearts.forEach((heart) => heart.addEventListener("click", function() {
         console.log("Heart clicked!");

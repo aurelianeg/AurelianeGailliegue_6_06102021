@@ -17,5 +17,8 @@
     "url": "https://github.com/aurelianeg/AurelianeGailliegue_6_06102021/issues"
   },
   "homepage": "https://github.com/aurelianeg/AurelianeGailliegue_6_06102021#readme",
-  "browserslist": "last 4 versions"
+  "browserslist": "last 4 versions",
+  "devDependencies": {
+    "eslint": "^8.0.1"
+  }
 }

@@ -41,7 +41,7 @@ body
     font-size: 13px;
 }
 
-.presentation_photographer_location, .gallery_element_legend_title, .presentation_bottom_bar h2
+.presentation_photographer_location, .gallery_element_legend_title, .bottom_bar h2
 {
     font-size: 24px;
     @include media-under("tablet-max")
@@ -57,12 +57,21 @@ body
     font-size: 10px;
 }
 
-.presentation_photographer_description, .presentation_contact h3, .sorting, .sorting_select
+.presentation_photographer_description, .sorting, .sorting_select
 {
     font-size: 18px;
     @include media-under("tablet-max")
     {
         font-size: 12px;
+    }
+}
+
+.presentation_contact h3
+{
+    font-size: 18px;
+    @include media-under("tablet-max")
+    {
+        font-size: 16px;
     }
 }
 

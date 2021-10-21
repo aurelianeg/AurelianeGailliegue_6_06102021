@@ -17,5 +17,13 @@
             height: 40px;
             padding: 25px;
         }
+
+        &--photographerpage
+        {
+            @include media-under("mobile-max")
+            {
+                padding-bottom: 0px;
+            }
+        }
     }
 }

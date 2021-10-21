@@ -5,10 +5,12 @@
     padding: 50px;
     @include flex-row(space-between, stretch);
     background-color: $background-grey;
+    @include media-under("tablet-max")
+    {
+        padding: 30px;
+    }
     @include media-under("mobile-max")
     {
-        width: calc(100% - 100px);
-        padding: 50px;
         margin: 0px;
         background-color: #FFFFFF;
     }
@@ -16,6 +18,10 @@
     &_photographer
     {
         @include flex-col(space-between, stretch);
+        @include media-under("mobile-max")
+        {
+            width: calc(100% - 150px);
+        }
 
         &_name
         {
@@ -55,21 +61,27 @@
 
     &_contact
     {
-        height: 68px;
-        padding: 20px 15px 20px 15px;
         color: #FFFFFF;
         background-color: $primary-color;
         border: none;
         border-radius: 5px;
-        position: relative;
-        top: 10px;
-        right: 100px;       // !!!!!! GÉRER LE PROBLÈME DE SUPERPOSITION LORS DU RESPONSIVE
 
+        @include media-above("largedesktop-min")
+        {
+            width: 170px;
+            height: 68px;
+            padding: 20px;
+            position: relative;
+            top: 10px;
+            right: 100px;
+        }
         @include media-under("desktop-max")
         {
+            width: 150px;
+            padding: 10px;
             position: fixed;
-            left: 50%;
-            bottom: 100px;
+            left: calc(50vw - 85px);
+            bottom: 55px;
         }
 
         & h3
@@ -104,51 +116,20 @@
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
         transition: box-shadow 300ms;
     }
-
-    &_bottom_bar
-    {
-        width: 310px;
-        height: 70px;
-        padding-left: 30px;
-        padding-right: 30px;
-        @include media-under("tablet-max")
-        {
-            width: 200px;
-            height: 50px;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        position: fixed;
-        bottom: 0px;
-        right: 60px;
-        @include flex-row(space-between, center);
-        background-color: $tertiary-color;
-        color: #000000;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-
-        &_likes
-        {
-            @include flex-row(space-between, center);
-
-            &_number
-            {
-                margin-right: 10px;
-            }
-
-            &_heart
-            {
-                width: 18px;
-            }
-        }
-        //&_price
-    }
 }
 
 .sorting
 {
     width: 100%;
     padding: 50px;
+    padding-top: 30px;
+    padding-bottom: 0px;
+    @include media-under("mobile-max")
+    {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 0px;
+    }
     @include flex-row(flex-start, center);
 
     & label     // !!!!!!! METTRE EN GRAS
@@ -170,45 +151,50 @@
 
 .gallery
 {
-    margin: 30px;
+    padding: 30px;
+    @include media-under("mobile-max")
+    {
+        padding: 20px;
+    }
     @include flex-row(space-between, stretch);
     flex-wrap: wrap;
 
     &_element
     {
         padding: 20px;
-        width: 30%;
+        width: 350px;
         @include media-between("tablet-min", "desktop-max")
         {
-            width: 40%;
+            width: 44%;
         }
         @include media-under("mobile-max")
         {
             width: 100%;
+            padding: 10px;
         }
         @include flex-col(start, center);
 
         &_picture
         {
-            width: 0px;
-            height: 0px;
-            visibility: hidden;
-            object-fit: cover;
-            border-radius: 5px;
-        }
+            width: 100%;
+            height: 300px;
+            @include media-under("mobile-max")
+            {
+                height: 190px;
+            }
 
-        &_video
-        {
-            width: 0px;
-            height: 0px;
-            visibility: hidden;
-            object-fit: cover;
-            border-radius: 5px;
+            & *
+            {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 5px;
+            }
         }
 
         &_legend
         {
-            width: 350px;
+            width: 100%;
             padding-top: 10px;
             padding-bottom: 10px;
             @include flex-row(space-between, center);
@@ -231,4 +217,47 @@
             }
         }
     }
+}
+
+.bottom_bar
+{
+    width: 310px;
+    height: 70px;
+    padding-left: 30px;
+    padding-right: 30px;
+    @include media-under("tablet-max")
+    {
+        width: 200px;
+        height: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    position: fixed;
+    bottom: 0px;
+    right: 60px;
+    @include media-under("desktop-max")
+    {
+        position: static;
+    }
+    @include flex-row(space-between, center);
+    background-color: $tertiary-color;
+    color: #000000;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    &_likes
+    {
+        @include flex-row(space-between, center);
+
+        &_number
+        {
+            margin-right: 10px;
+        }
+
+        &_heart
+        {
+            width: 18px;
+        }
+    }
+    //&_price
 }

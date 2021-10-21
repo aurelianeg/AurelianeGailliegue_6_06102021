@@ -1,4 +1,13 @@
 .footer
 {
     padding: 30px;
+    
+    &--photographerpage
+    {
+        @include media-under("desktop-max")
+        {
+            padding-bottom: 0px;
+            @include flex-row(flex-end, flex-end);
+        }
+    }
 }
