@@ -138,7 +138,7 @@ body {
     flex-wrap: wrap;
   }
 }
-.nav span {
+.nav_tag {
   color: #901C1C;
   border: 0.5px solid #C4C4C4;
   border-radius: 20px;
@@ -146,6 +146,11 @@ body {
   padding: 2px;
   padding-left: 7px;
   padding-right: 7px;
+  transition: all 300ms;
+  cursor: pointer;
+}
+.nav_tag:hover {
+  background-color: #ebbdb3;
 }
 
 a, a:visited {

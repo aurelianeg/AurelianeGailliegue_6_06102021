@@ -8,7 +8,7 @@
         flex-wrap: wrap;
     }
 
-    & span
+    &_tag
     {
         color: $primary-color;
         border: 0.5px solid $border-grey;
@@ -17,5 +17,12 @@
         padding: 2px;
         padding-left: 7px;
         padding-right: 7px;
+        transition: all 300ms;
+        cursor: pointer;
+
+        &:hover
+        {
+            background-color: lighten($tertiary-color, 15%);
+        }
     }
 }

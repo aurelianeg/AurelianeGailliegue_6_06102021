@@ -74,6 +74,7 @@ function getHomepageData(photographers, photographersList, photographerCard, nav
     // Create navigation filters
     for (let k = 0; k < navTags.length; k++) {
         const navTag = document.createElement("span");
+        navTag.classList.add("nav_tag");
         navTag.innerHTML = navTags[k];
         nav.appendChild(navTag);
     }
@@ -129,5 +130,56 @@ setTimeout(function() {
         id = card.children[5];
         link.href += "?id=" + id.innerHTML;
     }))
+
+}, 1000);
+
+
+// Filter displayed photographers based on tags
+
+setTimeout(function() {
+
+    const navTags = document.querySelectorAll(".nav_tag");
+    const photographerCards = document.querySelectorAll(".photographer_card");
+    const photographerCardsTags = document.querySelectorAll(".photographer_card_tags");
+
+    navTags.forEach((tag) => tag.addEventListener("click", function() {
+
+        tag.classList.toggle("nav_tag--active");
+        if (tag.classList.contains('active')) {
+            tag.style.backgroundColor = "#EBBDB3";      // To see it activated
+        }
+
+        const tagName = tag.innerHTML.toLowerCase();
+        console.log("tagName", tagName);
+
+        console.log("number of cards", photographerCards.length);
+
+        // For each photographer
+        for (let i = 0; i < photographerCards.length; i++) {
+            const photographerCard = photographerCards[i];
+            const photographerTagList = photographerCardsTags[i].children;
+
+            // For each tag in photographer
+            const tagTextList = [];
+            for (let j = 0; j < photographerTagList.length; j++) {
+                tagTextList.push(photographerTagList[j].innerHTML);
+            }
+            console.log("tagTextList", tagTextList);
+            if (tagTextList.includes(tagName) == false) {
+                console.log("NO");
+                console.log("photographerCard", photographerCard);
+                photographerCard.style.display = "none";
+            }
+        }
+        
+    }))
+
+    /*const activeNavTags = document.querySelectorAll(".nav_tag--active");
+    console.log("activeNavTags", activeNavTags);
+
+    for (tag in activeNavTags) {
+        console.log("tag", tag);
+        //tag.style.backgroundColor = "red";
+    }*/
 
 }, 1000);
