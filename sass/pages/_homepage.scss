@@ -58,6 +58,7 @@
     }
     padding: 20px;
     @include flex-col(center, center);
+    transition: all 300ms ease-in-out;
 
     &_link
     {

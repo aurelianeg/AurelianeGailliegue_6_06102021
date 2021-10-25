@@ -16,4 +16,5 @@ body
     @include flex-col(space-between, stretch);
     margin: 0px;
     max-width: 1440px;
+    width: 100%;
 }
