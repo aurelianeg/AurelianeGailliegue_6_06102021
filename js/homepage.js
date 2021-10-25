@@ -145,41 +145,49 @@ setTimeout(function() {
     navTags.forEach((tag) => tag.addEventListener("click", function() {
 
         tag.classList.toggle("nav_tag--active");
-        if (tag.classList.contains('active')) {
-            tag.style.backgroundColor = "#EBBDB3";      // To see it activated
+
+        // If enabled
+        if (tag.classList.contains("nav_tag--active")) {
+            tag.style.backgroundColor = "#EBBDB3";
+        }
+        // If disabled
+        else {
+            tag.style.backgroundColor = "#FFFFFF";
         }
 
-        const tagName = tag.innerHTML.toLowerCase();
-        console.log("tagName", tagName);
-
-        console.log("number of cards", photographerCards.length);
+        const activeNavTags = document.querySelectorAll(".nav_tag--active");
 
         // For each photographer
         for (let i = 0; i < photographerCards.length; i++) {
             const photographerCard = photographerCards[i];
             const photographerTagList = photographerCardsTags[i].children;
-
+    
+            const photographerActiveTags = [];
             // For each tag in photographer
-            const tagTextList = [];
-            for (let j = 0; j < photographerTagList.length; j++) {
-                tagTextList.push(photographerTagList[j].innerHTML);
+            for (let k = 0; k < photographerTagList.length; k++) {
+                for (let j = 0; j < activeNavTags.length; j++) {
+                    const activeNavTagName = activeNavTags[j].innerHTML.toLowerCase();
+                    // Check if the active tags are in the photographer tags
+                    if (photographerTagList[k].innerHTML == activeNavTagName) {
+                        photographerActiveTags.push(activeNavTagName);
+                    }
+                }
             }
-            console.log("tagTextList", tagTextList);
-            if (tagTextList.includes(tagName) == false) {
-                console.log("NO");
-                console.log("photographerCard", photographerCard);
-                photographerCard.style.display = "none";
+    
+            // Display photographer if it has all selected tags
+            if (photographerActiveTags.length == activeNavTags.length) {
+                photographerCard.style.opacity = "1";
+                setTimeout(function() {
+                    photographerCard.style.display = "flex";
+                }, 300)
+            }
+            else {
+                photographerCard.style.opacity = "0";
+                setTimeout(function() {
+                    photographerCard.style.display = "none";
+                }, 300)
             }
         }
-        
     }))
-
-    /*const activeNavTags = document.querySelectorAll(".nav_tag--active");
-    console.log("activeNavTags", activeNavTags);
-
-    for (tag in activeNavTags) {
-        console.log("tag", tag);
-        //tag.style.backgroundColor = "red";
-    }*/
 
 }, 1000);
