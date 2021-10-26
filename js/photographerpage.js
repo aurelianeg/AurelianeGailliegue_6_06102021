@@ -1,5 +1,7 @@
 // ============================== DOM ELEMENTS ==============================
 
+const pageTitle = document.querySelector(".page_title");
+
 const presentation = document.querySelector(".presentation");
 const gallery = document.querySelector(".gallery");
 const galleryElement = document.querySelector(".gallery_element");
@@ -23,7 +25,7 @@ const contactModalSubmitButton = document.querySelector(".contact_submit");
  * @param {array} media
  * @param {HTML element} contactModalPhotographerName
  */
-function applyDataToPhotographerPage(photographer, presentation, bottomBar, media, contactModalPhotographerName) {
+function applyDataToPhotographerPage(photographer, media) {
 
     // Get all HTML children
     [photographerPresentation, contactForm, photographerProfilePicture] = presentation.children;
@@ -36,6 +38,7 @@ function applyDataToPhotographerPage(photographer, presentation, bottomBar, medi
     photographerProfilePicture.src = "assets/pictures/photographers/" + photographer.portrait;
     photographerName.innerHTML = photographer.name;
     contactModalPhotographerName.innerHTML = photographer.name;
+    pageTitle.innerHTML += " - " + photographer.name;
     photographerLocation.innerHTML = photographer.city + ', ' + photographer.country;
     photographerDescription.innerHTML = photographer.tagline;
     photographerPrice.innerHTML = photographer.price + " € / jour";
@@ -146,7 +149,7 @@ setTimeout(function() {
 
     const photographer = window.photographer;
 
-    applyDataToPhotographerPage(photographer, presentation, bottomBar, media, contactModalPhotographerName);
+    applyDataToPhotographerPage(photographer, media);
 
     console.log("All done for the photographer page!");
 
