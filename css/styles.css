@@ -58,6 +58,11 @@ body {
 .contact_text p {
   font-size: 56px;
 }
+@media screen and (max-width: 1023px) {
+  .contact_text p {
+    font-size: 36px;
+  }
+}
 
 .photographer_card_location {
   font-size: 13px;
@@ -74,6 +79,11 @@ body {
 
 .contact_form_label {
   font-size: 26px;
+}
+@media screen and (max-width: 1023px) {
+  .contact_form_label {
+    font-size: 18px;
+  }
 }
 
 .photographer_card_description {

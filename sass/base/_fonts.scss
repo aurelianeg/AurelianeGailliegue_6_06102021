@@ -37,6 +37,10 @@ body
 .contact_text p
 {
     font-size: 56px;
+    @include media-under("tablet-max")
+    {
+        font-size: 36px;
+    }
 }
 
 // h2
@@ -58,6 +62,10 @@ body
 .contact_form_label
 {
     font-size: 26px;
+    @include media-under("tablet-max")
+    {
+        font-size: 18px;
+    }
 }
 
 // h3
