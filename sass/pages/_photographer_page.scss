@@ -1,3 +1,5 @@
+// --------- PRESENTATION ---------
+
 .presentation
 {
     margin-left: 50px;
@@ -120,6 +122,9 @@
     }
 }
 
+
+// --------- SORTING ---------
+
 .sorting
 {
     width: 100%;
@@ -150,6 +155,9 @@
         color: #FFFFFF;
     }
 }
+
+
+// --------- GALLERY ---------
 
 .gallery
 {
@@ -241,6 +249,139 @@
         }
     }
 }
+
+
+// --------- CONTACT MODAL ---------
+
+.contact
+{
+    &_background
+    {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        width: 40%;
+        height: 80%;
+        left: calc(30% - 30px);
+        top: calc(10% - 30px);
+        @include media-under("tablet-max")
+        {
+            width: calc(100% - 60px);
+            height: calc(100% - 60px);
+            top: 0;
+            left: 0;
+        }
+        overflow: hidden;
+        padding: 30px;
+        background-color: $tertiary-color;
+        border-radius: 5px;
+        animation: contactmodalopen 500ms;
+
+        &.isClosed
+        {
+            animation: contactmodalclose 500ms;
+        }
+
+        &:hover
+        {
+            overflow-y: auto;
+        }
+    }
+
+    &_content
+    {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        @include flex-col(space-between, stretch);
+    }
+
+    &_close
+    {
+        position: absolute;
+        top: 0px;
+        right: 15px;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1;
+
+        &:before, &:after
+        {
+            position: absolute;
+            width: 3px;
+            height: 30px;
+            content: " ";
+            background-color: #FFFFFF;
+        }
+
+        &:before
+        {
+            transform: rotate(45deg);
+        }
+
+        &:after
+        {
+            transform: rotate(-45deg);
+        }
+    }
+
+    &_text
+    {
+        margin-bottom: 20px;
+
+        & p
+        {
+            margin: 0px;
+        }
+    }
+
+    &_form
+    {
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        &_label
+        {
+            display: inline-block;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: $contact-grey;
+        }
+        &_input
+        {
+            width: calc(100% - 25px);
+            height: 3vh;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            &#message
+            {
+                height: 15vh;
+            }
+
+            &:focus
+            {
+                outline: none;
+            }
+        }
+    }
+
+    &_submit
+    {
+        background-color: $primary-color;
+        color: #FFFFFF;
+        width: 170px;
+        margin-top: 20px;
+        padding: 15px;
+        padding-left: 30px;
+        padding-right: 30px;
+        border: none;
+        border-radius: 3px;
+    }
+}
+
+
+// --------- BOTTOM BAR ---------
 
 .bottom_bar
 {

@@ -1,4 +1,4 @@
-html, .sorting_select
+html, .sorting_select, #message
 {
     font-family: "DM Sans", sans-serif;
     font-weight: 400;
@@ -34,6 +34,11 @@ body
     }
 }
 
+.contact_text p
+{
+    font-size: 56px;
+}
+
 // h2
 
 .photographer_card_location
@@ -48,6 +53,11 @@ body
     {
         font-size: 18px;
     }
+}
+
+.contact_form_label
+{
+    font-size: 26px;
 }
 
 // h3

@@ -5,16 +5,24 @@ const gallery = document.querySelector(".gallery");
 const galleryElement = document.querySelector(".gallery_element");
 const bottomBar = document.querySelector(".bottom_bar");
 
+const contactButton = document.querySelector(".presentation_contact");
+const contactModalBackground = document.querySelector(".contact_background");
+const contactModalCloseCross = document.querySelector(".contact_close");
+const contactModalPhotographerName = document.querySelector(".contact_text_photographer");
+const contactModalSubmitButton = document.querySelector(".contact_submit");
+
 
 // ============================== FUNCTIONS ==============================
 
 /**
  * Apply the data taken from the JSON file to the HTML elements on the photographer page
  * @param {array} photographer 
- * @param {HTML element} presentation 
+ * @param {HTML element} presentation
+ * @param {HTML element} bottomBar
  * @param {array} media
+ * @param {HTML element} contactModalPhotographerName
  */
-function applyDataToPhotographerPage(photographer, presentation, bottomBar, media) {
+function applyDataToPhotographerPage(photographer, presentation, bottomBar, media, contactModalPhotographerName) {
 
     // Get all HTML children
     [photographerPresentation, contactForm, photographerProfilePicture] = presentation.children;
@@ -26,6 +34,7 @@ function applyDataToPhotographerPage(photographer, presentation, bottomBar, medi
     // Change text in HTML by data in JSON
     photographerProfilePicture.src = "assets/pictures/photographers/" + photographer.portrait;
     photographerName.innerHTML = photographer.name;
+    contactModalPhotographerName.innerHTML = photographer.name;
     photographerLocation.innerHTML = photographer.city + ', ' + photographer.country;
     photographerDescription.innerHTML = photographer.tagline;
     photographerPrice.innerHTML = photographer.price + " € / jour";
@@ -136,7 +145,7 @@ setTimeout(function() {
 
     const photographer = window.photographer;
 
-    applyDataToPhotographerPage(photographer, presentation, bottomBar, media);
+    applyDataToPhotographerPage(photographer, presentation, bottomBar, media, contactModalPhotographerName);
 
     console.log("All done for the photographer page!");
 
@@ -260,5 +269,42 @@ setTimeout(function() {
         // Increase total number of likes
         photographerTotalLikes.innerHTML = parseInt(photographerTotalLikes.innerHTML) + 1;
     }))
+
+}, 500);
+
+
+// ------------------------------------------------------------
+
+/**
+ * Launch contact modal
+ */
+function launchContactModal() {
+    contactModalBackground.style.display = "block";
+}
+  
+/**
+ * Close contact modal (with animation)
+ */
+function closeContactModal() {
+    contactModalBackground.classList.toggle('isClosed');
+    setTimeout(function() {
+        contactModalBackground.classList.remove('isClosed');
+        contactModalBackground.style.display = "none";
+    }, 500);
+}
+
+setTimeout(function() {
+
+    contactButton.addEventListener("click", launchContactModal);
+    contactModalCloseCross.addEventListener("click", closeContactModal);
+
+    const contactFormInputs = document.querySelectorAll(".contact_form_input");
+    contactModalSubmitButton.addEventListener("click", function() {
+        // Print contact form inputs in console logs and close contact modal
+        for (let i = 0; i < contactFormInputs.length; i++) {
+            console.log(contactFormInputs[i].value);
+        }
+        closeContactModal();
+    });
 
 }, 500);
