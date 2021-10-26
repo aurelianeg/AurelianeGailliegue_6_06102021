@@ -7,6 +7,7 @@ const bottomBar = document.querySelector(".bottom_bar");
 
 const contactButton = document.querySelector(".presentation_contact");
 const contactModalBackground = document.querySelector(".contact_background");
+const contactModalContent = document.querySelector(".contact_content");
 const contactModalCloseCross = document.querySelector(".contact_close");
 const contactModalPhotographerName = document.querySelector(".contact_text_photographer");
 const contactModalSubmitButton = document.querySelector(".contact_submit");
@@ -286,9 +287,9 @@ function launchContactModal() {
  * Close contact modal (with animation)
  */
 function closeContactModal() {
-    contactModalBackground.classList.toggle('isClosed');
+    contactModalContent.classList.toggle('isClosed');
     setTimeout(function() {
-        contactModalBackground.classList.remove('isClosed');
+        contactModalContent.classList.remove('isClosed');
         contactModalBackground.style.display = "none";
     }, 500);
 }

@@ -257,9 +257,18 @@
 {
     &_background
     {
+        background-color: rgba(255, 255, 255, 0.7);
         display: none;
         position: fixed;
         z-index: 1;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+
+    &_content
+    {
         width: 40%;
         height: 80%;
         left: calc(30% - 30px);
@@ -271,15 +280,17 @@
             top: 0;
             left: 0;
         }
-        overflow: hidden;
-        padding: 30px;
         background-color: $tertiary-color;
+        padding: 30px;
         border-radius: 5px;
-        animation: contactmodalopen 500ms;
+        position: relative;
+        @include flex-col(space-between, stretch);
+        overflow: hidden;
+        animation: contactmodalopen 500ms ease-in-out;
 
         &.isClosed
         {
-            animation: contactmodalclose 500ms;
+            animation: contactmodalclose 500ms ease-in-out;
         }
 
         &:hover
@@ -288,19 +299,11 @@
         }
     }
 
-    &_content
-    {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        @include flex-col(space-between, stretch);
-    }
-
     &_close
     {
         position: absolute;
-        top: 0px;
-        right: 15px;
+        top: 30px;
+        right: 40px;
         padding: 10px;
         cursor: pointer;
         z-index: 1;
