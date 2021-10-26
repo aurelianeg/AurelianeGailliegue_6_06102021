@@ -181,6 +181,7 @@ setTimeout(function() {
                     photographerCard.style.display = "flex";
                 }, 300)
             }
+            // Hide photographer if it hasn't all selected tags
             else {
                 photographerCard.style.opacity = "0";
                 setTimeout(function() {

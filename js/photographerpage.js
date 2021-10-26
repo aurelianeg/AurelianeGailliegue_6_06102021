@@ -1,4 +1,4 @@
-// ========== DOM ELEMENTS ==========
+// ============================== DOM ELEMENTS ==============================
 
 const presentation = document.querySelector(".presentation");
 const gallery = document.querySelector(".gallery");
@@ -6,7 +6,7 @@ const galleryElement = document.querySelector(".gallery_element");
 const bottomBar = document.querySelector(".bottom_bar");
 
 
-// ========== FUNCTIONS ==========
+// ============================== FUNCTIONS ==============================
 
 /**
  * Apply the data taken from the JSON file to the HTML elements on the photographer page
@@ -14,7 +14,7 @@ const bottomBar = document.querySelector(".bottom_bar");
  * @param {HTML element} presentation 
  * @param {array} media
  */
- function applyDataToPhotographerPage(photographer, presentation, bottomBar, media) {
+function applyDataToPhotographerPage(photographer, presentation, bottomBar, media) {
 
     // Get all HTML children
     [photographerPresentation, contactForm, photographerProfilePicture] = presentation.children;
@@ -66,15 +66,16 @@ const bottomBar = document.querySelector(".bottom_bar");
         const galleryElements = document.querySelectorAll(".gallery_element");
 
         // Get all HTML children
-        [galleryElementPicture, galleryElementLegend] = galleryElements[l].children;
+        [galleryElementPicture, galleryElementLegend, galleryElementDate] = galleryElements[l].children;
         galleryElementLegendTitle = galleryElementLegend.children[0];
         galleryElementLegendLikesNumber = galleryElementLegend.children[1].children[0];
 
         // Change text in HTML by data in JSON
         galleryElementLegendTitle.innerHTML = photographerMedia.title;
         galleryElementLegendLikesNumber.innerHTML = photographerMedia.likes;
+        galleryElementDate.innerHTML = photographerMedia.date.replace(/-/g, '');
 
-        const folderName = (photographer.name).split(' ')[0].replace('-', ' ');
+        const folderName = (photographer.name).split(' ')[0].replace(/-/g, ' ');
         // Check if video or image
         if (l != 0) {       // Remove child cloned with the element
             galleryElementPicture.removeChild(galleryElementPicture.lastChild);
@@ -142,7 +143,106 @@ setTimeout(function() {
 }, 300);
 
 
-// ========== EVENTS ==========
+// ============================== EVENTS ==============================
+
+/**
+ * Sort gallery elements by a chosen category (popularity, date or title)
+ * @param {HTML element} elements 
+ * @param {HTML element} categoryElements 
+ * @param {string} category 
+ */
+function sortGalleryByCategory(elements, categoryElements, category) {
+
+    // Create array with text from HTML category elements
+    let categoryElementsText = [];
+    for (let i = 0; i < categoryElements.length; i++) {
+        if (category == "popularity" || category == "date") {
+            categoryElementText = parseFloat(categoryElements[i].innerHTML);
+        }
+        if (category == "title") {
+            categoryElementText = categoryElements[i].innerHTML;
+        }
+        categoryElementsText.push(categoryElementText);
+    }
+
+    // Clone array to sort it
+    let sortedCategoryElementsText = [...categoryElementsText];
+    if (category == "popularity" || category == "date") {       // Descending order
+        sortedCategoryElementsText.sort(function(a, b) {
+            return b - a;
+        });
+    }
+    if (category == "title") {                                  // Ascending order
+        sortedCategoryElementsText.sort();
+    }
+
+    // Go through sorted array
+    for (let i = 0; i < sortedCategoryElementsText.length; i++) {
+        let sortedCategoryElementText = sortedCategoryElementsText[i];
+
+        // Go through HTML card elements
+        for (let j = 0; j < elements.length; j++) {
+            let element = elements[j];
+            let categoryElementText = categoryElementsText[j];
+
+            // If HTML category element is similar to sorted array element, reorder HTML card element
+            if (categoryElementText == sortedCategoryElementText) {
+                element.style.order = i;
+            }
+        }
+    }
+}
+
+// Sort gallery by categories when choosing a sorting option
+
+setTimeout(function() {
+
+    const sortingSelect = document.querySelector(".sorting_select");
+    sortingSelect.addEventListener("change", function() {
+
+        const galleryElements = document.querySelectorAll(".gallery_element");
+        const sortingSelectedOption = sortingSelect.value;
+
+        // Get HTML elements based on sorting option (likes numbers, dates, or picture titles)
+        let galleryElementsCategory = '';
+        if (sortingSelectedOption == "popularity") {
+            galleryElementsCategory = document.querySelectorAll(".gallery_element_legend_likes_number");
+        }
+        if (sortingSelectedOption == "date") {
+            galleryElementsCategory = document.querySelectorAll(".gallery_element_date");
+        }
+        if (sortingSelectedOption == "title") {
+            galleryElementsCategory = document.querySelectorAll(".gallery_element_legend_title");
+        }
+
+        // Sort gallery elements by chosen option
+        sortGalleryByCategory(galleryElements, galleryElementsCategory, sortingSelectedOption);
+    })
+
+}, 500);
+
+
+// ------------------------------------------------------------
+
+/**
+ * Sort gallery by popularity (default option)
+ */
+function defaultGallerySorting() {
+
+    setTimeout(function() {
+        const galleryElements = document.querySelectorAll(".gallery_element");
+        const galleryElementsLikesNumbers = document.querySelectorAll(".gallery_element_legend_likes_number");
+        sortGalleryByCategory(galleryElements, galleryElementsLikesNumbers, "popularity");
+    }, 500);
+
+}
+
+// Sort gallery by default option on page loading
+
+window.addEventListener('load', defaultGallerySorting);
+
+
+// ------------------------------------------------------------
 
 // Increase the number of likes (on the picture and total)
 // if the user likes a picture
@@ -161,7 +261,4 @@ setTimeout(function() {
         photographerTotalLikes.innerHTML = parseInt(photographerTotalLikes.innerHTML) + 1;
     }))
 
-    // CAN BE CLICKED MULTIPLE TIMES???
-    // WRITTEN IN JSON FILE???
-
-}, 1000);
+}, 500);
