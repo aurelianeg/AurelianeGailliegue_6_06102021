@@ -68,6 +68,7 @@
         border: none;
         border-radius: 5px;
         transition: all 300ms;
+        cursor: pointer;
 
         @include media-above("largedesktop-min")
         {
@@ -153,6 +154,7 @@
         border-radius: 5px;
         background-color: $primary-color;
         color: #FFFFFF;
+        cursor: pointer;
     }
 }
 
@@ -189,6 +191,7 @@
             width: 100%;
             height: 300px;
             transition: all 300ms;
+            cursor: pointer;
             @include media-under("mobile-max")
             {
                 height: 190px;
@@ -234,6 +237,7 @@
                 &_heart
                 {
                     transition: all 200ms;
+                    cursor: pointer;
 
                     &:hover
                     {
@@ -286,11 +290,11 @@
         position: relative;
         @include flex-col(space-between, stretch);
         overflow: hidden;
-        animation: contactmodalopen 500ms ease-in-out;
+        animation: modalopen 300ms ease-in-out;
 
         &.isClosed
         {
-            animation: contactmodalclose 500ms ease-in-out;
+            animation: modalclose 300ms ease-in-out;
         }
 
         &:hover
@@ -384,6 +388,161 @@
 }
 
 
+// --------- LIGHTBOX ---------
+
+.lightbox
+{
+    &_background
+    {
+        background-color: rgba(255, 255, 255, 0.9);
+        display: none;
+        position: fixed;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+
+    &_content
+    {
+        width: 80%;
+        height: 90%;
+        left: calc(10% - 30px);
+        top: calc(5% - 30px);
+        @include media-under("tablet-max")
+        {
+            width: calc(100% - 60px);
+            height: calc(100% - 60px);
+            top: 0;
+            left: 0;
+        }
+        padding: 30px;
+        position: relative;
+        @include flex-row(center, center);
+        overflow: hidden;
+        animation: modalopen 300ms ease-in-out;
+
+        &.isClosed
+        {
+            animation: modalclose 300ms ease-in-out;
+        }
+    }
+
+    &_close
+    {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1;
+
+        &:before, &:after
+        {
+            position: absolute;
+            width: 5px;
+            height: 40px;
+            content: " ";
+            background-color: $primary-color;
+        }
+
+        &:before
+        {
+            transform: rotate(45deg);
+        }
+
+        &:after
+        {
+            transform: rotate(-45deg);
+        }
+    }
+
+    &_previousbutton, &_nextbutton
+    {
+        width: 40px;
+        height: 50px;
+        cursor: pointer;
+        z-index: 1;
+        position: relative;
+
+        &:before, &:after
+        {
+            position: absolute;
+            width: 5px;
+            height: 30px;
+            content: " ";
+            background-color: $primary-color;
+        }
+    }
+
+    &_previousbutton
+    {
+        margin-right: 20px;
+
+        &:before
+        {
+            transform: rotate(-45deg);
+            top: calc(50% - 13px + 9px);
+            left: calc(50% - 4px);
+        }
+
+        &:after
+        {
+            transform: rotate(45deg);
+            top: calc(50% - 13px - 9px);
+            left: calc(50% - 4px);
+        }
+    }
+
+    &_nextbutton
+    {
+        margin-left: 20px;
+
+        &:before
+        {
+            transform: rotate(45deg);
+            top: calc(50% - 13px + 9px);
+            right: calc(50% - 4px);
+        }
+
+        &:after
+        {
+            transform: rotate(-45deg);
+            top: calc(50% - 13px - 9px);
+            right: calc(50% - 4px);
+        }
+    }
+
+    &_container
+    {
+        width: 90%;
+        height: 90%;
+        @include flex-col(center, stretch);
+
+        &_picture
+        {
+            width: 100%;
+            height: 100%;
+            
+            & *
+            {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    
+        &_title
+        {
+            margin-top: 20px;
+            margin-bottom: 0px;
+            color: $primary-color;
+        }
+    }
+}
+
+
 // --------- BOTTOM BAR ---------
 
 .bottom_bar
@@ -426,5 +585,4 @@
             width: 18px;
         }
     }
-    //&_price
 }

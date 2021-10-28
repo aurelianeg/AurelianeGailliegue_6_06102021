@@ -14,6 +14,14 @@ const contactModalCloseCross = document.querySelector(".contact_close");
 const contactModalPhotographerName = document.querySelector(".contact_text_photographer");
 const contactModalSubmitButton = document.querySelector(".contact_submit");
 
+const lightboxModalBackground = document.querySelector(".lightbox_background");
+const lightboxModalContent = document.querySelector(".lightbox_content");
+const lightboxModalCloseCross = document.querySelector(".lightbox_close");
+const lightboxModalPreviousButton = document.querySelector(".lightbox_previousbutton");
+const lightboxModalNextButton = document.querySelector(".lightbox_nextbutton");
+const lightboxPicture = document.querySelector(".lightbox_container_picture");
+const lightboxTitle = document.querySelector(".lightbox_container_title");
+
 
 // ============================== FUNCTIONS ==============================
 
@@ -294,14 +302,20 @@ function closeContactModal() {
     setTimeout(function() {
         contactModalContent.classList.remove('isClosed');
         contactModalBackground.style.display = "none";
-    }, 500);
+    }, 300);
 }
+
+// Contact modal opening, closing with cross, and closing with submit button
 
 setTimeout(function() {
 
+    // - Opening -
     contactButton.addEventListener("click", launchContactModal);
+
+    // - Closing with cross -
     contactModalCloseCross.addEventListener("click", closeContactModal);
 
+    // - Closing with submit button -
     const contactFormInputs = document.querySelectorAll(".contact_form_input");
     contactModalSubmitButton.addEventListener("click", function() {
         // Print contact form inputs in console logs and close contact modal
@@ -312,3 +326,146 @@ setTimeout(function() {
     });
 
 }, 500);
+
+
+// ------------------------------------------------------------
+
+/**
+ * Launch lightbox modal
+ */
+function launchLightboxModal() {
+    lightboxModalBackground.style.display = "block";
+}
+  
+/**
+ * Close lightbox modal (with animation)
+ */
+function closeLightboxModal() {
+    lightboxModalContent.classList.toggle('isClosed');
+    setTimeout(function() {
+        lightboxModalContent.classList.remove('isClosed');
+        lightboxModalBackground.style.display = "none";
+    }, 300);
+}
+
+/**
+ * Get information in clicked HTML gallery element and apply it to the lightbox
+ * @param {HTML element} picture 
+ * @param {HTML element} title 
+ */
+function applyPictureAndTitleToLightbox(picture, title) {
+
+    // Get photographer page information
+    const pictureContent = picture.children[0];
+
+    // Apply information to lightbox content
+    while (lightboxPicture.lastElementChild) {  // Empty it if it already has a child
+        lightboxPicture.removeChild(lightboxPicture.lastElementChild);
+    }
+    const lightboxPictureContent = pictureContent.cloneNode(true);
+    // Remove the miniature image and get video controls
+    if (lightboxPictureContent.nodeName == "VIDEO") {
+        const lightboxPictureVideoSource = lightboxPictureContent.children[0];
+        lightboxPictureVideoSource.src = lightboxPictureVideoSource.src.split("#")[0];
+        // Show controls on hover
+        lightboxPictureContent.addEventListener("mouseover", function() {
+            lightboxPictureContent.setAttribute("controls", "controls");
+        })
+        // Hide controls if not hover
+        lightboxPictureContent.addEventListener("mouseleave", function() {
+            lightboxPictureContent.removeAttribute("controls");
+        })
+    }
+    lightboxPicture.appendChild(lightboxPictureContent);    // Put the new picture as child
+    lightboxTitle.innerHTML = title.innerHTML;
+}
+
+// Lightbox modal opening, closing with cross and closing with empty areas
+
+setTimeout(function() {
+
+    // - Opening -
+    const galleryElements = document.querySelectorAll(".gallery_element");
+    const galleryElementsPictures = document.querySelectorAll(".gallery_element_picture");
+    const galleryElementsTitles = document.querySelectorAll(".gallery_element_legend_title");
+
+    /*galleryElements.forEach(function(galleryElement) {
+        const galleryElementPicture = galleryElement.children[0];
+        const galleryElementTitle = galleryElement.children[1].children[0];
+
+        galleryElementPicture.addEventListener("click", function() {
+            applyPictureAndTitleToLightbox(galleryElementPicture, galleryElementTitle);
+            launchLightboxModal();
+        });
+    });*/
+
+    console.log("length", galleryElements.length);
+    console.log("length - 1", galleryElements.length - 1);
+
+    for (let i = 0; i < galleryElements.length; i++) {
+        const galleryElementPicture = galleryElementsPictures[i];
+        const galleryElementTitle = galleryElementsTitles[i];
+
+        galleryElementPicture.addEventListener("click", function() {
+            applyPictureAndTitleToLightbox(galleryElementPicture, galleryElementTitle);
+            launchLightboxModal();
+
+            /*lightboxModalPreviousButton.addEventListener("click", function() {
+                console.log("test previous");
+                console.log("image", galleryElementsPictures[i]);
+                console.log("title", galleryElementsTitles[i]);
+                let previousGalleryElementPicture = '';
+                let previousGalleryElementTitle = '';
+                if (i == 0) {
+                    previousGalleryElementPicture = galleryElementsPictures[galleryElements.length - 1];
+                    previousGalleryElementTitle = galleryElementsTitles[galleryElements.length - 1];
+                }
+                else {
+                    previousGalleryElementPicture = galleryElementsPictures[i-1];
+                    previousGalleryElementTitle = galleryElementsTitles[i-1];
+                }
+                console.log("previous image", previousGalleryElementPicture);
+                console.log("previous title", previousGalleryElementTitle);
+                applyPictureAndTitleToLightbox(previousGalleryElementPicture, previousGalleryElementTitle);
+            });*/
+        });
+    }
+
+    /*lightboxModalPreviousButton.addEventListener("click", function() {
+        console.log("test previous");
+        applyPictureAndTitleToLightbox(galleryElementsPictures[i-1], galleryElementsTitles[i-1]);
+    });
+
+    lightboxModalNextButton.addEventListener("click", function() {
+        console.log("test next");
+        applyPictureAndTitleToLightbox(galleryElementsPictures[i+1], galleryElementsTitles[i+1]);
+    });*/
+
+    // - Closing with cross -
+    lightboxModalCloseCross.addEventListener("click", closeLightboxModal);
+
+    // - Closing on empty areas -
+    lightboxModalBackground.addEventListener("click", function(event) {
+        var clickedElement = event.target;
+        let isClickedEmpty = true;
+        // Not closing on picture content
+        if (clickedElement.nodeName == "VIDEO" || clickedElement.nodeName == "IMG") {
+            isClickedEmpty = false;
+        }
+        // Not closing on filled elements
+        else {
+            const lightboxNotEmptyClasses = ["lightbox_close", "lightbox_previousbutton",
+                                             "lightbox_nextbutton", "lightbox_container",
+                                             "lightbox_container_picture", "lightbox_container_title"];
+            for (let i = 0; i < lightboxNotEmptyClasses.length; i++) {
+                if (clickedElement.className == lightboxNotEmptyClasses[i]) {
+                    isClickedEmpty = false;
+                }
+            }
+        }
+        if (isClickedEmpty) {
+            closeLightboxModal();
+        }
+    });
+
+}, 1000);

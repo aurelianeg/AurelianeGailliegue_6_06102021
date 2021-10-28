@@ -134,6 +134,8 @@ setTimeout(function() {
 }, 1000);
 
 
+//////// !!!!!!!!!!!!!!!!!!!!!!!! À OPTIMISER
+
 // Filter displayed photographers based on tags
 
 setTimeout(function() {

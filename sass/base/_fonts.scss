@@ -34,15 +34,6 @@ body
     }
 }
 
-.contact_text p
-{
-    font-size: 56px;
-    @include media-under("tablet-max")
-    {
-        font-size: 36px;
-    }
-}
-
 // h2
 
 .photographer_card_location
@@ -53,15 +44,6 @@ body
 .presentation_photographer_location, .gallery_element_legend_title, .bottom_bar h2
 {
     font-size: 24px;
-    @include media-under("tablet-max")
-    {
-        font-size: 18px;
-    }
-}
-
-.contact_form_label
-{
-    font-size: 26px;
     @include media-under("tablet-max")
     {
         font-size: 18px;
@@ -125,6 +107,32 @@ body
     }
 }
 
+.contact_text p
+{
+    font-size: 56px;
+    @include media-under("tablet-max")
+    {
+        font-size: 36px;
+    }
+}
+
+.contact_form_label
+{
+    font-size: 26px;
+    @include media-under("tablet-max")
+    {
+        font-size: 18px;
+    }
+}
+
+.contact_submit
+{
+    font-size: 16px;
+    @include media-under("tablet-max")
+    {
+        font-size: 14px;
+    }
+}
 
 .sorting label
 {
