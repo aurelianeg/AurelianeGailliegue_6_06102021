@@ -216,7 +216,7 @@
             width: 100%;
             padding-top: 10px;
             padding-bottom: 10px;
-            @include flex-row(space-between, center);
+            @include flex-row(space-between, flex-start);
             color: $primary-color;
 
             &_title
@@ -226,6 +226,7 @@
 
             &_likes
             {
+                padding-top: 2px;
                 @include flex-row(space-between, center);
 
                 &_number
@@ -518,7 +519,7 @@
     {
         width: 90%;
         height: 90%;
-        @include flex-col(center, stretch);
+        @include flex-col(center, center);
 
         &_picture
         {
@@ -532,7 +533,7 @@
                 object-fit: contain;
             }
         }
-    
+
         &_title
         {
             margin-top: 20px;
