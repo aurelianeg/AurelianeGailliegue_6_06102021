@@ -159,36 +159,34 @@ setTimeout(function() {
 
         const activeNavTags = document.querySelectorAll(".nav_tag--active");
 
+        console.log("activeNavTags", activeNavTags);
+
+
         // For each photographer
         for (let i = 0; i < photographerCards.length; i++) {
             const photographerCard = photographerCards[i];
-            const photographerTagList = photographerCardsTags[i].children;
+            let photographerTagList = [];
+            for (let j = 0; j < photographerCardsTags[i].children.length; j++) {
+                photographerTagList.push(photographerCardsTags[i].children[j].innerHTML);
+            }
+
+            // Display every photographer
+            photographerCard.style.opacity = "1";
+            setTimeout(function() {
+                photographerCard.style.display = "flex";
+            }, 300)
     
-            const photographerActiveTags = [];
             // For each tag in photographer
-            for (let k = 0; k < photographerTagList.length; k++) {
-                for (let j = 0; j < activeNavTags.length; j++) {
-                    const activeNavTagName = activeNavTags[j].innerHTML.toLowerCase();
-                    // Check if the active tags are in the photographer tags
-                    if (photographerTagList[k].innerHTML == activeNavTagName) {
-                        photographerActiveTags.push(activeNavTagName);
-                    }
-                }
-            }
-    
-            // Display photographer if it has all selected tags
-            if (photographerActiveTags.length == activeNavTags.length) {
-                photographerCard.style.opacity = "1";
-                setTimeout(function() {
-                    photographerCard.style.display = "flex";
-                }, 300)
-            }
-            // Hide photographer if it hasn't all selected tags
-            else {
-                photographerCard.style.opacity = "0";
-                setTimeout(function() {
-                    photographerCard.style.display = "none";
-                }, 300)
+            for (let k = 0; k < activeNavTags.length; k++) {
+                const activeNavTag = activeNavTags[k].innerHTML.toLowerCase();
+
+                // If active tag is not contained in photographer tags, hide photographer
+                if (!photographerTagList.includes(activeNavTag)) {
+                    photographerCard.style.opacity = "0";
+                    setTimeout(function() {
+                        photographerCard.style.display = "none";
+                    }, 300)
+                } 
             }
         }
     }))
