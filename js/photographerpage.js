@@ -274,7 +274,6 @@ setTimeout(function() {
     const photographerTotalLikes = document.querySelector(".bottom_bar_likes_number");
 
     galleryElementLikesHearts.forEach((heart) => heart.addEventListener("click", function() {
-        console.log("Heart clicked!");
         // Get likes number for the picture and increase it
         const likesNumber = heart.parentNode.children[0];
         likesNumber.innerHTML = parseInt(likesNumber.innerHTML) + 1;
@@ -359,7 +358,7 @@ function applyPictureAndTitleToLightbox(picture, title) {
     const pictureContent = picture.children[0];
 
     // Apply information to lightbox content
-    while (lightboxPicture.lastElementChild) {  // Empty it if it already has a child
+    while (lightboxPicture.lastElementChild) {  // Reset at each opening: empty it if it already has a child
         lightboxPicture.removeChild(lightboxPicture.lastElementChild);
     }
     const lightboxPictureContent = pictureContent.cloneNode(true);
@@ -378,6 +377,32 @@ function applyPictureAndTitleToLightbox(picture, title) {
     }
     lightboxPicture.appendChild(lightboxPictureContent);    // Put the new picture as child
     lightboxTitle.innerHTML = title.innerHTML;
+
+    // Lightbox layout once the picture is displayed
+    setTimeout(function() {
+
+        // Reset at each lightbox opening
+        lightboxTitle.style.width = "auto";
+        lightboxPicture.style.height = "100%";
+
+        if (lightboxPictureContent.nodeName != "VIDEO") {
+            // Align the title with the displayed picture (center if it is a video)
+            let titleWidth = (lightboxPictureContent.naturalWidth * lightboxPictureContent.height) / lightboxPictureContent.naturalHeight;  
+            if (titleWidth > lightboxPictureContent.width) {
+                titleWidth = lightboxPictureContent.width;
+            }
+            lightboxTitle.style.width = titleWidth + "px";
+
+            // If picture is in landscape, bring title closer to the picture
+            if (lightboxPictureContent.naturalWidth > lightboxPictureContent.naturalHeight) {
+                let pictureHeight = (lightboxPictureContent.naturalHeight * titleWidth) / lightboxPictureContent.naturalWidth;
+                if (pictureHeight > lightboxPictureContent.height) {
+                    pictureHeight = lightboxPictureContent.height;
+                }
+                lightboxPicture.style.height = pictureHeight + "px";
+            }
+        }
+    }, 50);
 }
 
 // Lightbox modal opening, closing with cross and closing with empty areas
@@ -399,9 +424,6 @@ setTimeout(function() {
         });
     });*/
 
-    console.log("length", galleryElements.length);
-    console.log("length - 1", galleryElements.length - 1);
-
     for (let i = 0; i < galleryElements.length; i++) {
         const galleryElementPicture = galleryElementsPictures[i];
         const galleryElementTitle = galleryElementsTitles[i];
@@ -409,11 +431,12 @@ setTimeout(function() {
         galleryElementPicture.addEventListener("click", function() {
             applyPictureAndTitleToLightbox(galleryElementPicture, galleryElementTitle);
             launchLightboxModal();
-
+            
+            // !!!!!!! ONLY WORKS ONCE
             /*lightboxModalPreviousButton.addEventListener("click", function() {
                 console.log("test previous");
-                console.log("image", galleryElementsPictures[i]);
-                console.log("title", galleryElementsTitles[i]);
+                console.log("image", galleryElementsPictures[i].children[0].src);
+                console.log("title", galleryElementsTitles[i].innerHTML);
                 let previousGalleryElementPicture = '';
                 let previousGalleryElementTitle = '';
                 if (i == 0) {
@@ -424,8 +447,8 @@ setTimeout(function() {
                     previousGalleryElementPicture = galleryElementsPictures[i-1];
                     previousGalleryElementTitle = galleryElementsTitles[i-1];
                 }
-                console.log("previous image", previousGalleryElementPicture);
-                console.log("previous title", previousGalleryElementTitle);
+                console.log("previous image", previousGalleryElementPicture.children[0].src);
+                console.log("previous title", previousGalleryElementTitle.innerHTML);
                 applyPictureAndTitleToLightbox(previousGalleryElementPicture, previousGalleryElementTitle);
             });*/
         });

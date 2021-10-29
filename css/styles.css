@@ -580,13 +580,14 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   color: #901C1C;
 }
 .gallery_element_legend_title {
   margin: 0px;
 }
 .gallery_element_legend_likes {
+  padding-top: 2px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -811,7 +812,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
 }
 .lightbox_container_picture {
   width: 100%;
