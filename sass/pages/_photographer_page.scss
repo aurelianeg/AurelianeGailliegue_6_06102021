@@ -428,6 +428,22 @@
         {
             animation: modalclose 300ms ease-in-out;
         }
+
+        &.boundary_firstelement
+        {
+            & .lightbox_previousbutton:before, & .lightbox_previousbutton:after
+            {
+                background-color: $border-grey;
+            }
+        }
+
+        &.boundary_lastelement
+        {
+            & .lightbox_nextbutton:before, & .lightbox_nextbutton:after
+            {
+                background-color: $border-grey;
+            }
+        }
     }
 
     &_close

@@ -745,6 +745,12 @@ body {
 .lightbox_content.isClosed {
   animation: modalclose 300ms ease-in-out;
 }
+.lightbox_content.boundary_firstelement .lightbox_previousbutton:before, .lightbox_content.boundary_firstelement .lightbox_previousbutton:after {
+  background-color: #C4C4C4;
+}
+.lightbox_content.boundary_lastelement .lightbox_nextbutton:before, .lightbox_content.boundary_lastelement .lightbox_nextbutton:after {
+  background-color: #C4C4C4;
+}
 .lightbox_close {
   position: absolute;
   top: 30px;

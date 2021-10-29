@@ -7,6 +7,8 @@ const gallery = document.querySelector(".gallery");
 const galleryElement = document.querySelector(".gallery_element");
 const bottomBar = document.querySelector(".bottom_bar");
 
+const sortingSelect = document.querySelector(".sorting_select");
+
 const contactButton = document.querySelector(".presentation_contact");
 const contactModalBackground = document.querySelector(".contact_background");
 const contactModalContent = document.querySelector(".contact_content");
@@ -112,8 +114,7 @@ function applyDataToPhotographerPage(photographer, media) {
             const galleryElementPictureVideoSource = document.createElement("source");
             galleryElementPictureVideo.appendChild(galleryElementPictureVideoSource);
             galleryElementPictureVideoSource.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.video + "#t=0.5";
-        }
-        
+        } 
     }
 }
 
@@ -197,6 +198,11 @@ function sortGalleryByCategory(elements, categoryElements, category) {
         sortedCategoryElementsText.sort();
     }
 
+    // Remove order to allow future sortings (otherwise "if (!element.style.order)" condition is always entered)
+    for (let k = 0; k < elements.length; k++) {
+        elements[k].style.order = "";
+    }
+
     // Go through sorted array
     for (let i = 0; i < sortedCategoryElementsText.length; i++) {
         let sortedCategoryElementText = sortedCategoryElementsText[i];
@@ -208,17 +214,66 @@ function sortGalleryByCategory(elements, categoryElements, category) {
 
             // If HTML category element is similar to sorted array element, reorder HTML card element
             if (categoryElementText == sortedCategoryElementText) {
-                element.style.order = i;
+                if (!element.style.order) {     // Only if element hasn't already an order
+                    element.style.order = i;
+                    break;     // To avoid same order for different elements
+                }
             }
         }
     }
 }
 
+/**
+ * Sort gallery elements, pictures and titles, by order of appearance on screen (sorting)
+ * @param {HTML element} elements 
+ * @param {HTML element} elementsPictures 
+ * @param {HTML element} elementsTitles 
+ * @returns 
+ */
+function getSortedElementsPicturesAndTitles(elements, elementsPictures, elementsTitles) {
+
+    let sortedElements = new Array(elements.length);
+    let sortedElementsPictures = new Array(elements.length);
+    let sortedElementsTitles = new Array(elements.length);
+
+    for (let i = 0; i < elements.length; i++) {
+        let sortedIndex = elements[i].style.getPropertyValue('order');
+        sortedElements[sortedIndex] = elements[i];
+        sortedElementsPictures[sortedIndex] = elementsPictures[i];
+        sortedElementsTitles[sortedIndex] = elementsTitles[i];
+    }
+
+    return [sortedElements, sortedElementsPictures, sortedElementsTitles];
+}
+
+/**
+ * Sort gallery by popularity (default option)
+ */
+function defaultGallerySorting() {
+
+    setTimeout(function() {
+        const galleryElements = document.querySelectorAll(".gallery_element");
+        const galleryElementsLikesNumbers = document.querySelectorAll(".gallery_element_legend_likes_number");
+        sortGalleryByCategory(galleryElements, galleryElementsLikesNumbers, "popularity");
+
+        // Get sorted elements, pictures and titles
+        const galleryElementsPictures = document.querySelectorAll(".gallery_element_picture");
+        const galleryElementsTitles = document.querySelectorAll(".gallery_element_legend_title");
+        [sortedGalleryElements, sortedGalleryElementsPictures, sortedGalleryElementsTitles] = getSortedElementsPicturesAndTitles(galleryElements, galleryElementsPictures, galleryElementsTitles);
+    }, 300);
+}
+
+// Sort gallery by default option on page loading
+
+let sortedGalleryElements;
+let sortedGalleryElementsPictures;
+let sortedGalleryElementsTitles;
+window.addEventListener('load', defaultGallerySorting);
+
 // Sort gallery by categories when choosing a sorting option
 
 setTimeout(function() {
 
-    const sortingSelect = document.querySelector(".sorting_select");
     sortingSelect.addEventListener("change", function() {
 
         const galleryElements = document.querySelectorAll(".gallery_element");
@@ -238,29 +293,14 @@ setTimeout(function() {
 
         // Sort gallery elements by chosen option
         sortGalleryByCategory(galleryElements, galleryElementsCategory, sortingSelectedOption);
+
+        // Get sorted elements, pictures and titles
+        const galleryElementsPictures = document.querySelectorAll(".gallery_element_picture");
+        const galleryElementsTitles = document.querySelectorAll(".gallery_element_legend_title");
+        [sortedGalleryElements, sortedGalleryElementsPictures, sortedGalleryElementsTitles] = getSortedElementsPicturesAndTitles(galleryElements, galleryElementsPictures, galleryElementsTitles);
     })
 
 }, 500);
-
-
-// ------------------------------------------------------------
-
-/**
- * Sort gallery by popularity (default option)
- */
-function defaultGallerySorting() {
-
-    setTimeout(function() {
-        const galleryElements = document.querySelectorAll(".gallery_element");
-        const galleryElementsLikesNumbers = document.querySelectorAll(".gallery_element_legend_likes_number");
-        sortGalleryByCategory(galleryElements, galleryElementsLikesNumbers, "popularity");
-    }, 500);
-
-}
-
-// Sort gallery by default option on page loading
-
-window.addEventListener('load', defaultGallerySorting);
 
 
 // ------------------------------------------------------------
@@ -297,7 +337,7 @@ function launchContactModal() {
  * Close contact modal (with animation)
  */
 function closeContactModal() {
-    contactModalContent.classList.toggle('isClosed');
+    contactModalContent.classList.add('isClosed');
     setTimeout(function() {
         contactModalContent.classList.remove('isClosed');
         contactModalBackground.style.display = "none";
@@ -340,7 +380,7 @@ function launchLightboxModal() {
  * Close lightbox modal (with animation)
  */
 function closeLightboxModal() {
-    lightboxModalContent.classList.toggle('isClosed');
+    lightboxModalContent.classList.add('isClosed');
     setTimeout(function() {
         lightboxModalContent.classList.remove('isClosed');
         lightboxModalBackground.style.display = "none";
@@ -351,8 +391,10 @@ function closeLightboxModal() {
  * Get information in clicked HTML gallery element and apply it to the lightbox
  * @param {HTML element} picture 
  * @param {HTML element} title 
+ * @param {boolean} firstpicture 
+ * @param {boolean} lastpicture 
  */
-function applyPictureAndTitleToLightbox(picture, title) {
+function applyPictureAndTitleToLightbox(picture, title, firstpicture, lastpicture) {
 
     // Get photographer page information
     const pictureContent = picture.children[0];
@@ -386,7 +428,7 @@ function applyPictureAndTitleToLightbox(picture, title) {
         lightboxPicture.style.height = "100%";
 
         if (lightboxPictureContent.nodeName != "VIDEO") {
-            // Align the title with the displayed picture (center if it is a video)
+            // Align the title with the displayed picture (center if it is a video because natural dimensions are 0)
             let titleWidth = (lightboxPictureContent.naturalWidth * lightboxPictureContent.height) / lightboxPictureContent.naturalHeight;  
             if (titleWidth > lightboxPictureContent.width) {
                 titleWidth = lightboxPictureContent.width;
@@ -403,66 +445,113 @@ function applyPictureAndTitleToLightbox(picture, title) {
             }
         }
     }, 50);
+
+    // Partially hide the previous button if the picture is the first
+    if (firstpicture) {
+        lightboxModalContent.classList.add("boundary_firstelement");
+    }
+    // Partially hide the next button if the picture is the last
+    else if (lastpicture) {
+        lightboxModalContent.classList.add("boundary_lastelement");
+    }
+    else
+    {
+        lightboxModalContent.classList.remove("boundary_firstelement");
+        lightboxModalContent.classList.remove("boundary_lastelement");
+    }
 }
 
-// Lightbox modal opening, closing with cross and closing with empty areas
+/**
+ * Get image or video source (from a video thumbnail if needed with boolean "fromimage")
+ * @param {HTML element} content 
+ * @param {boolean} fromimage 
+ * @returns source
+ */
+function getContentSource(content, fromimage) {
+
+    let contentSource;
+    if (content.nodeName != "VIDEO") {
+        contentSource = content.src;
+    }
+    else
+    {
+        if (!fromimage) {
+            contentSource = content.children[0].src;
+        }
+        else {
+            contentSource = content.children[0].src.split("#")[0];
+        }
+    }
+    return contentSource;
+}
+
+// Lightbox modal opening, navigation, closing with cross and closing with empty areas
 
 setTimeout(function() {
 
     // - Opening -
-    const galleryElements = document.querySelectorAll(".gallery_element");
-    const galleryElementsPictures = document.querySelectorAll(".gallery_element_picture");
-    const galleryElementsTitles = document.querySelectorAll(".gallery_element_legend_title");
+    for (let i = 0; i < sortedGalleryElements.length; i++) {
+        const sortedGalleryElementPicture = sortedGalleryElementsPictures[i];
+        const sortedGalleryElementTitle = sortedGalleryElementsTitles[i];
 
-    /*galleryElements.forEach(function(galleryElement) {
-        const galleryElementPicture = galleryElement.children[0];
-        const galleryElementTitle = galleryElement.children[1].children[0];
-
-        galleryElementPicture.addEventListener("click", function() {
-            applyPictureAndTitleToLightbox(galleryElementPicture, galleryElementTitle);
+        sortedGalleryElementPicture.addEventListener("click", function() {
+            applyPictureAndTitleToLightbox(sortedGalleryElementPicture, sortedGalleryElementTitle, false, false);
+            // Display lightbox previous and next buttons if it is the first or the last picture
+            /*console.log("i", i);
+            if (i == 0) {
+                applyPictureAndTitleToLightbox(sortedGalleryElementPicture, sortedGalleryElementTitle, true, false);
+            }
+            else if (i == sortedGalleryElements.length - 1) {
+                applyPictureAndTitleToLightbox(sortedGalleryElementPicture, sortedGalleryElementTitle, false, true);
+            }
+            else {
+                applyPictureAndTitleToLightbox(sortedGalleryElementPicture, sortedGalleryElementTitle, false, false);
+            }*/
             launchLightboxModal();
-        });
-    });*/
-
-    for (let i = 0; i < galleryElements.length; i++) {
-        const galleryElementPicture = galleryElementsPictures[i];
-        const galleryElementTitle = galleryElementsTitles[i];
-
-        galleryElementPicture.addEventListener("click", function() {
-            applyPictureAndTitleToLightbox(galleryElementPicture, galleryElementTitle);
-            launchLightboxModal();
-            
-            // !!!!!!! ONLY WORKS ONCE
-            /*lightboxModalPreviousButton.addEventListener("click", function() {
-                console.log("test previous");
-                console.log("image", galleryElementsPictures[i].children[0].src);
-                console.log("title", galleryElementsTitles[i].innerHTML);
-                let previousGalleryElementPicture = '';
-                let previousGalleryElementTitle = '';
-                if (i == 0) {
-                    previousGalleryElementPicture = galleryElementsPictures[galleryElements.length - 1];
-                    previousGalleryElementTitle = galleryElementsTitles[galleryElements.length - 1];
-                }
-                else {
-                    previousGalleryElementPicture = galleryElementsPictures[i-1];
-                    previousGalleryElementTitle = galleryElementsTitles[i-1];
-                }
-                console.log("previous image", previousGalleryElementPicture.children[0].src);
-                console.log("previous title", previousGalleryElementTitle.innerHTML);
-                applyPictureAndTitleToLightbox(previousGalleryElementPicture, previousGalleryElementTitle);
-            });*/
         });
     }
 
-    /*lightboxModalPreviousButton.addEventListener("click", function() {
-        console.log("test previous");
-        applyPictureAndTitleToLightbox(galleryElementsPictures[i-1], galleryElementsTitles[i-1]);
-    });
+    // - Navigation between gallery pictures -
+    lightboxModalPreviousButton.addEventListener("click", function() {
+        let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
 
+        for (let i = 0; i < sortedGalleryElements.length; i++) {
+            // Compare source name in lightbox with corresponding gallery source
+            let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
+            if (lightboxPictureContentSource == sortedElementPictureSource) {
+                // Display lightbox previous and next buttons if it is the first or the last picture
+                if (i == 1) {
+                    applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], true, false);
+                }
+                else if (i == 0) {
+                    console.log("You've reached the first picture.");
+                }
+                else {
+                    applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], false, false);
+                }
+            }
+        }   
+    });
     lightboxModalNextButton.addEventListener("click", function() {
-        console.log("test next");
-        applyPictureAndTitleToLightbox(galleryElementsPictures[i+1], galleryElementsTitles[i+1]);
-    });*/
+        let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
+
+        for (let i = 0; i < sortedGalleryElements.length; i++) {
+            // Compare source name in lightbox with corresponding gallery source
+            let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
+            if (lightboxPictureContentSource == sortedElementPictureSource) {
+                // Display lightbox previous and next buttons if it is the first or the last picture
+                if (i == sortedGalleryElements.length - 2) {
+                    applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, true);
+                }
+                else if (i == sortedGalleryElements.length - 1) {
+                    console.log("You've reached the last picture.");
+                }
+                else {
+                    applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, false);
+                }
+            }
+        }   
+    });
 
     // - Closing with cross -
     lightboxModalCloseCross.addEventListener("click", closeLightboxModal);
