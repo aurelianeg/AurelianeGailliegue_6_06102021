@@ -114,7 +114,17 @@ function applyDataToPhotographerPage(photographer, media) {
             const galleryElementPictureVideoSource = document.createElement("source");
             galleryElementPictureVideo.appendChild(galleryElementPictureVideoSource);
             galleryElementPictureVideoSource.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.video + "#t=0.5";
-        } 
+        }
+    }
+
+    // Add a blank div for rendering pictures (not multiple of 3) on wide screens
+    if (window.screen.width > 1439) {
+        if (photographerMedias.length % 3 == 2) {
+            blankDiv = document.createElement("div");
+            gallery.appendChild(blankDiv);
+            blankDiv.style.width = "390px";
+            blankDiv.style.order = photographerMedias.length;
+        }
     }
 }
 
