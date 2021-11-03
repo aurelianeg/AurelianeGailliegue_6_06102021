@@ -22,7 +22,8 @@
 
         &:hover
         {
-            background-color: lighten($tertiary-color, 15%);
+            background-color: $primary-color;
+            color: #FFFFFF;
         }
     }
 }

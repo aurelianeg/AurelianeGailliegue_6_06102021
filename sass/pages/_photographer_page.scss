@@ -372,6 +372,28 @@
                 outline: none;
             }
         }
+
+        &_error
+        {
+            color: $primary-color;
+            height: 20px;
+            visibility: hidden;
+        }
+
+        &.error .contact_form_input
+        {
+            border: 2px solid $primary-color;
+        }
+
+        &.error .contact_form_error
+        {
+            visibility: visible;
+        }
+          
+        &.success .contact_form_error
+        {
+            visibility: hidden;
+        }
     }
 
     &_submit

@@ -19,6 +19,7 @@ function applyDataToPhotographerHomePage(photographer, photographerCard) {
     [photographerCardProfilePicture, photographerCardName] = photographerCardLink.children;
 
     // Change text in HTML by data in JSON
+    photographerCardLink.ariaLabel = photographer.name;
     photographerCardProfilePicture.src = "assets/pictures/photographers/" + photographer.portrait;
     photographerCardName.innerHTML = photographer.name;
     photographerCardLocation.innerHTML = photographer.city + ', ' + photographer.country;
@@ -30,7 +31,9 @@ function applyDataToPhotographerHomePage(photographer, photographerCard) {
     for (let j = 0; j < photographer.tags.length; j++) {
         // Create a new span for each tag
         const photographerCardTag = document.createElement("span");
+        photographerCardTag.classList.add("tag");
         photographerCardTag.innerHTML = "#" + photographer.tags[j];
+        photographerCardTag.title = photographer.tags[j];
         photographerCardTags.appendChild(photographerCardTag);
     }
 }
@@ -74,8 +77,9 @@ function getHomepageData(photographers, photographersList, photographerCard, nav
     // Create navigation filters
     for (let k = 0; k < navTags.length; k++) {
         const navTag = document.createElement("span");
-        navTag.classList.add("nav_tag");
+        navTag.classList.add("nav_tag", "tag");
         navTag.innerHTML = navTags[k];
+        navTag.title = navTags[k].split("#")[1];
         nav.appendChild(navTag);
     }
 }
@@ -134,8 +138,6 @@ setTimeout(function() {
 }, 1000);
 
 
-//////// !!!!!!!!!!!!!!!!!!!!!!!! À OPTIMISER
-
 // Filter displayed photographers based on tags
 
 setTimeout(function() {
@@ -144,23 +146,31 @@ setTimeout(function() {
     const photographerCards = document.querySelectorAll(".photographer_card");
     const photographerCardsTags = document.querySelectorAll(".photographer_card_tags");
 
-    navTags.forEach((tag) => tag.addEventListener("click", function() {
+    // Make each tag clickable
+    const tags = document.querySelectorAll(".tag");
 
-        tag.classList.toggle("nav_tag--active");
+    tags.forEach((tag) => tag.addEventListener("click", function() {
 
-        // If enabled
-        if (tag.classList.contains("nav_tag--active")) {
-            tag.style.backgroundColor = "#EBBDB3";
-        }
-        // If disabled
-        else {
-            tag.style.backgroundColor = "#FFFFFF";
+        for (let i = 0; i < navTags.length; i++) {
+            const navTag = navTags[i];
+
+            if (tag.innerHTML.toLowerCase() == navTag.innerHTML.toLowerCase()) {
+                navTag.classList.toggle("nav_tag--active");
+            }
+
+            // If nav tag enabled
+            if (navTag.classList.contains("nav_tag--active")) {
+                navTag.style.backgroundColor = "#901C1C";
+                navTag.style.color = "#FFFFFF";
+            }
+            // If nav tag disabled
+            else {
+                navTag.style.backgroundColor = "#FFFFFF";
+                navTag.style.color = "#901C1C";
+            }
         }
 
         const activeNavTags = document.querySelectorAll(".nav_tag--active");
-
-        console.log("activeNavTags", activeNavTags);
-
 
         // For each photographer
         for (let i = 0; i < photographerCards.length; i++) {

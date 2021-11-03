@@ -134,6 +134,15 @@ body {
   }
 }
 
+.contact_form_error {
+  font-size: 22px;
+}
+@media screen and (max-width: 1023px) {
+  .contact_form_error {
+    font-size: 16px;
+  }
+}
+
 .contact_submit {
   font-size: 16px;
 }
@@ -195,7 +204,8 @@ body {
   cursor: pointer;
 }
 .nav_tag:hover {
-  background-color: #ebbdb3;
+  background-color: #901C1C;
+  color: #FFFFFF;
 }
 
 a, a:visited {
@@ -366,6 +376,12 @@ body {
   margin: 2px;
   padding-left: 5px;
   padding-right: 5px;
+  transition: all 300ms;
+  cursor: pointer;
+}
+.photographer_card_tags span:hover {
+  background-color: #901C1C;
+  color: #FFFFFF;
 }
 .photographer_card_id {
   width: 0px;
@@ -697,6 +713,20 @@ body {
 }
 .contact_form_input:focus {
   outline: none;
+}
+.contact_form_error {
+  color: #901C1C;
+  height: 20px;
+  visibility: hidden;
+}
+.contact_form.error .contact_form_input {
+  border: 2px solid #901C1C;
+}
+.contact_form.error .contact_form_error {
+  visibility: visible;
+}
+.contact_form.success .contact_form_error {
+  visibility: hidden;
 }
 .contact_submit {
   background-color: #901C1C;
