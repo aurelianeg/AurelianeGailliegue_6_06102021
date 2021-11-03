@@ -46,6 +46,49 @@
                 <option value="date">Date</option>
                 <option value="title">Titre</option>
             </select>
+
+            <label for="sorting_wrapper">Trier par</label>
+            <div class="sorting_wrapper" aria-label="Order by">
+                <input type="checkbox" id="sorting_input" class="sorting_input"/>
+                <label for="sorting_input" class="sorting_button">
+                    <span class="sorting_button_text">Popularité</span>
+                    <span class="sorting_button_icon"></span>
+                </label>
+                <div class="sorting_menu">
+                    <ul class="sorting_list">
+                        <li><a class="sorting_list_choice" id="popularity">Popularité</a></li>
+                        <li><a class="sorting_list_choice" id="date">Date</a></li>
+                        <li><a class="sorting_list_choice" id="title">Titre</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--<div class="select">
+                <span class="selectLabel" id="jobLabel"> Main job role</span>
+                <div class="selectWrapper">
+                    <select class="selectNative js-selectNative" aria-labelledby="jobLabel">
+                        <option value="sel" disabled="" selected=""> Select role...</option>
+                        <option value="ds">UI/UX Designer</option>
+                        <option value="fe">Frontend Engineer</option>
+                        <option value="be">Backend Engineer</option>
+                        <option value="qa">QA Engineer</option>
+                        <option value="un">Unicorn</option>
+                    </select>-->
+
+                    <!-- Hide the custom select from AT (e.g. SR) using aria-hidden -->
+                    <!--<div class="selectCustom js-selectCustom" aria-hidden="true">
+                        <div class="selectCustom-trigger">Select role...</div>
+                        <div class="selectCustom-options">
+                            <div class="selectCustom-option" data-value="ds">UI/UX Designer</div>
+                            <div class="selectCustom-option" data-value="fe">Frontend Engineer</div>
+                            <div class="selectCustom-option" data-value="be">Backend Engineer</div>
+                            <div class="selectCustom-option" data-value="qa">QA Engineer</div>
+                            <div class="selectCustom-option" data-value="un">Unicorn</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
         </section>
 
         <section class="gallery">
