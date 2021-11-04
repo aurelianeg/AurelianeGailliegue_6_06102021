@@ -7,7 +7,8 @@ const gallery = document.querySelector(".gallery");
 const galleryElement = document.querySelector(".gallery_element");
 const bottomBar = document.querySelector(".bottom_bar");
 
-const sortingSelect = document.querySelector(".sorting_select");
+const sortingListChoices = document.querySelectorAll(".sorting_menu_list_choice");
+const sortingButtonText = document.querySelector(".sorting_button_text");
 
 const contactButton = document.querySelector(".presentation_contact");
 const contactModalBackground = document.querySelector(".contact_background");
@@ -287,46 +288,10 @@ window.addEventListener('load', defaultGallerySorting);
 
 setTimeout(function() {
 
-    sortingSelect.addEventListener("change", function() {
-
-        const galleryElements = document.querySelectorAll(".gallery_element");
-        const sortingSelectedOption = sortingSelect.value;
-
-        // Get HTML elements based on sorting option (likes numbers, dates, or picture titles)
-        let galleryElementsCategory = '';
-        if (sortingSelectedOption == "popularity") {
-            galleryElementsCategory = document.querySelectorAll(".gallery_element_legend_likes_number");
-        }
-        if (sortingSelectedOption == "date") {
-            galleryElementsCategory = document.querySelectorAll(".gallery_element_date");
-        }
-        if (sortingSelectedOption == "title") {
-            galleryElementsCategory = document.querySelectorAll(".gallery_element_legend_title");
-        }
-
-        // Sort gallery elements by chosen option
-        sortGalleryByCategory(galleryElements, galleryElementsCategory, sortingSelectedOption);
-
-        // Get sorted elements, pictures and titles
-        const galleryElementsPictures = document.querySelectorAll(".gallery_element_picture");
-        const galleryElementsTitles = document.querySelectorAll(".gallery_element_legend_title");
-        [sortedGalleryElements, sortedGalleryElementsPictures, sortedGalleryElementsTitles] = getSortedElementsPicturesAndTitles(galleryElements, galleryElementsPictures, galleryElementsTitles);
-    })
-
-}, 500);
-
-const sortingListChoices = document.querySelectorAll(".sorting_list_choice");
-const sortingList = document.querySelector(".sorting_list");
-const sortingButtonText = document.querySelector(".sorting_button_text");
-
-setTimeout(function() {
-
     sortingListChoices.forEach((sortingListChoice) => sortingListChoice.addEventListener("click", function() {
 
         const galleryElements = document.querySelectorAll(".gallery_element");
         const sortingSelectedChoice = sortingListChoice.id;
-        console.log("choice", sortingSelectedChoice);
-        console.log("title", sortingListChoice.innerHTML);
         sortingButtonText.innerHTML = sortingListChoice.innerHTML;
 
         // Get HTML elements based on sorting option (likes numbers, dates, or picture titles)
@@ -341,7 +306,6 @@ setTimeout(function() {
             galleryElementsCategory = document.querySelectorAll(".gallery_element_legend_title");
         }
 
-        //sortingList.style.transform = "translateY(-100%)";
         // Sort gallery elements by chosen option
         sortGalleryByCategory(galleryElements, galleryElementsCategory, sortingSelectedChoice);
 

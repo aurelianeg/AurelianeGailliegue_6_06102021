@@ -528,15 +528,6 @@ body {
   color: #000000;
   margin-right: 30px;
 }
-.sorting_select {
-  height: 50px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #901C1C;
-  color: #FFFFFF;
-  cursor: pointer;
-}
 .sorting_wrapper {
   position: relative;
 }
@@ -546,7 +537,7 @@ body {
 .sorting_button {
   width: 130px;
   height: 50px;
-  padding: 0 15px;
+  padding: 0px 15px;
   border-radius: 5px;
   background: #901C1C;
   display: flex;
@@ -556,6 +547,7 @@ body {
   position: relative;
 }
 .sorting_button_text {
+  padding: 0px 5px;
   font-size: 18px;
   color: #FFFFFF;
 }
@@ -591,8 +583,8 @@ body {
   z-index: -1;
   border-radius: 5px;
 }
-.sorting_list {
-  width: 160px;
+.sorting_menu_list {
+  width: 140px;
   margin: 0px;
   padding: 0px 10px;
   background: #901C1C;
@@ -600,13 +592,13 @@ body {
   list-style: none;
   transition: all 100ms ease-in-out;
 }
-.sorting li {
+.sorting_menu li {
   display: flex;
   align-items: center;
   width: inherit;
   padding: 0;
 }
-.sorting li > a {
+.sorting_menu li > a {
   display: flex;
   align-items: center;
   width: inherit;
@@ -617,10 +609,10 @@ body {
   cursor: pointer;
   transition: all 100ms ease-in-out;
 }
-.sorting li:not(:last-child) {
+.sorting_menu li:not(:last-child) {
   border-bottom: 1px solid #FFFFFF;
 }
-.sorting li > a:hover {
+.sorting_menu li > a:hover {
   background: #D3573C;
 }
 
@@ -628,8 +620,16 @@ body {
   z-index: 1;
 }
 
-.sorting_input:checked ~ .sorting_list {
+.sorting_input:checked ~ .sorting_menu ul {
   transform: translateY(0);
+}
+
+.sorting_input:checked ~ .sorting_button .sorting_button_icon::before {
+  transform: translate(-5px, 0) rotate(45deg);
+}
+
+.sorting_input:checked ~ .sorting_button .sorting_button_icon::after {
+  transform: translate(0, 0) rotate(-45deg);
 }
 
 .selectNative,
