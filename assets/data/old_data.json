@@ -70,8 +70,7 @@
       "tags": ["fashion"],
       "likes": 62,
       "date": "2011-12-08",
-      "price": 55,
-	  "altText": "Une jeune femme porte un ensemble de survêtement jaune et des bottines blanches pointues, au soleil. Un panier de basket est présent à l'arrière-plan à gauche."
+      "price": 55
     },
     {
       "id": 8520927,
@@ -81,8 +80,7 @@
       "tags": ["fashion"],
       "likes": 11,
       "date": "2011-11-06",
-      "price": 55,
-	  "altText": "Une jeune femme blonde est accroupie au milieu de la route d'un pont, elle porte un crop top et un pantalon fluide à motifs verts et bleus représentant des feuilles."
+      "price": 55
     },
     {
       "id": 9025895,
@@ -92,8 +90,7 @@
       "tags": ["fashion"],
       "likes": 72,
       "date": "2013-08-12",
-      "price": 55,
-	  "altText": "Une jeune femme brune porte une robe courte à rayures verticales jaunes, noires, bleues et blanches, avec un pull jaune sur ses épaules. Elle porte un petit sac rouge à la taille, et se trouve devant un mur à carreaux noirs et blancs."
+      "price": 55
     },
     {
       "id": 9275938,
@@ -103,8 +100,7 @@
       "tags": ["events"],
       "likes": 69,
       "date": "2018-02-22",
-      "price": 55,
-	  "altText": "Une coupole est décorée avec des plantes grimpantes et des fleurs oranges et blanches autour de chaque pilier. Une table blanche fleurie est présente sous la coupole. Des chaises blanches sont autour de l'allée centrale menant à la coupole."
+      "price": 55
     },
     {
       "id": 2053494,
@@ -114,8 +110,7 @@
       "tags": ["events"],
       "likes": 2,
       "date": "2020-05-25",
-      "price": 55,
-	  "altText": "Les deux mariés sont de dos, et font face à leurs invités qui portent des cierges magiques allumés."
+      "price": 55
     },
     {
       "id": 7324238,
@@ -125,8 +120,7 @@
       "tags": ["events"],
       "likes": 33,
       "date": "2019-06-12",
-      "price": 55,
-	  "altText": "Une table de réception est présente au premier plan, légèrement flou. Des ballons dorés indiquant le nombre 18 sont présents au milieu de la salle de réception."
+      "price": 55
     },
     {
       "id": 8328953,
@@ -136,8 +130,7 @@
       "tags": ["art"],
       "likes": 24,
       "date": "2011-12-08",
-      "price": 100,
-	  "altText": "La caméra filme une sculpture de cheval en bois, particulièrement au niveau de la tête. Plusieurs morceaux de bois assemblés de couleurs proches forment la sculpture."
+      "price": 100
     },
     {
       "id": 7502053,
@@ -147,8 +140,7 @@
       "tags": ["art"],
       "likes": 88,
       "date": "2007-05-07",
-      "price": 55,
-	  "altText": "Une peinture d'un homme regardant vers le haut est dessinée sur un mur. Son côté gauche est en bleu, et son côté droit est en jaune. Un triangle blanc est dessiné en premier plan."
+      "price": 55
     },
     {
       "id": 8523492,
@@ -158,8 +150,7 @@
       "tags": ["art"],
       "likes": 24,
       "date": "2018-05-05",
-      "price": 55,
-	  "altText": "Un tunnel aux murs tagués est éclairé par une douce lumière violette."
+      "price": 55
     },
     {
       "id": 75902334,
@@ -169,8 +160,7 @@
       "tags": ["art"],
       "likes": 75,
       "date": "2019-11-25",
-      "price": 55,
-	  "altText": "Des oiseaux de couleur bleu clair et rouge sont peints de profil sur un mur avec une barre jaune sur leur cou."
+      "price": 55
     },
 
     {
@@ -181,8 +171,7 @@
       "tags": ["sport"],
       "likes": 52,
       "date": "2013-02-30",
-      "price": 70,
-	  "altText": "Cinq sportifs ramant alternativement à gauche ou à droite sont photographiés d'en haut."
+      "price": 70
     },
     {
       "id": 92758372,
@@ -192,8 +181,7 @@
       "tags": ["fashion"],
       "likes": 58,
       "date": "2018-07-17",
-      "price": 70,
-	  "altText": "Un homme levant le bras droit se tient derrière une femme levant le bras gauche, formant chacun une aile."
+      "price": 70
     },
     {
       "id": 32958383,
@@ -203,8 +191,7 @@
       "tags": ["fashion"],
       "likes": 11,
       "date": "2019-08-12",
-      "price": 70,
-	  "altText": "Une femme portant une longue robe rouge, des chaussures blanches à rayures noires et des lunettes de soleil descend les escaliers."
+      "price": 70
     },
     {
       "id": 928587383,
@@ -214,8 +201,7 @@
       "tags": ["events"],
       "likes": 2,
       "date": "2019-01-02",
-      "price": 70,
-	  "altText": "Une femme présentant un mur rempli de post-it se tient devant des collègues assis autour d'une table de réunion."
+      "price": 70
     },
     {
       "id": 725639493,
@@ -225,8 +211,7 @@
       "tags": ["events"],
       "likes": 3,
       "date": "2019-05-20",
-      "price": 70,
-	  "altText": "Un homme se tient à côté d'un écran et présente devant des collègues assis dans un canapé ou sur des sièges de bureau."
+      "price": 70
     },
     {
       "id": 23394384,
@@ -236,8 +221,7 @@
       "tags": ["events"],
       "likes": 52,
       "date": "2019-07-18",
-      "price": 70,
-	  "altText": "Une personne se tient assise devant un clavier électronique, photographiée en noir et blanc."
+      "price": 70
     },
     {
       "id": 87367293,
@@ -247,8 +231,7 @@
       "tags": ["events"],
       "likes": 23,
       "date": "2018-02-22",
-      "price": 70,
-	  "altText": "Une chanteuse habillée avec une veste à franges dorées et argentées et un jean déchiré tient un micro en souriant."
+      "price": 70
     },
     {
       "id": 593834784,
@@ -258,8 +241,7 @@
       "tags": ["animals"],
       "likes": 52,
       "date": "2017-03-13",
-      "price": 70,
-	  "altText": "Un cerf de face est éclairé par le soleil sur son côté droit, et se trouve devant une prairie avec un autre cerf en arrière-plan."
+      "price": 70
     },
     {
       "id": 83958935,
@@ -269,8 +251,7 @@
       "tags": ["animals"],
       "likes": 52,
       "date": "2016-06-12",
-      "price": 70,
-	  "altText": "Un jeune chiot au pelage noir et blanc joue avec sa laisse sur le sable devant la mer."
+      "price": 70
     },
 
     {
@@ -281,8 +262,7 @@
       "tags": ["travel"],
       "likes": 23,
       "date": "2017-03-18",
-      "price": 45,
-	  "altText": "Le sommet d'une chaîne de montagnes est filmé d'en haut, avec sur le côté gauche un flanc rocheux abrupt et sur le côté droit une prairie en pente douce avec des promeneurs sur les sentiers."
+      "price": 45
     },
     {
       "id": 343423425,
@@ -292,8 +272,7 @@
       "tags": ["travel"],
       "likes": 101,
       "date": "2017-04-03",
-      "price": 45,
-	  "altText": "Des personnes se baignent dans une grande source d'eau chaude naturelle d'un bleu très clair, entourée de petites montagnes."
+      "price": 45
     },
     {
       "id": 73434243,
@@ -303,8 +282,7 @@
       "tags": ["travel"],
       "likes": 99,
       "date": "2018-04-30",
-      "price": 45,
-	  "altText": "Une route grise serpente entre de petites collines aux couleurs d'automne."
+      "price": 45
     },
     {
       "id": 23425523,
@@ -314,8 +292,7 @@
       "tags": ["travel"],
       "likes": 34,
       "date": "2016-04-05",
-      "price": 45,
-	  "altText": "Un pont métallique mène à une forêt aux grands arbres verts."
+      "price": 45
     },
     {
       "id": 23134513,
@@ -325,8 +302,7 @@
       "tags": ["travel"],
       "likes": 23,
       "date": "2017-03-18",
-      "price": 45,
-	  "altText": "L'avant d'un bateau est présenté au premier plan, et s'avance sur une étendue d'eau turquoise avec des montagnes et des sapins en arrière-plan."
+      "price": 45
     },
     {
       "id": 92352352,
@@ -336,8 +312,7 @@
       "tags": ["portrait"],
       "likes": 66,
       "date": "2018-05-24",
-      "price": 45,
-	  "altText": "Une jeune femme rousse et aux nombreuses tâches de rousseur porte un rouge à lèvres rouge."
+      "price": 45
     },
     {
       "id": 34513453,
@@ -347,8 +322,7 @@
       "tags": ["portrait"],
       "likes": 52,
       "date": "2017-04-21",
-      "price": 45,
-	  "altText": "Un homme aux cheveux crépus est photographié de trois quarts en noir et blanc."
+      "price": 45
     },
     {
       "id": 23523533,
@@ -358,8 +332,7 @@
       "tags": ["portrait"],
       "likes": 95,
       "date": "2018-11-02",
-      "price": 45,
-	  "altText": "Une jeune femme aux sourcils et cheveux blancs est photographiée de face."
+      "price": 45
     },
     {
       "id": 525834234,
@@ -369,8 +342,7 @@
       "tags": ["portrait"],
       "likes": 25,
       "date": "2019-01-02",
-      "price": 45,
-	  "altText": "Un homme âgé est photographiée de face en noir et blanc."
+      "price": 45
     },
 
     {
@@ -381,8 +353,7 @@
       "tags": ["travel"],
       "likes": 88,
       "date": "2019-02-03",
-      "price": 45,
-	  "altText": "Une jeune femme se tient au loin sur une montagne, et fait face à une grande étendue de forêts en contrebas."
+      "price": 45
     },
     {
       "id": 625025343,
@@ -392,8 +363,7 @@
       "tags": ["travel"],
       "likes": 85,
       "date": "2019-04-03",
-      "price": 45,
-	  "altText": "Un village aux maisons colorées surplombe la mer, avec des visiteurs sur un pont au premier plan."
+      "price": 45
     },
     {
       "id": 2525345343,
@@ -403,8 +373,7 @@
       "tags": ["portrait"],
       "likes": 34,
       "date": "2019-04-07",
-      "price": 45,
-	  "altText": "Une jeune fille photographiée en noir et blanc se tient allongée sur ses coudes en faisant une grimace."
+      "price": 45
     },
     {
       "id": 2523434634,
@@ -414,8 +383,7 @@
       "tags": ["portrait"],
       "likes": 63,
       "date": "2019-04-07",
-      "price": 45,
-	  "altText": "Une femme portant des lunettes rondes et au buste dénudé est photographiée à travers une vitre, sous un signe néon."
+      "price": 45
     },
     {
       "id": 398847109,
@@ -425,8 +393,7 @@
       "tags": ["portrait"],
       "likes": 55,
       "date": "2019-06-20",
-      "price": 45,
-	  "altText": "Une jeune femme brune est photographiée en noir et blanc."
+      "price": 45
     },
     {
       "id": 2534342,
@@ -436,8 +403,7 @@
       "tags": ["events"],
       "likes": 25,
       "date": "2019-06-21",
-      "price": 45,
-	  "altText": "Une longue table de réception en bois avec des serviettes rouges est dressée sur une plage de sable. Des guirlandes sont tendues au-dessus de la table."
+      "price": 45
     },
     {
       "id": 65235234,
@@ -447,8 +413,7 @@
       "tags": ["events"],
       "likes": 52,
       "date": "2019-06-25",
-      "price": 45,
-	  "altText": "Deux mariés se tiennent front contre front au milieu de gros rochers en forêt."
+      "price": 45
     },
     {
       "id": 23523434,
@@ -458,8 +423,7 @@
       "tags": ["events"],
       "likes": 77,
       "date": "2019-06-28",
-      "price": 45,
-	  "altText": "Deux mariés se tiennent l'un face à l'autre au milieu d'une allée entourée par des chaises en arrière-plan et des arbres décorés de guirlandes lumineuses."
+      "price": 45
     },
     {
       "id": 5234343,
@@ -469,8 +433,7 @@
       "tags": ["animals"],
       "likes": 142,
       "date": "2019-08-23",
-      "price": 60,
-	  "altText": "Des cheveux au pelage brun ou blanc trottent de gauche à droite, dans une prairie devant une montagne."
+      "price": 60
     },
     {
       "id": 95234343,
@@ -480,8 +443,7 @@
       "tags": ["animals"],
       "likes": 59,
       "date": "2019-07-02",
-      "price": 60,
-	  "altText": "Un oiseau aux couleurs arc-en-ciel se tient sur une branche."
+      "price": 60
     },
 
     {
@@ -492,8 +454,7 @@
       "tags": ["travel"],
       "likes": 25,
       "date": "2019-04-03",
-      "price": 60,
-	  "altText": "Deux personnes habillées avec des tenues traditionnelles japonaises se tiennent dans une rue, avec une tour japonaise au bout de la rue."
+      "price": 60
     },
     {
       "id": 2523434,
@@ -503,8 +464,7 @@
       "tags": ["travel"],
       "likes": 53,
       "date": "2019-05-06",
-      "price": 60,
-	  "altText": "Des gondoles sont sur le grand canal de Venise, éclairé au début du coucher du soleil."
+      "price": 60
     },
     {
       "id": 95293534,
@@ -514,8 +474,7 @@
       "tags": ["travel"],
       "likes": 33,
       "date": "2019-05-12",
-      "price": 60,
-	  "altText": "Une maison se trouve à l'arrière-plan au bord du lac, à côté de la forêt entre le lac et les montagnes."
+      "price": 60
     },
     {
       "id": 356234343,
@@ -525,8 +484,7 @@
       "tags": ["travel"],
       "likes": 53,
       "date": "2019-06-20",
-      "price": 60,
-	  "altText": "Un vélo est au bas d'escaliers dans une ruelle entourée d'immeubles blancs au style parisien."
+      "price": 60
     },
     {
       "id": 235234343,
@@ -536,8 +494,7 @@
       "tags": ["travel"],
       "likes": 63,
       "date": "2019-06-26",
-      "price": 60,
-	  "altText": "Une ville peut être vue en contrebas à travers la porte d'un temple aux murs ouvragés."
+      "price": 60
     },
     {
       "id": 6234234343,
@@ -547,8 +504,7 @@
       "tags": ["architecture"],
       "likes": 52,
       "date": "2019-06-30",
-      "price": 60,
-	  "altText": "Le haut ouvragé et doré de tourelles d'un monument est présent au premier plan, avec le ciel en arrière-plan."
+      "price": 60
     },
     {
       "id": 6525666253,
@@ -558,8 +514,7 @@
       "tags": ["architecture"],
       "likes": 63,
       "date": "2019-07-20",
-      "price": 60,
-	  "altText": "Une ville aux maisons claires surplombe une vallée en contrebas des montagnes."
+      "price": 60
     },
     {
       "id": 98252523433,
@@ -569,8 +524,7 @@
       "tags": ["architecture"],
       "likes": 88,
       "date": "2020-01-05",
-      "price": 60,
-	  "altText": "La tour de Pise est photographiée depuis le bas de la tour, laissant apparaître le dessous des piliers et le plafond de chaque étage."
+      "price": 60
     },
     {
       "id": 9259398453,
@@ -580,8 +534,7 @@
       "tags": ["architecture"],
       "likes": 57,
       "date": "2020-01-20",
-      "price": 65,
-	  "altText": "Un immense échangeur d'autoroutes se trouve au milieu de nombreuses habitations colorées."
+      "price": 65
     },
     {
       "id": 3523523534,
@@ -591,8 +544,7 @@
       "tags": ["architecture"],
       "likes": 54,
       "date": "2020-05-05",
-      "price": 60,
-	  "altText": "Le haut du coin d'un immeuble à plusieurs étages est présenté avec le ciel en fond."
+      "price": 60
     },
 
     {
@@ -603,8 +555,7 @@
       "tags": ["sport"],
       "likes": 150,
       "date": "2018-02-30",
-      "price": 70,
-	  "altText": "Une sportive réalise des figures acrobatiques en étant suspendue par le bras droit."
+      "price": 70
     },
     {
       "id": 235234343,
@@ -614,8 +565,7 @@
       "tags": ["sport"],
       "likes": 101,
       "date": "2018-03-05",
-      "price": 65,
-	  "altText": "Une sportive vue du dessus escalade une falaise."
+      "price": 65
     },
     {
       "id": 235343222,
@@ -625,8 +575,7 @@
       "tags": ["sport"],
       "likes": 103,
       "date": "2018-03-10",
-      "price": 70,
-	  "altText": "Un sportif surfe dans le rouleau d'une vague aux couleurs turquoise."
+      "price": 70
     },
     {
       "id": 7775342343,
@@ -636,8 +585,7 @@
       "tags": ["sport"],
       "likes": 77,
       "date": "2018-04-16",
-      "price": 50,
-	  "altText": "Un skieur réalise une figure acrobatique au-dessus de la neige."
+      "price": 50
     },
     {
       "id": 9253445784,
@@ -647,8 +595,7 @@
       "tags": ["sport"],
       "likes": 88,
       "date": "2018-04-22",
-      "price": 65,
-	  "altText": "Des sportives de profil en plein sprint font une course."
+      "price": 65
     },
     {
       "id": 22299394,
@@ -658,8 +605,7 @@
       "tags": ["sport"],
       "likes": 95,
       "date": "2018-04-27",
-      "price": 70,
-	  "altText": "Un skateboarder torse nu réalise une figure en l'air dans un skatepark."
+      "price": 70
     },
     {
       "id": 3452342633,
@@ -669,8 +615,7 @@
       "tags": ["architecture"],
       "likes": 52,
       "date": "2018-05-03",
-      "price": 75,
-	  "altText": "Une coupole dans un bâtiment moderne entièrement blanc est prise en photo d'en bas."
+      "price": 75
     },
     {
       "id": 939234243,
@@ -680,8 +625,7 @@
       "tags": ["architecture"],
       "likes": 55,
       "date": "2018-05-10",
-      "price": 72,
-	  "altText": "Un bâtiment à l'architecture très moderne est capturé depuis une étendue d'eau, donnant une impression de prolongement du toit du bâtiment dans l'eau, avec un léger reflet orangé."
+      "price": 72
     },
     {
       "id": 222959233,
@@ -691,8 +635,7 @@
       "tags": ["architecture"],
       "likes": 85,
       "date": "2018-05-15",
-      "price": 71,
-	  "altText": "Le haut d'un bâtiment en forme de fer à cheval est capturé depuis le sol, en noir et blanc."
+      "price": 71
     },
     {
       "id": 965933434,
@@ -702,8 +645,7 @@
       "tags": ["architecture"],
       "likes": 66,
       "date": "2018-05-20",
-      "price": 58,
-	  "altText": "Le haut d'un bâtiment est capturé depuis le sol, laissant apparaître une architecture en croix et un dégradé du orange foncé vers le blanc du ciel."
+      "price": 58
     },
     {
       "id": 777723343,
@@ -713,8 +655,7 @@
       "tags": ["architecture"],
       "likes": 79,
       "date": "2018-05-21",
-      "price": 80,
-	  "altText": "Deux bâtiments modernes ont des courbes similaires à l'extérieur, et sont reliés en hauteur par un pont."
+      "price": 80
     }
   ]
 }
