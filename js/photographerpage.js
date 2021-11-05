@@ -33,15 +33,17 @@ const lightboxTitle = document.querySelector(".lightbox_container_title");
 /**
  * Apply the data taken from the JSON file to the HTML elements on the photographer page
  * @param {array} photographer 
- * @param {HTML element} presentation
- * @param {HTML element} bottomBar
+ * @param {DOMElement} presentation
+ * @param {DOMElement} bottomBar
  * @param {array} media
- * @param {HTML element} contactModalPhotographerName
+ * @param {DOMElement} contactModalPhotographerName
  */
 function applyDataToPhotographerPage(photographer, media) {
 
     // Get all HTML children
-    [photographerPresentation, contactForm, photographerProfilePicture] = presentation.children;
+    let photographerPresentation, photographerProfilePicture, photographerName, photographerLocation, photographerDescription, photographerTags, photographerLikes, photographerPrice, photographerTotalLikes;
+    photographerPresentation = presentation.children[0];
+    photographerProfilePicture = presentation.children[2];
     [photographerName, photographerLocation, photographerDescription, photographerTags] = photographerPresentation.children;
     
     [photographerLikes, photographerPrice] = bottomBar.children;
@@ -87,7 +89,7 @@ function applyDataToPhotographerPage(photographer, media) {
 
         // Create a clone of the original gallery element
         if (l != 0) {
-            galleryElementNew = galleryElement.cloneNode(true);
+            let galleryElementNew = galleryElement.cloneNode(true);
             gallery.appendChild(galleryElementNew);
         }
 
@@ -95,6 +97,7 @@ function applyDataToPhotographerPage(photographer, media) {
         const galleryElements = document.querySelectorAll(".gallery_element");
 
         // Get all HTML children
+        let galleryElementPicture, galleryElementLegend, galleryElementDate, galleryElementLegendTitle, galleryElementLegendLikesNumber;
         [galleryElementPicture, galleryElementLegend, galleryElementDate] = galleryElements[l].children;
         galleryElementLegendTitle = galleryElementLegend.children[0];
         galleryElementLegendLikesNumber = galleryElementLegend.children[1].children[0];
@@ -128,7 +131,7 @@ function applyDataToPhotographerPage(photographer, media) {
     // Add a blank div for rendering pictures (not multiple of 3) on wide screens
     if (window.screen.width > 1439) {
         if (photographerMedias.length % 3 == 2) {
-            blankDiv = document.createElement("div");
+            let blankDiv = document.createElement("div");
             gallery.appendChild(blankDiv);
             blankDiv.style.width = "390px";
             blankDiv.style.order = photographerMedias.length;
@@ -159,8 +162,8 @@ fetch(jsonUrl)
 
 setTimeout(function() {
 
-    let photographers = data.photographers;
-    let media = data.media;
+    let photographers = window.data.photographers;
+    let media = window.data.media;
     
     //console.log("photographers", photographers);
     //console.log("media", media);
@@ -168,7 +171,7 @@ setTimeout(function() {
     // Get photographer ID from URL and search for the right data in JSON
     const id = new URLSearchParams(window.location.search).get("id");
     
-    for (i = 0; i < photographers.length; i++) {
+    for (let i = 0; i < photographers.length; i++) {
         if (photographers[i].id == id) {
             window.photographer = photographers[i];
         }    
@@ -187,8 +190,8 @@ setTimeout(function() {
 
 /**
  * Sort gallery elements by a chosen category (popularity, date or title)
- * @param {HTML element} elements 
- * @param {HTML element} categoryElements 
+ * @param {DOMElement} elements 
+ * @param {DOMElement} categoryElements 
  * @param {string} category 
  */
 function sortGalleryByCategory(elements, categoryElements, category) {
@@ -196,6 +199,7 @@ function sortGalleryByCategory(elements, categoryElements, category) {
     // Create array with text from HTML category elements
     let categoryElementsText = [];
     for (let i = 0; i < categoryElements.length; i++) {
+        let categoryElementText;
         if (category == "popularity" || category == "date") {
             categoryElementText = parseFloat(categoryElements[i].innerHTML);
         }
@@ -243,10 +247,10 @@ function sortGalleryByCategory(elements, categoryElements, category) {
 
 /**
  * Sort gallery elements, pictures and titles, by order of appearance on screen (sorting)
- * @param {HTML element} elements 
- * @param {HTML element} elementsPictures 
- * @param {HTML element} elementsTitles 
- * @returns 
+ * @param {DOMElement} elements 
+ * @param {DOMElement} elementsPictures 
+ * @param {DOMElement} elementsTitles 
+ * @returns {array}
  */
 function getSortedElementsPicturesAndTitles(elements, elementsPictures, elementsTitles) {
 
@@ -373,7 +377,7 @@ function closeContactModal() {
 
 /**
  * Show error message if input not valid
- * @param {Object} input - The given input
+ * @param {DOMElement} input - The given input
  * @param {string} message - The error message
  */
 function showErrorMessage(input, message) {
@@ -387,7 +391,7 @@ function showErrorMessage(input, message) {
   
 /**
  * Hide error message if input was not valid
- * @param {Object} input 
+ * @param {DOMElement} input 
  */
 function showSuccess(input) {
     const contactForm = input.parentElement;
@@ -399,6 +403,7 @@ function showSuccess(input) {
   
 /**
  * Check if all form inputs are valid
+ * @param {DOMElement} inputs
  * @returns {Boolean}
  */
 function checkFormValidation(inputs) {
@@ -407,6 +412,7 @@ function checkFormValidation(inputs) {
     const regexAsciiLetters = /[a-zA-Z]/;
     const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+    let firstNameInput, lastNameInput, emailInput, messageInput;
     [firstNameInput, lastNameInput, emailInput, messageInput] = inputs;
     // First name input
     if (firstNameInput.value.length == 0) {
@@ -525,8 +531,8 @@ function closeLightboxModal() {
 
 /**
  * Get information in clicked HTML gallery element and apply it to the lightbox
- * @param {HTML element} picture 
- * @param {HTML element} title 
+ * @param {DOMElement} picture 
+ * @param {DOMElement} title 
  * @param {boolean} firstpicture 
  * @param {boolean} lastpicture 
  */
@@ -599,9 +605,9 @@ function applyPictureAndTitleToLightbox(picture, title, firstpicture, lastpictur
 
 /**
  * Get image or video source (from a video thumbnail if needed with boolean "fromimage")
- * @param {HTML element} content 
+ * @param {DOMElement} content 
  * @param {boolean} fromimage 
- * @returns source
+ * @returns {DOMElement}
  */
 function getContentSource(content, fromimage) {
 
@@ -619,6 +625,64 @@ function getContentSource(content, fromimage) {
         }
     }
     return contentSource;
+}
+
+/**
+ * Get previous gallery element in lightbox
+ * @param {DOMElement} lightboxPicture 
+ * @param {DOMElement} sortedGalleryElements 
+ * @param {DOMElement} sortedGalleryElementsPictures 
+ * @param {DOMElement} sortedGalleryElementsTitles 
+ */
+function getPreviousGalleryElement(lightboxPicture, sortedGalleryElements, sortedGalleryElementsPictures, sortedGalleryElementsTitles) {
+
+    let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
+
+    for (let i = 0; i < sortedGalleryElements.length; i++) {
+        // Compare source name in lightbox with corresponding gallery source
+        let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
+        if (lightboxPictureContentSource == sortedElementPictureSource) {
+            // Display lightbox previous and next buttons if it is the first or the last picture
+            if (i == 1) {
+                applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], true, false);
+            }
+            else if (i == 0) {
+                console.log("You've reached the first picture.");
+            }
+            else {
+                applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], false, false);
+            }
+        }
+    }
+}
+
+/**
+ * Get next gallery element in lightbox
+ * @param {DOMElement} lightboxPicture 
+ * @param {DOMElement} sortedGalleryElements 
+ * @param {DOMElement} sortedGalleryElementsPictures 
+ * @param {DOMElement} sortedGalleryElementsTitles 
+ */
+function getNextGalleryElement(lightboxPicture, sortedGalleryElements, sortedGalleryElementsPictures, sortedGalleryElementsTitles) {
+
+    let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
+
+    for (let i = 0; i < sortedGalleryElements.length; i++) {
+        // Compare source name in lightbox with corresponding gallery source
+        let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
+        if (lightboxPictureContentSource == sortedElementPictureSource) {
+            // Display lightbox previous and next buttons if it is the first or the last picture
+            if (i == sortedGalleryElements.length - 2) {
+                applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, true);
+            }
+            else if (i == sortedGalleryElements.length - 1) {
+                console.log("You've reached the last picture.");
+            }
+            else {
+                applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, false);
+            }
+        }
+    }
 }
 
 // Lightbox modal opening, navigation, closing with cross and closing with empty areas
@@ -656,85 +720,17 @@ setTimeout(function() {
 
     // - Navigation between gallery pictures -
     lightboxModalPreviousButton.addEventListener("click", function() {
-        let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
-
-        for (let i = 0; i < sortedGalleryElements.length; i++) {
-            // Compare source name in lightbox with corresponding gallery source
-            let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
-            if (lightboxPictureContentSource == sortedElementPictureSource) {
-                // Display lightbox previous and next buttons if it is the first or the last picture
-                if (i == 1) {
-                    applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], true, false);
-                }
-                else if (i == 0) {
-                    console.log("You've reached the first picture.");
-                }
-                else {
-                    applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], false, false);
-                }
-            }
-        }
+        getPreviousGalleryElement(lightboxPicture, sortedGalleryElements, sortedGalleryElementsPictures, sortedGalleryElementsTitles);
     });
     lightboxModalNextButton.addEventListener("click", function() {
-        let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
-
-        for (let i = 0; i < sortedGalleryElements.length; i++) {
-            // Compare source name in lightbox with corresponding gallery source
-            let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
-            if (lightboxPictureContentSource == sortedElementPictureSource) {
-                // Display lightbox previous and next buttons if it is the first or the last picture
-                if (i == sortedGalleryElements.length - 2) {
-                    applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, true);
-                }
-                else if (i == sortedGalleryElements.length - 1) {
-                    console.log("You've reached the last picture.");
-                }
-                else {
-                    applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, false);
-                }
-            }
-        }
+        getNextGalleryElement(lightboxPicture, sortedGalleryElements, sortedGalleryElementsPictures, sortedGalleryElementsTitles);
     });
     window.addEventListener("keydown", function(event) {
         if (lightboxModalContent.getAttribute("aria-hidden") == "false" && event.key == "ArrowLeft") {
-            let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
-
-            for (let i = 0; i < sortedGalleryElements.length; i++) {
-                // Compare source name in lightbox with corresponding gallery source
-                let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
-                if (lightboxPictureContentSource == sortedElementPictureSource) {
-                    // Display lightbox previous and next buttons if it is the first or the last picture
-                    if (i == 1) {
-                        applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], true, false);
-                    }
-                    else if (i == 0) {
-                        console.log("You've reached the first picture.");
-                    }
-                    else {
-                        applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], false, false);
-                    }
-                }
-            }
+            getPreviousGalleryElement(lightboxPicture, sortedGalleryElements, sortedGalleryElementsPictures, sortedGalleryElementsTitles);
         }
         if (lightboxModalContent.getAttribute("aria-hidden") == "false" && event.key == "ArrowRight") {
-            let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
-
-            for (let i = 0; i < sortedGalleryElements.length; i++) {
-                // Compare source name in lightbox with corresponding gallery source
-                let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
-                if (lightboxPictureContentSource == sortedElementPictureSource) {
-                    // Display lightbox previous and next buttons if it is the first or the last picture
-                    if (i == sortedGalleryElements.length - 2) {
-                        applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, true);
-                    }
-                    else if (i == sortedGalleryElements.length - 1) {
-                        console.log("You've reached the last picture.");
-                    }
-                    else {
-                        applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, false);
-                    }
-                }
-            }
+            getNextGalleryElement(lightboxPicture, sortedGalleryElements, sortedGalleryElementsPictures, sortedGalleryElementsTitles);
         }
     });
 
