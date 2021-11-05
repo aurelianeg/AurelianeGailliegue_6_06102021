@@ -108,8 +108,7 @@ fetch(jsonUrl)
 setTimeout(function() {
 
     let photographers = data.photographers;
-    let media = data.media;
-    
+    //let media = data.media;
     //console.log("photographers", photographers);
     //console.log("media", media);
 

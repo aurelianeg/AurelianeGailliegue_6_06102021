@@ -1,14 +1,16 @@
 // ============================== DOM ELEMENTS ==============================
 
 const pageTitle = document.querySelector(".page_title");
+const mainWrapper = document.querySelector(".main");
 
 const presentation = document.querySelector(".presentation");
 const gallery = document.querySelector(".gallery");
 const galleryElement = document.querySelector(".gallery_element");
 const bottomBar = document.querySelector(".bottom_bar");
 
-const sortingListChoices = document.querySelectorAll(".sorting_menu_list_choice");
+const sortingInput = document.querySelector(".sorting_input");
 const sortingButtonText = document.querySelector(".sorting_button_text");
+const sortingListChoices = document.querySelectorAll(".sorting_menu_list_choice");
 
 const contactButton = document.querySelector(".presentation_contact");
 const contactModalBackground = document.querySelector(".contact_background");
@@ -51,11 +53,11 @@ function applyDataToPhotographerPage(photographer, media) {
     photographerName.innerHTML = photographer.name;
     contactModalPhotographerName.innerHTML = photographer.name;
     pageTitle.innerHTML += " - " + photographer.name;
-    photographerLocation.innerHTML = photographer.city + ', ' + photographer.country;
+    photographerLocation.innerHTML = photographer.city + ", " + photographer.country;
     photographerDescription.innerHTML = photographer.tagline;
     photographerPrice.innerHTML = photographer.price + " € / jour";
     // Empty tags
-    photographerTags.innerHTML = '';
+    photographerTags.innerHTML = "";
     for (let j = 0; j < photographer.tags.length; j++) {
         // Create a new span for each tag
         const photographerCardTag = document.createElement("span");
@@ -100,9 +102,9 @@ function applyDataToPhotographerPage(photographer, media) {
         // Change text in HTML by data in JSON
         galleryElementLegendTitle.innerHTML = photographerMedia.title;
         galleryElementLegendLikesNumber.innerHTML = photographerMedia.likes;
-        galleryElementDate.innerHTML = photographerMedia.date.replace(/-/g, '');
+        galleryElementDate.innerHTML = photographerMedia.date.replace(/-/g, "");
 
-        const folderName = (photographer.name).split(' ')[0].replace(/-/g, ' ');
+        const folderName = (photographer.name).split(" ")[0].replace(/-/g, " ");
         // Check if video or image
         if (l != 0) {       // Remove child cloned with the element
             galleryElementPicture.removeChild(galleryElementPicture.lastChild);
@@ -111,6 +113,7 @@ function applyDataToPhotographerPage(photographer, media) {
             const galleryElementPictureImage = document.createElement("img");
             galleryElementPicture.appendChild(galleryElementPictureImage);
             galleryElementPictureImage.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.image;
+            galleryElementPictureImage.alt = photographerMedia.altText;
         }
         else {
             const galleryElementPictureVideo = document.createElement("video");
@@ -118,6 +121,7 @@ function applyDataToPhotographerPage(photographer, media) {
             const galleryElementPictureVideoSource = document.createElement("source");
             galleryElementPictureVideo.appendChild(galleryElementPictureVideoSource);
             galleryElementPictureVideoSource.src = "assets/pictures/photographs/" + folderName + "/" + photographerMedia.video + "#t=0.5";
+            galleryElementPictureVideo.ariaLabel = photographerMedia.altText;
         }
     }
 
@@ -251,7 +255,7 @@ function getSortedElementsPicturesAndTitles(elements, elementsPictures, elements
     let sortedElementsTitles = new Array(elements.length);
 
     for (let i = 0; i < elements.length; i++) {
-        let sortedIndex = elements[i].style.getPropertyValue('order');
+        let sortedIndex = elements[i].style.getPropertyValue("order");
         sortedElements[sortedIndex] = elements[i];
         sortedElementsPictures[sortedIndex] = elementsPictures[i];
         sortedElementsTitles[sortedIndex] = elementsTitles[i];
@@ -282,7 +286,7 @@ function defaultGallerySorting() {
 let sortedGalleryElements;
 let sortedGalleryElementsPictures;
 let sortedGalleryElementsTitles;
-window.addEventListener('load', defaultGallerySorting);
+window.addEventListener("load", defaultGallerySorting);
 
 // Sort gallery by categories when choosing a sorting option
 
@@ -295,7 +299,7 @@ setTimeout(function() {
         sortingButtonText.innerHTML = sortingListChoice.innerHTML;
 
         // Get HTML elements based on sorting option (likes numbers, dates, or picture titles)
-        let galleryElementsCategory = '';
+        let galleryElementsCategory = "";
         if (sortingSelectedChoice == "popularity") {
             galleryElementsCategory = document.querySelectorAll(".gallery_element_legend_likes_number");
         }
@@ -305,6 +309,9 @@ setTimeout(function() {
         if (sortingSelectedChoice == "title") {
             galleryElementsCategory = document.querySelectorAll(".gallery_element_legend_title");
         }
+
+        // Hide sorting options
+        sortingInput.checked = false;
 
         // Sort gallery elements by chosen option
         sortGalleryByCategory(galleryElements, galleryElementsCategory, sortingSelectedChoice);
@@ -346,16 +353,21 @@ setTimeout(function() {
  */
 function launchContactModal() {
     contactModalBackground.style.display = "block";
+    contactModalContent.setAttribute("aria-hidden", "false");
+    mainWrapper.setAttribute("aria-hidden", "true");
+    contactModalCloseCross.focus();
 }
   
 /**
  * Close contact modal (with animation)
  */
 function closeContactModal() {
-    contactModalContent.classList.add('isClosed');
+    contactModalContent.classList.add("isClosed");
     setTimeout(function() {
-        contactModalContent.classList.remove('isClosed');
+        contactModalContent.classList.remove("isClosed");
         contactModalBackground.style.display = "none";
+        contactModalContent.setAttribute("aria-hidden", "true");
+        mainWrapper.setAttribute("aria-hidden", "false");
     }, 300);
 }
 
@@ -366,8 +378,9 @@ function closeContactModal() {
  */
 function showErrorMessage(input, message) {
     const contactForm = input.parentElement;
-    contactForm.className = 'contact_form error'
-    const errorMessage = contactForm.querySelector('.contact_form_error');
+    input.setAttribute("aria-invalid", "true");
+    contactForm.className = "contact_form error";
+    const errorMessage = contactForm.querySelector(".contact_form_error");
     errorMessage.innerHTML = message;
     input.focus();
 }
@@ -378,9 +391,10 @@ function showErrorMessage(input, message) {
  */
 function showSuccess(input) {
     const contactForm = input.parentElement;
-    contactForm.className = 'contact_form success';
-    const errorMessage = contactForm.querySelector('.contact_form_error');
-    errorMessage.innerHTML = '';
+    input.setAttribute("aria-invalid", "false");
+    contactForm.className = "contact_form success";
+    const errorMessage = contactForm.querySelector(".contact_form_error");
+    errorMessage.innerHTML = "";
 }
   
 /**
@@ -460,6 +474,13 @@ setTimeout(function() {
     // - Closing with cross -
     contactModalCloseCross.addEventListener("click", closeContactModal);
 
+    // - Closing with escape key -
+    window.addEventListener("keydown", function(event) {
+        if (contactModalContent.getAttribute("aria-hidden") == "false" && event.key == "Escape") {
+            closeContactModal();
+        }
+    });
+
     // - Closing with submit button -
     const contactFormInputs = document.querySelectorAll(".contact_form_input");
     contactModalSubmitButton.addEventListener("click", function(event) {
@@ -484,16 +505,21 @@ setTimeout(function() {
  */
 function launchLightboxModal() {
     lightboxModalBackground.style.display = "block";
+    lightboxModalContent.setAttribute("aria-hidden", "false");
+    mainWrapper.setAttribute("aria-hidden", "true");
+    lightboxModalCloseCross.focus();
 }
   
 /**
  * Close lightbox modal (with animation)
  */
 function closeLightboxModal() {
-    lightboxModalContent.classList.add('isClosed');
+    lightboxModalContent.classList.add("isClosed");
     setTimeout(function() {
-        lightboxModalContent.classList.remove('isClosed');
+        lightboxModalContent.classList.remove("isClosed");
         lightboxModalBackground.style.display = "none";
+        lightboxModalContent.setAttribute("aria-hidden", "true");
+        mainWrapper.setAttribute("aria-hidden", "false");
     }, 300);
 }
 
@@ -647,7 +673,7 @@ setTimeout(function() {
                     applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], false, false);
                 }
             }
-        }   
+        }
     });
     lightboxModalNextButton.addEventListener("click", function() {
         let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
@@ -667,11 +693,60 @@ setTimeout(function() {
                     applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, false);
                 }
             }
-        }   
+        }
+    });
+    window.addEventListener("keydown", function(event) {
+        if (lightboxModalContent.getAttribute("aria-hidden") == "false" && event.key == "ArrowLeft") {
+            let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
+
+            for (let i = 0; i < sortedGalleryElements.length; i++) {
+                // Compare source name in lightbox with corresponding gallery source
+                let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
+                if (lightboxPictureContentSource == sortedElementPictureSource) {
+                    // Display lightbox previous and next buttons if it is the first or the last picture
+                    if (i == 1) {
+                        applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], true, false);
+                    }
+                    else if (i == 0) {
+                        console.log("You've reached the first picture.");
+                    }
+                    else {
+                        applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i-1], sortedGalleryElementsTitles[i-1], false, false);
+                    }
+                }
+            }
+        }
+        if (lightboxModalContent.getAttribute("aria-hidden") == "false" && event.key == "ArrowRight") {
+            let lightboxPictureContentSource = getContentSource(lightboxPicture.children[0], false);
+
+            for (let i = 0; i < sortedGalleryElements.length; i++) {
+                // Compare source name in lightbox with corresponding gallery source
+                let sortedElementPictureSource = getContentSource(sortedGalleryElementsPictures[i].children[0], true);
+                if (lightboxPictureContentSource == sortedElementPictureSource) {
+                    // Display lightbox previous and next buttons if it is the first or the last picture
+                    if (i == sortedGalleryElements.length - 2) {
+                        applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, true);
+                    }
+                    else if (i == sortedGalleryElements.length - 1) {
+                        console.log("You've reached the last picture.");
+                    }
+                    else {
+                        applyPictureAndTitleToLightbox(sortedGalleryElementsPictures[i+1], sortedGalleryElementsTitles[i+1], false, false);
+                    }
+                }
+            }
+        }
     });
 
     // - Closing with cross -
     lightboxModalCloseCross.addEventListener("click", closeLightboxModal);
+
+    // - Closing with escape key -
+    window.addEventListener("keydown", function(event) {
+        if (lightboxModalContent.getAttribute("aria-hidden") == "false" && event.key == "Escape") {
+            closeLightboxModal();
+        }
+    });
 
     // - Closing on empty areas -
     lightboxModalBackground.addEventListener("click", function(event) {

@@ -23,26 +23,26 @@
 <body>
 
     <header class="header">
-        <a href="index.html"><img class="header_logo header_logo--photographerpage" src="assets/pictures/logo/FishEye_logo.svg" alt="FishEye homepage" /></a>
+        <a href="index.html"><img class="header_logo header_logo--photographerpage" src="assets/pictures/logo/FishEye_logo.svg" alt="Logo de FishEye - Page d'accueil" /></a>
     </header>
 
-    <main>
+    <main class="main">
 
-        <section class="presentation">
+        <section class="presentation" aria-label="Présentation du photographe">
             <div class="presentation_photographer">
                 <h1 class="presentation_photographer_name"></h1>
                 <h2 class="presentation_photographer_location"></h2>
                 <h3 class="presentation_photographer_description"></h3>
                 <div class="presentation_photographer_tags"></div>
             </div>
-            <button class="presentation_contact" title="Contact me"><h3>Contactez-moi</h3></button>
-            <img class="presentation_profilepicture" src="" alt="" />
+            <button class="presentation_contact" aria-label="Contacter le photographe"><h3>Contactez-moi</h3></button>
+            <img class="presentation_profilepicture" src="" alt="Photo de profil du photographe" />
         </section>
 
-        <section class="sorting">
+        <section class="sorting" aria-label="Tri de la galerie">
             <label for="sorting_wrapper">Trier par</label>
-            <div class="sorting_wrapper" aria-label="Order by">
-                <input type="checkbox" id="sorting_input" class="sorting_input"/>
+            <div class="sorting_wrapper">
+                <input type="checkbox" id="sorting_input" class="sorting_input" aria-label="Choix de l'option de tri" />
                 <label for="sorting_input" class="sorting_button">
                     <span class="sorting_button_text">Popularité</span>
                     <span class="sorting_button_icon"></span>
@@ -56,44 +56,18 @@
                 </div>
             </div>
 
-            <!--<div class="select">
-                <span class="selectLabel" id="jobLabel"> Main job role</span>
-                <div class="selectWrapper">
-                    <select class="selectNative js-selectNative" aria-labelledby="jobLabel">
-                        <option value="sel" disabled="" selected=""> Select role...</option>
-                        <option value="ds">UI/UX Designer</option>
-                        <option value="fe">Frontend Engineer</option>
-                        <option value="be">Backend Engineer</option>
-                        <option value="qa">QA Engineer</option>
-                        <option value="un">Unicorn</option>
-                    </select>-->
-
-                    <!-- Hide the custom select from AT (e.g. SR) using aria-hidden -->
-                    <!--<div class="selectCustom js-selectCustom" aria-hidden="true">
-                        <div class="selectCustom-trigger">Select role...</div>
-                        <div class="selectCustom-options">
-                            <div class="selectCustom-option" data-value="ds">UI/UX Designer</div>
-                            <div class="selectCustom-option" data-value="fe">Frontend Engineer</div>
-                            <div class="selectCustom-option" data-value="be">Backend Engineer</div>
-                            <div class="selectCustom-option" data-value="qa">QA Engineer</div>
-                            <div class="selectCustom-option" data-value="un">Unicorn</div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-
         </section>
 
-        <section class="gallery">
+        <section class="gallery" aria-label="Galerie de photos et de vidéos">
 
             <article class="gallery_element">
                 <div class="gallery_element_picture"></div>
                 <div class="gallery_element_legend">
-                    <h2 class="gallery_element_legend_title"></h2>
+                    <h2 class="gallery_element_legend_title" aria-label="Titre de l'image"></h2>
                     <div class="gallery_element_legend_likes">
-                        <h2 class="gallery_element_legend_likes_number"></h2>
+                        <h2 class="gallery_element_legend_likes_number" aria-label="Nombre de likes de l'image"></h2>
                         <div class="gallery_element_legend_likes_heart">
-                            <i class="fas fa-heart" aria-label="likes"></i>
+                            <i class="fas fa-heart" aria-label="Mettre un like"></i>
                         </div>
                     </div>
                 </div>
@@ -102,68 +76,78 @@
 
         </section>
 
-        <div class="lightbox_background">
-            <div class="lightbox_content" aria-label="Image closeup view">
-
-                <span class="lightbox_close" title="Close dialog"></span>
-                <span class="lightbox_previousbutton" title="Previous image"></span>
-
-                <div class="lightbox_container">
-                    <div class="lightbox_container_picture"></div>
-                    <h2 class="lightbox_container_title"></h2>
-                </div>
-
-                <span class="lightbox_nextbutton" title="Next image"></span>
-
-            </div>
-        </div>
-
-        <div class="contact_background">
-            <div class="contact_content">
-
-                <span class="contact_close"></span>
-
-                <div class="contact_text">
-                    <p>Contactez-moi</p>
-                    <p class="contact_text_photographer"></p>
-                </div>
-
-                <div class="contact_form">
-                    <label class="contact_form_label" for="first_name">Prénom</label><br>
-                    <input class="contact_form_input" type="text" id="first_name" name="first_name" required/>
-                    <br><span class="contact_form_error"></span>
-                </div>
-                <div class="contact_form">
-                    <label class="contact_form_label" for="last_name">Nom</label><br>
-                    <input class="contact_form_input" type="text" id="last_name" name="last_name" required/>
-                    <br><span class="contact_form_error"></span>
-                </div>
-                <div class="contact_form">
-                    <label class="contact_form_label" for="email">E-mail</label><br>
-                    <input class="contact_form_input" type="email" id="email" name="email" required/>
-                    <br><span class="contact_form_error"></span>
-                </div>
-                <div class="contact_form">
-                    <label class="contact_form_label" for="message">Votre message</label><br>
-                    <textarea class="contact_form_input" type="text" id="message" name="message" required></textarea>
-                    <br><span class="contact_form_error"></span>
-                </div>
-
-                <input class="contact_submit" type="submit" value="Envoyer" />
-            </div>
-        </div>
-        
     </main>
+
+    <div class="contact_background">
+        <div class="contact_content" aria-hidden="true" role="dialog" aria-label="Formulaire de contact">
+
+            <span class="contact_close"></span>
+
+            <div class="contact_body">
+                <form class="contact_form" name="contact_photographer" action="photographer_page.html" method="get">
+
+                    <div class="contact_text">
+                        <p>Contactez-moi</p>
+                        <p class="contact_text_photographer"></p>
+                    </div>
+
+                    <div role="group" aria-labelledby="coordonnees">
+                        <p id="coordonnees">Vos coordonnées (prénom, nom et e-mail)</p>
+                        <div class="contact_form">
+                            <label class="contact_form_label" id="first_name_label" for="first_name">Prénom</label><br>
+                            <input class="contact_form_input" type="text" id="first_name" name="first_name" aria-labelledby="first_name_label" required/>
+                            <br><span class="contact_form_error"></span>
+                        </div>
+                        <div class="contact_form">
+                            <label class="contact_form_label" id="last_name_label" for="last_name">Nom</label><br>
+                            <input class="contact_form_input" type="text" id="last_name" name="last_name" aria-labelledby="last_name_label" required/>
+                            <br><span class="contact_form_error"></span>
+                        </div>
+                        <div class="contact_form">
+                            <label class="contact_form_label" id="email_label" for="email">E-mail</label><br>
+                            <input class="contact_form_input" type="email" id="email" name="email" aria-labelledby="email_label" required/>
+                            <br><span class="contact_form_error"></span>
+                        </div>
+                    </div>
+
+                    <div class="contact_form">
+                        <label class="contact_form_label" id="message_label" for="message">Votre message</label><br>
+                        <textarea class="contact_form_input" type="text" id="message" name="message" aria-labelledby="message_label" required></textarea>
+                        <br><span class="contact_form_error"></span>
+                    </div>
+                    
+                    <input class="contact_submit" type="submit" value="Envoyer" aria-label="Envoyer le formulaire"/>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="lightbox_background">
+        <div class="lightbox_content" aria-hidden="true" role="dialog" aria-label="Aperçu de l'image ou de la vidéo">
+
+            <span class="lightbox_close" title="Close dialog" aria-label="Fermer l'aperçu"></span>
+            <span class="lightbox_previousbutton" title="Previous image" aria-label="Image précedente"></span>
+
+            <div class="lightbox_container">
+                <div class="lightbox_container_picture" aria-label="Image ou vidéo"></div>
+                <h2 class="lightbox_container_title" aria-label="Titre de l'image ou de la vidéo"></h2>
+            </div>
+
+            <span class="lightbox_nextbutton" title="Next image" aria-label="Image suivante"></span>
+
+        </div>
+    </div>
 
     <footer class="footer footer--photographerpage">
         <div class="bottom_bar">
             <div class="bottom_bar_likes">
-                <h2 class="bottom_bar_likes_number"></h2>
+                <h2 class="bottom_bar_likes_number" aria-label="Nombre total de likes du photographe"></h2>
                 <div class="bottom_bar_likes_heart">
                     <i class="fas fa-heart"></i>
                 </div>
             </div>
-            <h2 class="bottom_bar_price"></h2>
+            <h2 class="bottom_bar_price" aria-label="Prix journalier du photographe"></h2>
         </div>
     </footer>
 
