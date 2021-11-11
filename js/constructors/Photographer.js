@@ -13,12 +13,24 @@ class Photographer {
         this._price = photographer.price
         this._portrait = photographer.portrait
     }
-
+    
     /**
      * Create photographer card in HTML
      * @returns {DOMElement}
      */
     get createCard() {
+
+        /*<article class="photographer_card">
+            <a class="photographer_card_link" href="photographer_page.html">
+                <img class="photographer_card_profilepicture" src="" alt ="" />
+                <h2 class="photographer_card_name"></h2>
+            </a>
+            <h3 class="photographer_card_location"></h3>
+            <h4 class="photographer_card_description"></h4>
+            <h5 class="photographer_card_price"></h5>
+            <div class="photographer_card_tags"></div>
+            <span class="photographer_card_id"></span>
+        </article>*/
 
         // Card
         const card = document.createElement("article");
@@ -32,7 +44,7 @@ class Photographer {
         card.appendChild(cardLink);
         const cardProfilePicture = document.createElement("img");
         cardProfilePicture.classList.add("photographer_card_profilepicture");
-        cardProfilePicture.setAttribute("src", `../../assets/pictures/photographers/${this._portrait}`);
+        cardProfilePicture.setAttribute("src", `../assets/pictures/photographers/${this._portrait}`);
         cardProfilePicture.setAttribute("alt", `Photo de profil de ${this._name}`);
         cardLink.appendChild(cardProfilePicture);
         const cardName = document.createElement("h2");
@@ -75,30 +87,60 @@ class Photographer {
         return card
     }
 
-}
 
+    /**
+     * Create photographer card in HTML
+     * @returns {DOMElement, DOMElement, DOMElement}
+     */
+    get createProfile() {
 
-/*function getHomepageData(photographers, photographersList, photographerCard, nav) {
+        /*<div class="presentation_photographer">
+                <h1 class="presentation_photographer_name"></h1>
+                <h2 class="presentation_photographer_location"></h2>
+                <h3 class="presentation_photographer_description"></h3>
+                <div class="presentation_photographer_tags"></div>
+        </div>
+        <img class="presentation_profilepicture" src="" alt="Photo de profil du photographe" />*/
 
-    // Initialize empty navigation filters
-    const navTags = [];
-
-        for (let j = 0; j < photographer.tags.length; j++) {
-            // Check if the tag is already in the navigation bar
-            const navTagName = "#" + photographer.tags[j].charAt(0).toUpperCase() + photographer.tags[j].slice(1);
-            if (navTags.includes(navTagName) == false) {
-                navTags.push(navTagName);
-            }
+        // Presentation
+        const presentationPhotographer = document.createElement("div");
+        presentationPhotographer.classList.add("presentation_photographer");
+        // Name
+        const presentationPhotographerName = document.createElement("h1");
+        presentationPhotographerName.classList.add("presentation_photographer_name");
+        presentationPhotographerName.innerHTML = `${this._name}`;
+        presentationPhotographer.appendChild(presentationPhotographerName);
+        // Location
+        const presentationPhotographerLocation = document.createElement("h2");
+        presentationPhotographerLocation.classList.add("presentation_photographer_location");
+        presentationPhotographerLocation.innerHTML = `${this._city}, ${this._country}`;
+        presentationPhotographer.appendChild(presentationPhotographerLocation);
+        // Description
+        const presentationPhotographerDescription = document.createElement("h3");
+        presentationPhotographerDescription.classList.add("presentation_photographer_description");
+        presentationPhotographerDescription.innerHTML = `${this._tagline}`;
+        presentationPhotographer.appendChild(presentationPhotographerDescription);
+        // Tags
+        const presentationPhotographerTags = document.createElement("div");
+        presentationPhotographerTags.classList.add("presentation_photographer_tags");
+        presentationPhotographer.appendChild(presentationPhotographerTags);
+        const tagList = `${this._tags}`.split(",");
+        for (let i = 0; i < tagList.length; i++) {
+            // New span for each tag
+            const photographerTag = document.createElement("span");
+            photographerTag.classList.add("tag");
+            photographerTag.innerHTML = "#" + tagList[i];
+            photographerTag.title = tagList[i];
+            presentationPhotographerTags.appendChild(photographerTag);
         }
+
+        // Profile picture
+        const presentationProfilePicture = document.createElement("img");
+        presentationProfilePicture.classList.add("presentation_profilepicture");
+        presentationProfilePicture.setAttribute("src", `../assets/pictures/photographers/${this._portrait}`);
+        presentationProfilePicture.setAttribute("alt", `Photo de profil de ${this._name}`);
+
+        return {presentationPhotographer, presentationProfilePicture}
     }
 
-    // Create navigation filters
-    for (let k = 0; k < navTags.length; k++) {
-        const navTag = document.createElement("span");
-        navTag.classList.add("nav_tag", "tag");
-        navTag.tabIndex = "0";
-        navTag.innerHTML = navTags[k];
-        navTag.title = navTags[k].split("#")[1];
-        nav.appendChild(navTag);
-    }
-}*/
+}

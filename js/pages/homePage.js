@@ -20,7 +20,7 @@ async function getData(url) {
         .catch(function(error) {
             console.log("Error at fetch:" + error.message);
         });
-
+    
     return data
 }
 
@@ -63,7 +63,8 @@ async function displayData(photographers) {
  */
 async function initHomepage() {
     let jsonUrl = "data/data.json";
-    let {photographers, media} = await getData(jsonUrl);
+    let data = await getData(jsonUrl);
+    let photographers = data["photographers"];
     displayData(photographers);
     console.log("All done for the homepage!");
 }

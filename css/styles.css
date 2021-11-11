@@ -107,6 +107,15 @@ body {
   }
 }
 
+.sorting_button_text, .sorting_menu li > a {
+  font-size: 18px;
+}
+@media screen and (max-width: 1023px) {
+  .sorting_button_text, .sorting_menu li > a {
+    font-size: 14px;
+  }
+}
+
 .gallery_element_legend_likes_number {
   font-size: 22px;
 }
@@ -249,6 +258,251 @@ body {
     justify-content: flex-end;
     align-items: flex-end;
   }
+}
+
+.contact_background {
+  background-color: rgba(255, 255, 255, 0.7);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.contact_content {
+  width: 40%;
+  height: 80%;
+  left: calc(30% - 30px);
+  top: calc(10% - 30px);
+  background-color: #DB8876;
+  padding: 30px;
+  border-radius: 5px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  overflow: hidden;
+  animation: modalopen 300ms ease-in-out;
+}
+@media screen and (max-width: 1023px) {
+  .contact_content {
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    top: 0;
+    left: 0;
+  }
+}
+.contact_content.isClosed {
+  animation: modalclose 300ms ease-in-out;
+}
+.contact_content:hover {
+  overflow-y: auto;
+}
+.contact_close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+.contact_close:before, .contact_close:after {
+  position: absolute;
+  width: 3px;
+  height: 30px;
+  content: " ";
+  background-color: #FFFFFF;
+}
+.contact_close:before {
+  transform: rotate(45deg);
+}
+.contact_close:after {
+  transform: rotate(-45deg);
+}
+.contact_form p {
+  display: none;
+}
+.contact_text {
+  margin-bottom: 20px;
+}
+.contact_text p {
+  display: block;
+  margin: 0px;
+}
+.contact_form {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.contact_form_label {
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #312E2E;
+}
+.contact_form_input {
+  width: calc(100% - 25px);
+  height: 3vh;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+}
+.contact_form_input#message {
+  height: 15vh;
+}
+.contact_form_input:focus {
+  outline: none;
+}
+.contact_form_error {
+  color: #901C1C;
+  height: 20px;
+  visibility: hidden;
+}
+.contact_form.error .contact_form_input {
+  border: 2px solid #901C1C;
+}
+.contact_form.error .contact_form_error {
+  visibility: visible;
+}
+.contact_form.success .contact_form_error {
+  visibility: hidden;
+}
+.contact_submit {
+  background-color: #901C1C;
+  color: #FFFFFF;
+  width: 170px;
+  margin-top: 20px;
+  padding: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: none;
+  border-radius: 3px;
+}
+
+.lightbox_background {
+  background-color: rgba(255, 255, 255, 0.9);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.lightbox_content {
+  width: 80%;
+  height: 90%;
+  left: calc(10% - 30px);
+  top: calc(5% - 30px);
+  padding: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  animation: modalopen 300ms ease-in-out;
+}
+@media screen and (max-width: 1023px) {
+  .lightbox_content {
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    top: 0;
+    left: 0;
+  }
+}
+.lightbox_content.isClosed {
+  animation: modalclose 300ms ease-in-out;
+}
+.lightbox_content.boundary_firstelement .lightbox_previousbutton:before, .lightbox_content.boundary_firstelement .lightbox_previousbutton:after {
+  background-color: #C4C4C4;
+}
+.lightbox_content.boundary_lastelement .lightbox_nextbutton:before, .lightbox_content.boundary_lastelement .lightbox_nextbutton:after {
+  background-color: #C4C4C4;
+}
+.lightbox_close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+.lightbox_close:before, .lightbox_close:after {
+  position: absolute;
+  width: 5px;
+  height: 40px;
+  content: " ";
+  background-color: #901C1C;
+}
+.lightbox_close:before {
+  transform: rotate(45deg);
+}
+.lightbox_close:after {
+  transform: rotate(-45deg);
+}
+.lightbox_previousbutton, .lightbox_nextbutton {
+  width: 40px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+}
+.lightbox_previousbutton:before, .lightbox_previousbutton:after, .lightbox_nextbutton:before, .lightbox_nextbutton:after {
+  position: absolute;
+  width: 5px;
+  height: 30px;
+  content: " ";
+  background-color: #901C1C;
+}
+.lightbox_previousbutton {
+  margin-right: 20px;
+}
+.lightbox_previousbutton:before {
+  transform: rotate(-45deg);
+  top: calc(50% - 13px + 9px);
+  left: calc(50% - 4px);
+}
+.lightbox_previousbutton:after {
+  transform: rotate(45deg);
+  top: calc(50% - 13px - 9px);
+  left: calc(50% - 4px);
+}
+.lightbox_nextbutton {
+  margin-left: 20px;
+}
+.lightbox_nextbutton:before {
+  transform: rotate(45deg);
+  top: calc(50% - 13px + 9px);
+  right: calc(50% - 4px);
+}
+.lightbox_nextbutton:after {
+  transform: rotate(-45deg);
+  top: calc(50% - 13px - 9px);
+  right: calc(50% - 4px);
+}
+.lightbox_container {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.lightbox_container_picture {
+  width: 100%;
+  height: 100%;
+}
+.lightbox_container_picture * {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.lightbox_container_title {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  color: #901C1C;
 }
 
 .top_container {
@@ -550,9 +804,13 @@ body {
   align-items: center;
   position: relative;
 }
+@media screen and (max-width: 1023px) {
+  .sorting_button {
+    height: 40px;
+  }
+}
 .sorting_button_text {
   padding: 0px 5px;
-  font-size: 18px;
   color: #FFFFFF;
 }
 .sorting_button_icon {
@@ -608,10 +866,14 @@ body {
   width: inherit;
   height: 40px;
   padding: 5px 10px;
-  font-size: 18px;
   color: #FFFFFF;
   cursor: pointer;
   transition: all 100ms ease-in-out;
+}
+@media screen and (max-width: 1023px) {
+  .sorting_menu li > a {
+    height: 30px;
+  }
 }
 .sorting_menu li:not(:last-child) {
   border-bottom: 1px solid #FFFFFF;
@@ -721,251 +983,6 @@ body {
 }
 .gallery_element_date {
   display: none;
-}
-
-.contact_background {
-  background-color: rgba(255, 255, 255, 0.7);
-  display: none;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-}
-.contact_content {
-  width: 40%;
-  height: 80%;
-  left: calc(30% - 30px);
-  top: calc(10% - 30px);
-  background-color: #DB8876;
-  padding: 30px;
-  border-radius: 5px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  overflow: hidden;
-  animation: modalopen 300ms ease-in-out;
-}
-@media screen and (max-width: 1023px) {
-  .contact_content {
-    width: calc(100% - 60px);
-    height: calc(100% - 60px);
-    top: 0;
-    left: 0;
-  }
-}
-.contact_content.isClosed {
-  animation: modalclose 300ms ease-in-out;
-}
-.contact_content:hover {
-  overflow-y: auto;
-}
-.contact_close {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1;
-}
-.contact_close:before, .contact_close:after {
-  position: absolute;
-  width: 3px;
-  height: 30px;
-  content: " ";
-  background-color: #FFFFFF;
-}
-.contact_close:before {
-  transform: rotate(45deg);
-}
-.contact_close:after {
-  transform: rotate(-45deg);
-}
-.contact_form p {
-  display: none;
-}
-.contact_text {
-  margin-bottom: 20px;
-}
-.contact_text p {
-  display: block;
-  margin: 0px;
-}
-.contact_form {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-.contact_form_label {
-  display: inline-block;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: #312E2E;
-}
-.contact_form_input {
-  width: calc(100% - 25px);
-  height: 3vh;
-  padding: 10px;
-  border: none;
-  border-radius: 3px;
-}
-.contact_form_input#message {
-  height: 15vh;
-}
-.contact_form_input:focus {
-  outline: none;
-}
-.contact_form_error {
-  color: #901C1C;
-  height: 20px;
-  visibility: hidden;
-}
-.contact_form.error .contact_form_input {
-  border: 2px solid #901C1C;
-}
-.contact_form.error .contact_form_error {
-  visibility: visible;
-}
-.contact_form.success .contact_form_error {
-  visibility: hidden;
-}
-.contact_submit {
-  background-color: #901C1C;
-  color: #FFFFFF;
-  width: 170px;
-  margin-top: 20px;
-  padding: 15px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border: none;
-  border-radius: 3px;
-}
-
-.lightbox_background {
-  background-color: rgba(255, 255, 255, 0.9);
-  display: none;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-}
-.lightbox_content {
-  width: 80%;
-  height: 90%;
-  left: calc(10% - 30px);
-  top: calc(5% - 30px);
-  padding: 30px;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  animation: modalopen 300ms ease-in-out;
-}
-@media screen and (max-width: 1023px) {
-  .lightbox_content {
-    width: calc(100% - 60px);
-    height: calc(100% - 60px);
-    top: 0;
-    left: 0;
-  }
-}
-.lightbox_content.isClosed {
-  animation: modalclose 300ms ease-in-out;
-}
-.lightbox_content.boundary_firstelement .lightbox_previousbutton:before, .lightbox_content.boundary_firstelement .lightbox_previousbutton:after {
-  background-color: #C4C4C4;
-}
-.lightbox_content.boundary_lastelement .lightbox_nextbutton:before, .lightbox_content.boundary_lastelement .lightbox_nextbutton:after {
-  background-color: #C4C4C4;
-}
-.lightbox_close {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1;
-}
-.lightbox_close:before, .lightbox_close:after {
-  position: absolute;
-  width: 5px;
-  height: 40px;
-  content: " ";
-  background-color: #901C1C;
-}
-.lightbox_close:before {
-  transform: rotate(45deg);
-}
-.lightbox_close:after {
-  transform: rotate(-45deg);
-}
-.lightbox_previousbutton, .lightbox_nextbutton {
-  width: 40px;
-  height: 50px;
-  cursor: pointer;
-  z-index: 1;
-  position: relative;
-}
-.lightbox_previousbutton:before, .lightbox_previousbutton:after, .lightbox_nextbutton:before, .lightbox_nextbutton:after {
-  position: absolute;
-  width: 5px;
-  height: 30px;
-  content: " ";
-  background-color: #901C1C;
-}
-.lightbox_previousbutton {
-  margin-right: 20px;
-}
-.lightbox_previousbutton:before {
-  transform: rotate(-45deg);
-  top: calc(50% - 13px + 9px);
-  left: calc(50% - 4px);
-}
-.lightbox_previousbutton:after {
-  transform: rotate(45deg);
-  top: calc(50% - 13px - 9px);
-  left: calc(50% - 4px);
-}
-.lightbox_nextbutton {
-  margin-left: 20px;
-}
-.lightbox_nextbutton:before {
-  transform: rotate(45deg);
-  top: calc(50% - 13px + 9px);
-  right: calc(50% - 4px);
-}
-.lightbox_nextbutton:after {
-  transform: rotate(-45deg);
-  top: calc(50% - 13px - 9px);
-  right: calc(50% - 4px);
-}
-.lightbox_container {
-  width: 90%;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.lightbox_container_picture {
-  width: 100%;
-  height: 100%;
-}
-.lightbox_container_picture * {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.lightbox_container_title {
-  margin-top: 20px;
-  margin-bottom: 0px;
-  color: #901C1C;
 }
 
 .bottom_bar {

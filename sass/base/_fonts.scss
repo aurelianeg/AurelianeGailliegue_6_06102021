@@ -98,6 +98,15 @@ body
     }
 }
 
+.sorting_button_text, .sorting_menu li > a
+{
+    font-size: 18px;
+    @include media-under("tablet-max")
+    {
+        font-size: 14px;
+    }
+}
+
 .gallery_element_legend_likes_number
 {
     font-size: 22px;
