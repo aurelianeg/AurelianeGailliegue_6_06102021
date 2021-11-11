@@ -19,6 +19,6 @@
   "homepage": "https://github.com/aurelianeg/AurelianeGailliegue_6_06102021#readme",
   "browserslist": "last 4 versions",
   "devDependencies": {
-    "eslint": "^8.1.0"
+    "eslint": "^8.2.0"
   }
 }

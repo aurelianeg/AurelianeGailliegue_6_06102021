@@ -71,7 +71,7 @@
       "likes": 62,
       "date": "2011-12-08",
       "price": 55,
-	  "altText": "Une jeune femme porte un ensemble de survêtement jaune et des bottines blanches pointues, au soleil. Un panier de basket est présent à l'arrière-plan à gauche."
+      "description": "Une jeune femme porte un ensemble de survêtement jaune et des bottines blanches pointues, au soleil. Un panier de basket est présent à l'arrière-plan à gauche."
     },
     {
       "id": 8520927,
@@ -82,7 +82,7 @@
       "likes": 11,
       "date": "2011-11-06",
       "price": 55,
-	  "altText": "Une jeune femme blonde est accroupie au milieu de la route d'un pont, elle porte un crop top et un pantalon fluide à motifs verts et bleus représentant des feuilles."
+      "description": "Une jeune femme blonde est accroupie au milieu de la route d'un pont, elle porte un crop top et un pantalon fluide à motifs verts et bleus représentant des feuilles."
     },
     {
       "id": 9025895,
@@ -93,7 +93,7 @@
       "likes": 72,
       "date": "2013-08-12",
       "price": 55,
-	  "altText": "Une jeune femme brune porte une robe courte à rayures verticales jaunes, noires, bleues et blanches, avec un pull jaune sur ses épaules. Elle porte un petit sac rouge à la taille, et se trouve devant un mur à carreaux noirs et blancs."
+      "description": "Une jeune femme brune porte une robe courte à rayures verticales jaunes, noires, bleues et blanches, avec un pull jaune sur ses épaules. Elle porte un petit sac rouge à la taille, et se trouve devant un mur à carreaux noirs et blancs."
     },
     {
       "id": 9275938,
@@ -104,7 +104,7 @@
       "likes": 69,
       "date": "2018-02-22",
       "price": 55,
-	  "altText": "Une coupole est décorée avec des plantes grimpantes et des fleurs oranges et blanches autour de chaque pilier. Une table blanche fleurie est présente sous la coupole. Des chaises blanches sont autour de l'allée centrale menant à la coupole."
+      "description": "Une coupole est décorée avec des plantes grimpantes et des fleurs oranges et blanches autour de chaque pilier. Une table blanche fleurie est présente sous la coupole. Des chaises blanches sont autour de l'allée centrale menant à la coupole."
     },
     {
       "id": 2053494,
@@ -115,7 +115,7 @@
       "likes": 2,
       "date": "2020-05-25",
       "price": 55,
-	  "altText": "Les deux mariés sont de dos, et font face à leurs invités qui portent des cierges magiques allumés."
+      "description": "Les deux mariés sont de dos, et font face à leurs invités qui portent des cierges magiques allumés."
     },
     {
       "id": 7324238,
@@ -126,7 +126,7 @@
       "likes": 33,
       "date": "2019-06-12",
       "price": 55,
-	  "altText": "Une table de réception est présente au premier plan, légèrement flou. Des ballons dorés indiquant le nombre 18 sont présents au milieu de la salle de réception."
+      "description": "Une table de réception est présente au premier plan, légèrement flou. Des ballons dorés indiquant le nombre 18 sont présents au milieu de la salle de réception."
     },
     {
       "id": 8328953,
@@ -137,7 +137,7 @@
       "likes": 24,
       "date": "2011-12-08",
       "price": 100,
-	  "altText": "La caméra filme une sculpture de cheval en bois, particulièrement au niveau de la tête. Plusieurs morceaux de bois assemblés de couleurs proches forment la sculpture."
+      "description": "La caméra filme une sculpture de cheval en bois, particulièrement au niveau de la tête. Plusieurs morceaux de bois assemblés de couleurs proches forment la sculpture."
     },
     {
       "id": 7502053,
@@ -148,7 +148,7 @@
       "likes": 88,
       "date": "2007-05-07",
       "price": 55,
-	  "altText": "Une peinture d'un homme regardant vers le haut est dessinée sur un mur. Son côté gauche est en bleu, et son côté droit est en jaune. Un triangle blanc est dessiné en premier plan."
+      "description": "Une peinture d'un homme regardant vers le haut est dessinée sur un mur. Son côté gauche est en bleu, et son côté droit est en jaune. Un triangle blanc est dessiné en premier plan."
     },
     {
       "id": 8523492,
@@ -159,7 +159,7 @@
       "likes": 24,
       "date": "2018-05-05",
       "price": 55,
-	  "altText": "Un tunnel aux murs tagués est éclairé par une douce lumière violette."
+      "description": "Un tunnel aux murs tagués est éclairé par une douce lumière violette."
     },
     {
       "id": 75902334,
@@ -170,7 +170,7 @@
       "likes": 75,
       "date": "2019-11-25",
       "price": 55,
-	  "altText": "Des oiseaux de couleur bleu clair et rouge sont peints de profil sur un mur avec une barre jaune sur leur cou."
+      "description": "Des oiseaux de couleur bleu clair et rouge sont peints de profil sur un mur avec une barre jaune sur leur cou."
     },
 
     {
@@ -182,7 +182,7 @@
       "likes": 52,
       "date": "2013-02-30",
       "price": 70,
-	  "altText": "Cinq sportifs ramant alternativement à gauche ou à droite sont photographiés d'en haut."
+      "description": "Cinq sportifs ramant alternativement à gauche ou à droite sont photographiés d'en haut."
     },
     {
       "id": 92758372,
@@ -193,7 +193,7 @@
       "likes": 58,
       "date": "2018-07-17",
       "price": 70,
-	  "altText": "Un homme levant le bras droit se tient derrière une femme levant le bras gauche, formant chacun une aile."
+      "description": "Un homme levant le bras droit se tient derrière une femme levant le bras gauche, formant chacun une aile."
     },
     {
       "id": 32958383,
@@ -204,7 +204,7 @@
       "likes": 11,
       "date": "2019-08-12",
       "price": 70,
-	  "altText": "Une femme portant une longue robe rouge, des chaussures blanches à rayures noires et des lunettes de soleil descend les escaliers."
+      "description": "Une femme portant une longue robe rouge, des chaussures blanches à rayures noires et des lunettes de soleil descend les escaliers."
     },
     {
       "id": 928587383,
@@ -215,7 +215,7 @@
       "likes": 2,
       "date": "2019-01-02",
       "price": 70,
-	  "altText": "Une femme présentant un mur rempli de post-it se tient devant des collègues assis autour d'une table de réunion."
+      "description": "Une femme présentant un mur rempli de post-it se tient devant des collègues assis autour d'une table de réunion."
     },
     {
       "id": 725639493,
@@ -226,7 +226,7 @@
       "likes": 3,
       "date": "2019-05-20",
       "price": 70,
-	  "altText": "Un homme se tient à côté d'un écran et présente devant des collègues assis dans un canapé ou sur des sièges de bureau."
+      "description": "Un homme se tient à côté d'un écran et présente devant des collègues assis dans un canapé ou sur des sièges de bureau."
     },
     {
       "id": 23394384,
@@ -237,7 +237,7 @@
       "likes": 52,
       "date": "2019-07-18",
       "price": 70,
-	  "altText": "Une personne se tient assise devant un clavier électronique, photographiée en noir et blanc."
+      "description": "Une personne se tient assise devant un clavier électronique, photographiée en noir et blanc."
     },
     {
       "id": 87367293,
@@ -248,7 +248,7 @@
       "likes": 23,
       "date": "2018-02-22",
       "price": 70,
-	  "altText": "Une chanteuse habillée avec une veste à franges dorées et argentées et un jean déchiré tient un micro en souriant."
+      "description": "Une chanteuse habillée avec une veste à franges dorées et argentées et un jean déchiré tient un micro en souriant."
     },
     {
       "id": 593834784,
@@ -259,7 +259,7 @@
       "likes": 52,
       "date": "2017-03-13",
       "price": 70,
-	  "altText": "Un cerf de face est éclairé par le soleil sur son côté droit, et se trouve devant une prairie avec un autre cerf en arrière-plan."
+      "description": "Un cerf de face est éclairé par le soleil sur son côté droit, et se trouve devant une prairie avec un autre cerf en arrière-plan."
     },
     {
       "id": 83958935,
@@ -270,7 +270,7 @@
       "likes": 52,
       "date": "2016-06-12",
       "price": 70,
-	  "altText": "Un jeune chiot au pelage noir et blanc joue avec sa laisse sur le sable devant la mer."
+      "description": "Un jeune chiot au pelage noir et blanc joue avec sa laisse sur le sable devant la mer."
     },
 
     {
@@ -282,7 +282,7 @@
       "likes": 23,
       "date": "2017-03-18",
       "price": 45,
-	  "altText": "Le sommet d'une chaîne de montagnes est filmé d'en haut, avec sur le côté gauche un flanc rocheux abrupt et sur le côté droit une prairie en pente douce avec des promeneurs sur les sentiers."
+      "description": "Le sommet d'une chaîne de montagnes est filmé d'en haut, avec sur le côté gauche un flanc rocheux abrupt et sur le côté droit une prairie en pente douce avec des promeneurs sur les sentiers."
     },
     {
       "id": 343423425,
@@ -293,7 +293,7 @@
       "likes": 101,
       "date": "2017-04-03",
       "price": 45,
-	  "altText": "Des personnes se baignent dans une grande source d'eau chaude naturelle d'un bleu très clair, entourée de petites montagnes."
+      "description": "Des personnes se baignent dans une grande source d'eau chaude naturelle d'un bleu très clair, entourée de petites montagnes."
     },
     {
       "id": 73434243,
@@ -304,7 +304,7 @@
       "likes": 99,
       "date": "2018-04-30",
       "price": 45,
-	  "altText": "Une route grise serpente entre de petites collines aux couleurs d'automne."
+      "description": "Une route grise serpente entre de petites collines aux couleurs d'automne."
     },
     {
       "id": 23425523,
@@ -315,7 +315,7 @@
       "likes": 34,
       "date": "2016-04-05",
       "price": 45,
-	  "altText": "Un pont métallique mène à une forêt aux grands arbres verts."
+      "description": "Un pont métallique mène à une forêt aux grands arbres verts."
     },
     {
       "id": 23134513,
@@ -326,7 +326,7 @@
       "likes": 23,
       "date": "2017-03-18",
       "price": 45,
-	  "altText": "L'avant d'un bateau est présenté au premier plan, et s'avance sur une étendue d'eau turquoise avec des montagnes et des sapins en arrière-plan."
+      "description": "L'avant d'un bateau est présenté au premier plan, et s'avance sur une étendue d'eau turquoise avec des montagnes et des sapins en arrière-plan."
     },
     {
       "id": 92352352,
@@ -337,7 +337,7 @@
       "likes": 66,
       "date": "2018-05-24",
       "price": 45,
-	  "altText": "Une jeune femme rousse et aux nombreuses tâches de rousseur porte un rouge à lèvres rouge."
+      "description": "Une jeune femme rousse et aux nombreuses tâches de rousseur porte un rouge à lèvres rouge."
     },
     {
       "id": 34513453,
@@ -348,7 +348,7 @@
       "likes": 52,
       "date": "2017-04-21",
       "price": 45,
-	  "altText": "Un homme aux cheveux crépus est photographié de trois quarts en noir et blanc."
+      "description": "Un homme aux cheveux crépus est photographié de trois quarts en noir et blanc."
     },
     {
       "id": 23523533,
@@ -359,7 +359,7 @@
       "likes": 95,
       "date": "2018-11-02",
       "price": 45,
-	  "altText": "Une jeune femme aux sourcils et cheveux blancs est photographiée de face."
+      "description": "Une jeune femme aux sourcils et cheveux blancs est photographiée de face."
     },
     {
       "id": 525834234,
@@ -370,7 +370,7 @@
       "likes": 25,
       "date": "2019-01-02",
       "price": 45,
-	  "altText": "Un homme âgé est photographiée de face en noir et blanc."
+      "description": "Un homme âgé est photographiée de face en noir et blanc."
     },
 
     {
@@ -382,7 +382,7 @@
       "likes": 88,
       "date": "2019-02-03",
       "price": 45,
-	  "altText": "Une jeune femme se tient au loin sur une montagne, et fait face à une grande étendue de forêts en contrebas."
+      "description": "Une jeune femme se tient au loin sur une montagne, et fait face à une grande étendue de forêts en contrebas."
     },
     {
       "id": 625025343,
@@ -393,7 +393,7 @@
       "likes": 85,
       "date": "2019-04-03",
       "price": 45,
-	  "altText": "Un village aux maisons colorées surplombe la mer, avec des visiteurs sur un pont au premier plan."
+      "description": "Un village aux maisons colorées surplombe la mer, avec des visiteurs sur un pont au premier plan."
     },
     {
       "id": 2525345343,
@@ -404,7 +404,7 @@
       "likes": 34,
       "date": "2019-04-07",
       "price": 45,
-	  "altText": "Une jeune fille photographiée en noir et blanc se tient allongée sur ses coudes en faisant une grimace."
+      "description": "Une jeune fille photographiée en noir et blanc se tient allongée sur ses coudes en faisant une grimace."
     },
     {
       "id": 2523434634,
@@ -415,7 +415,7 @@
       "likes": 63,
       "date": "2019-04-07",
       "price": 45,
-	  "altText": "Une femme portant des lunettes rondes et au buste dénudé est photographiée à travers une vitre, sous un signe néon."
+      "description": "Une femme portant des lunettes rondes et au buste dénudé est photographiée à travers une vitre, sous un signe néon."
     },
     {
       "id": 398847109,
@@ -426,7 +426,7 @@
       "likes": 55,
       "date": "2019-06-20",
       "price": 45,
-	  "altText": "Une jeune femme brune est photographiée en noir et blanc."
+      "description": "Une jeune femme brune est photographiée en noir et blanc."
     },
     {
       "id": 2534342,
@@ -437,7 +437,7 @@
       "likes": 25,
       "date": "2019-06-21",
       "price": 45,
-	  "altText": "Une longue table de réception en bois avec des serviettes rouges est dressée sur une plage de sable. Des guirlandes sont tendues au-dessus de la table."
+      "description": "Une longue table de réception en bois avec des serviettes rouges est dressée sur une plage de sable. Des guirlandes sont tendues au-dessus de la table."
     },
     {
       "id": 65235234,
@@ -448,7 +448,7 @@
       "likes": 52,
       "date": "2019-06-25",
       "price": 45,
-	  "altText": "Deux mariés se tiennent front contre front au milieu de gros rochers en forêt."
+      "description": "Deux mariés se tiennent front contre front au milieu de gros rochers en forêt."
     },
     {
       "id": 23523434,
@@ -459,7 +459,7 @@
       "likes": 77,
       "date": "2019-06-28",
       "price": 45,
-	  "altText": "Deux mariés se tiennent l'un face à l'autre au milieu d'une allée entourée par des chaises en arrière-plan et des arbres décorés de guirlandes lumineuses."
+      "description": "Deux mariés se tiennent l'un face à l'autre au milieu d'une allée entourée par des chaises en arrière-plan et des arbres décorés de guirlandes lumineuses."
     },
     {
       "id": 5234343,
@@ -470,7 +470,7 @@
       "likes": 142,
       "date": "2019-08-23",
       "price": 60,
-	  "altText": "Des cheveux au pelage brun ou blanc trottent de gauche à droite, dans une prairie devant une montagne."
+      "description": "Des cheveux au pelage brun ou blanc trottent de gauche à droite, dans une prairie devant une montagne."
     },
     {
       "id": 95234343,
@@ -481,7 +481,7 @@
       "likes": 59,
       "date": "2019-07-02",
       "price": 60,
-	  "altText": "Un oiseau aux couleurs arc-en-ciel se tient sur une branche."
+      "description": "Un oiseau aux couleurs arc-en-ciel se tient sur une branche."
     },
 
     {
@@ -493,7 +493,7 @@
       "likes": 25,
       "date": "2019-04-03",
       "price": 60,
-	  "altText": "Deux personnes habillées avec des tenues traditionnelles japonaises se tiennent dans une rue, avec une tour japonaise au bout de la rue."
+      "description": "Deux personnes habillées avec des tenues traditionnelles japonaises se tiennent dans une rue, avec une tour japonaise au bout de la rue."
     },
     {
       "id": 2523434,
@@ -504,7 +504,7 @@
       "likes": 53,
       "date": "2019-05-06",
       "price": 60,
-	  "altText": "Des gondoles sont sur le grand canal de Venise, éclairé au début du coucher du soleil."
+      "description": "Des gondoles sont sur le grand canal de Venise, éclairé au début du coucher du soleil."
     },
     {
       "id": 95293534,
@@ -515,7 +515,7 @@
       "likes": 33,
       "date": "2019-05-12",
       "price": 60,
-	  "altText": "Une maison se trouve à l'arrière-plan au bord du lac, à côté de la forêt entre le lac et les montagnes."
+      "description": "Une maison se trouve à l'arrière-plan au bord du lac, à côté de la forêt entre le lac et les montagnes."
     },
     {
       "id": 356234343,
@@ -526,7 +526,7 @@
       "likes": 53,
       "date": "2019-06-20",
       "price": 60,
-	  "altText": "Un vélo est au bas d'escaliers dans une ruelle entourée d'immeubles blancs au style parisien."
+      "description": "Un vélo est au bas d'escaliers dans une ruelle entourée d'immeubles blancs au style parisien."
     },
     {
       "id": 235234343,
@@ -537,7 +537,7 @@
       "likes": 63,
       "date": "2019-06-26",
       "price": 60,
-	  "altText": "Une ville peut être vue en contrebas à travers la porte d'un temple aux murs ouvragés."
+      "description": "Une ville peut être vue en contrebas à travers la porte d'un temple aux murs ouvragés."
     },
     {
       "id": 6234234343,
@@ -548,7 +548,7 @@
       "likes": 52,
       "date": "2019-06-30",
       "price": 60,
-	  "altText": "Le haut ouvragé et doré de tourelles d'un monument est présent au premier plan, avec le ciel en arrière-plan."
+      "description": "Le haut ouvragé et doré de tourelles d'un monument est présent au premier plan, avec le ciel en arrière-plan."
     },
     {
       "id": 6525666253,
@@ -559,7 +559,7 @@
       "likes": 63,
       "date": "2019-07-20",
       "price": 60,
-	  "altText": "Une ville aux maisons claires surplombe une vallée en contrebas des montagnes."
+      "description": "Une ville aux maisons claires surplombe une vallée en contrebas des montagnes."
     },
     {
       "id": 98252523433,
@@ -570,7 +570,7 @@
       "likes": 88,
       "date": "2020-01-05",
       "price": 60,
-	  "altText": "La tour de Pise est photographiée depuis le bas de la tour, laissant apparaître le dessous des piliers et le plafond de chaque étage."
+      "description": "La tour de Pise est photographiée depuis le bas de la tour, laissant apparaître le dessous des piliers et le plafond de chaque étage."
     },
     {
       "id": 9259398453,
@@ -581,7 +581,7 @@
       "likes": 57,
       "date": "2020-01-20",
       "price": 65,
-	  "altText": "Un immense échangeur d'autoroutes se trouve au milieu de nombreuses habitations colorées."
+      "description": "Un immense échangeur d'autoroutes se trouve au milieu de nombreuses habitations colorées."
     },
     {
       "id": 3523523534,
@@ -592,7 +592,7 @@
       "likes": 54,
       "date": "2020-05-05",
       "price": 60,
-	  "altText": "Le haut du coin d'un immeuble à plusieurs étages est présenté avec le ciel en fond."
+      "description": "Le haut du coin d'un immeuble à plusieurs étages est présenté avec le ciel en fond."
     },
 
     {
@@ -604,7 +604,7 @@
       "likes": 150,
       "date": "2018-02-30",
       "price": 70,
-	  "altText": "Une sportive réalise des figures acrobatiques en étant suspendue par le bras droit."
+      "description": "Une sportive réalise des figures acrobatiques en étant suspendue par le bras droit."
     },
     {
       "id": 235234343,
@@ -615,7 +615,7 @@
       "likes": 101,
       "date": "2018-03-05",
       "price": 65,
-	  "altText": "Une sportive vue du dessus escalade une falaise."
+      "description": "Une sportive vue du dessus escalade une falaise."
     },
     {
       "id": 235343222,
@@ -626,7 +626,7 @@
       "likes": 103,
       "date": "2018-03-10",
       "price": 70,
-	  "altText": "Un sportif surfe dans le rouleau d'une vague aux couleurs turquoise."
+      "description": "Un sportif surfe dans le rouleau d'une vague aux couleurs turquoise."
     },
     {
       "id": 7775342343,
@@ -637,7 +637,7 @@
       "likes": 77,
       "date": "2018-04-16",
       "price": 50,
-	  "altText": "Un skieur réalise une figure acrobatique au-dessus de la neige."
+      "description": "Un skieur réalise une figure acrobatique au-dessus de la neige."
     },
     {
       "id": 9253445784,
@@ -648,7 +648,7 @@
       "likes": 88,
       "date": "2018-04-22",
       "price": 65,
-	  "altText": "Des sportives de profil en plein sprint font une course."
+      "description": "Des sportives de profil en plein sprint font une course."
     },
     {
       "id": 22299394,
@@ -659,7 +659,7 @@
       "likes": 95,
       "date": "2018-04-27",
       "price": 70,
-	  "altText": "Un skateboarder torse nu réalise une figure en l'air dans un skatepark."
+      "description": "Un skateboarder torse nu réalise une figure en l'air dans un skatepark."
     },
     {
       "id": 3452342633,
@@ -670,7 +670,7 @@
       "likes": 52,
       "date": "2018-05-03",
       "price": 75,
-	  "altText": "Une coupole dans un bâtiment moderne entièrement blanc est prise en photo d'en bas."
+      "description": "Une coupole dans un bâtiment moderne entièrement blanc est prise en photo d'en bas."
     },
     {
       "id": 939234243,
@@ -681,7 +681,7 @@
       "likes": 55,
       "date": "2018-05-10",
       "price": 72,
-	  "altText": "Un bâtiment à l'architecture très moderne est capturé depuis une étendue d'eau, donnant une impression de prolongement du toit du bâtiment dans l'eau, avec un léger reflet orangé."
+      "description": "Un bâtiment à l'architecture très moderne est capturé depuis une étendue d'eau, donnant une impression de prolongement du toit du bâtiment dans l'eau, avec un léger reflet orangé."
     },
     {
       "id": 222959233,
@@ -692,7 +692,7 @@
       "likes": 85,
       "date": "2018-05-15",
       "price": 71,
-	  "altText": "Le haut d'un bâtiment en forme de fer à cheval est capturé depuis le sol, en noir et blanc."
+      "description": "Le haut d'un bâtiment en forme de fer à cheval est capturé depuis le sol, en noir et blanc."
     },
     {
       "id": 965933434,
@@ -703,7 +703,7 @@
       "likes": 66,
       "date": "2018-05-20",
       "price": 58,
-	  "altText": "Le haut d'un bâtiment est capturé depuis le sol, laissant apparaître une architecture en croix et un dégradé du orange foncé vers le blanc du ciel."
+      "description": "Le haut d'un bâtiment est capturé depuis le sol, laissant apparaître une architecture en croix et un dégradé du orange foncé vers le blanc du ciel."
     },
     {
       "id": 777723343,
@@ -714,7 +714,7 @@
       "likes": 79,
       "date": "2018-05-21",
       "price": 80,
-	  "altText": "Deux bâtiments modernes ont des courbes similaires à l'extérieur, et sont reliés en hauteur par un pont."
+      "description": "Deux bâtiments modernes ont des courbes similaires à l'extérieur, et sont reliés en hauteur par un pont."
     }
   ]
 }

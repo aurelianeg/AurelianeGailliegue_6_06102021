@@ -10,6 +10,7 @@
 
     &_tag
     {
+        background-color: "#FFFFFF";
         color: $primary-color;
         border: 0.5px solid $border-grey;
         border-radius: 20px;
@@ -20,10 +21,18 @@
         transition: all 300ms;
         cursor: pointer;
 
+        &--active
+        {
+            background-color: $primary-color;
+            color: #FFFFFF;
+        }
+
         &:hover
         {
             background-color: $primary-color;
             color: #FFFFFF;
         }
+
+        
     }
 }

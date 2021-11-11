@@ -193,6 +193,7 @@ body {
   }
 }
 .nav_tag {
+  background-color: "#FFFFFF";
   color: #901C1C;
   border: 0.5px solid #C4C4C4;
   border-radius: 20px;
@@ -202,6 +203,10 @@ body {
   padding-right: 7px;
   transition: all 300ms;
   cursor: pointer;
+}
+.nav_tag--active {
+  background-color: #901C1C;
+  color: #FFFFFF;
 }
 .nav_tag:hover {
   background-color: #901C1C;

@@ -142,7 +142,7 @@ function applyDataToPhotographerPage(photographer, media) {
 
 // Get data from JSON file
 
-let jsonUrl = "assets/data/data.json";
+let jsonUrl = "data/data.json";
 
 fetch(jsonUrl)
     .then(function(response) {
