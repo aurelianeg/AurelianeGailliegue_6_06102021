@@ -94,6 +94,10 @@ body {
   font-size: 10px;
 }
 
+.gotomain_button {
+  font-size: 16px;
+}
+
 .photographer_card_tags, nav {
   font-size: 13px;
 }
@@ -520,6 +524,26 @@ body {
     justify-content: space-between;
     align-items: stretch;
     flex-wrap: wrap;
+  }
+}
+
+.gotomain_button {
+  position: absolute;
+  top: 20px;
+  left: calc(50% - 80px);
+  width: 160px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #DB8876;
+  color: #000000;
+  border-radius: 5px;
+}
+@media screen and (max-width: 767px) {
+  .gotomain_button {
+    display: none;
   }
 }
 
