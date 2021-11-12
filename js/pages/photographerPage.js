@@ -73,7 +73,7 @@ async function displayData(photographers, media, id) {
         if (med.photographerId == id) {
             // Create media gallery elements
             const mediaModel = new Media(med);
-            mediaModel._source = "../assets/pictures/photographs/" + folderName + "/";
+            mediaModel._source = "assets/pictures/photographs/" + folderName + "/";
             const galleryElement = mediaModel.createGalleryElement;
             gallery.appendChild(galleryElement);
             // Increase total number of likes

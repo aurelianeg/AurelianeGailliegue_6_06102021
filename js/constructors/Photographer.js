@@ -44,7 +44,7 @@ class Photographer {
         card.appendChild(cardLink);
         const cardProfilePicture = document.createElement("img");
         cardProfilePicture.classList.add("photographer_card_profilepicture");
-        cardProfilePicture.setAttribute("src", `../assets/pictures/photographers/${this._portrait}`);
+        cardProfilePicture.setAttribute("src", `assets/pictures/photographers/${this._portrait}`);
         cardProfilePicture.setAttribute("alt", `Photo de profil de ${this._name}`);
         cardLink.appendChild(cardProfilePicture);
         const cardName = document.createElement("h2");
@@ -137,7 +137,7 @@ class Photographer {
         // Profile picture
         const presentationProfilePicture = document.createElement("img");
         presentationProfilePicture.classList.add("presentation_profilepicture");
-        presentationProfilePicture.setAttribute("src", `../assets/pictures/photographers/${this._portrait}`);
+        presentationProfilePicture.setAttribute("src", `assets/pictures/photographers/${this._portrait}`);
         presentationProfilePicture.setAttribute("alt", `Photo de profil de ${this._name}`);
 
         return {presentationPhotographer, presentationProfilePicture}
