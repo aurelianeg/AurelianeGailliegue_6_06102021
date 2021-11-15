@@ -431,7 +431,7 @@ body {
   right: 30px;
   padding: 10px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
 }
 .lightbox_close:before, .lightbox_close:after {
   position: absolute;
@@ -450,7 +450,7 @@ body {
   width: 40px;
   height: 50px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
   position: relative;
 }
 .lightbox_previousbutton:before, .lightbox_previousbutton:after, .lightbox_nextbutton:before, .lightbox_nextbutton:after {
@@ -493,6 +493,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 .lightbox_container_picture {
   width: 100%;
@@ -852,7 +853,7 @@ body {
   position: absolute;
   top: 15px;
   left: 30px;
-  z-index: 2;
+  z-index: 1;
 }
 .sorting_button_icon:before {
   transform: translate(-5px, 0) rotate(-45deg);
@@ -916,10 +917,12 @@ body {
 
 .sorting_input:checked ~ .sorting_button .sorting_button_icon::before {
   transform: translate(-5px, 0) rotate(45deg);
+  z-index: 2;
 }
 
 .sorting_input:checked ~ .sorting_button .sorting_button_icon::after {
   transform: translate(0, 0) rotate(-45deg);
+  z-index: 2;
 }
 
 .gallery {
