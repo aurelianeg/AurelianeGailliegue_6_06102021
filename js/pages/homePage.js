@@ -56,18 +56,18 @@ async function displayData(photographers) {
         let navTag = navTagModel.createTag;
         nav.appendChild(navTag);
     })
-
 }
 
 /**
  * Initialize homepage data
  */
 async function initHomepage() {
+
     let jsonUrl = "data/data.json";
     let data = await getData(jsonUrl);
     let photographers = data["photographers"];
     displayData(photographers);
-    console.log("All done for the homepage!");
+    console.log("All done for the homepage!"); 
 }
 
 initHomepage();

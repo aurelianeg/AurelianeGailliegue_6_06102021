@@ -5,6 +5,7 @@ const mainWrapper = document.querySelector(".main");
 const contactButton = document.querySelector(".presentation_contact");
 const contactModalBackground = document.querySelector(".contact_background");
 const contactModalContent = document.querySelector(".contact_content");
+const contactModalFormInputs = document.querySelectorAll(".contact_form_input");
 const contactModalCloseCross = document.querySelector(".contact_close");
 const contactModalSubmitButton = document.querySelector(".contact_submit");
 
@@ -14,17 +15,20 @@ const contactModalSubmitButton = document.querySelector(".contact_submit");
 /**
  * Launch contact modal
  */
-function launchContactModal() {
+async function launchContactModal() {
+
     contactModalBackground.style.display = "block";
     contactModalContent.setAttribute("aria-hidden", "false");
     mainWrapper.setAttribute("aria-hidden", "true");
-    contactModalCloseCross.focus();
+    contactModalFormInputs[0].focus();
 }
+
 
 /**
  * Close contact modal (with animation)
  */
-function closeContactModal() {
+async function closeContactModal() {
+
     contactModalContent.classList.add("isClosed");
     setTimeout(function() {
         contactModalContent.classList.remove("isClosed");
@@ -34,12 +38,14 @@ function closeContactModal() {
     }, 300);
 }
 
+
 /**
  * Show error message if input not valid
  * @param {DOMElement} input - The given input
  * @param {string} message - The error message
  */
-function showErrorMessage(input, message) {
+async function showErrorMessage(input, message) {
+
     const contactForm = input.parentElement;
     input.setAttribute("aria-invalid", "true");
     contactForm.className = "contact_form error";
@@ -48,11 +54,13 @@ function showErrorMessage(input, message) {
     input.focus();
 }
 
+
 /**
  * Hide error message if input was not valid
  * @param {DOMElement} input 
  */
-function showSuccess(input) {
+async function showSuccess(input) {
+
     const contactForm = input.parentElement;
     input.setAttribute("aria-invalid", "false");
     contactForm.className = "contact_form success";
@@ -60,16 +68,17 @@ function showSuccess(input) {
     errorMessage.innerHTML = "";
 }
 
+
 /**
  * Check if all form inputs are valid
  * @param {DOMElement} inputs
  * @returns {Boolean}
  */
-function checkFormValidation(inputs) {
+async function checkFormValidation(inputs) {
 
     let fields = {firstName: false, lastName: false, email: false, message: false};
-    const regexAsciiLetters = /[a-zA-Z]/;
-    const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let regexAsciiLetters = /[a-zA-Z]/;
+    let regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     let firstNameInput, lastNameInput, emailInput, messageInput;
     [firstNameInput, lastNameInput, emailInput, messageInput] = inputs;
@@ -159,7 +168,6 @@ setTimeout(function() {
             }
             closeContactModal();
         }
-    
     });
 
 }, 500);

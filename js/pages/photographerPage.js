@@ -96,7 +96,6 @@ async function displayPhotographerData(photographers, media, id) {
     })
     // Update total number of likes
     bottomBarLikesNumber.innerHTML = photographerSumLikes;
-
 }
 
 
@@ -106,7 +105,7 @@ async function displayPhotographerData(photographers, media, id) {
  * @param {DOMElement} categoryElements 
  * @param {string} category 
  */
- async function displaySortedMedia(media, id, folderName, category) {
+async function displaySortedMedia(media, id, folderName, category) {
 
     let medias = [];
     let mediaCategoryTexts = [];
@@ -132,8 +131,6 @@ async function displayPhotographerData(photographers, media, id) {
         }
     })
 
-    console.log("mediaCategoryTexts", mediaCategoryTexts);
-
     // Clone array to sort it
     let sortedMediaCategoryTexts = [...mediaCategoryTexts];
     if (category == "popularity" || category == "date") {       // Descending order
@@ -144,8 +141,6 @@ async function displayPhotographerData(photographers, media, id) {
     if (category == "title") {                                  // Ascending order
         sortedMediaCategoryTexts.sort();
     }
-
-    console.log("sortedMediaCategoryTexts", sortedMediaCategoryTexts);
 
     // Remove property to allow future sortings (otherwise "if (medias[j]._displayed != "yes")" condition is always entered)
     for (let k = 0; k < medias.length; k++) {
@@ -226,9 +221,7 @@ async function sortGallery(choice, buttonText) {
     await displaySortedMedia(media, id, photographerFolderName, selectedChoice);
 
     console.log("Sorting done.");
-
 }
-
 
 setTimeout(function() {
 
@@ -245,7 +238,7 @@ setTimeout(function() {
             sortingInput.checked = false;
         })
     })
-
+    
 }, 500);
 
 
