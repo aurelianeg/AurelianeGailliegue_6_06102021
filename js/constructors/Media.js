@@ -15,6 +15,7 @@ class Media {
         this._date = media.date
         this._price = media.price
         this._description = media.description
+        this._displayed = media.displayed
     }
 
     /**
@@ -29,9 +30,7 @@ class Media {
                 <h2 class="gallery_element_legend_title" aria-label="Titre de l'image"></h2>
                 <div class="gallery_element_legend_likes">
                     <h2 class="gallery_element_legend_likes_number" aria-label="Nombre de likes de l'image"></h2>
-                    <div class="gallery_element_legend_likes_heart">
-                        <i class="fas fa-heart" aria-label="Mettre un like"></i>
-                    </div>
+                    <i class="fas fa-heart gallery_element_legend_likes_heart" aria-label="Mettre un like"></i>
                 </div>
             </div>
             <div class="gallery_element_date"></div>
@@ -44,6 +43,7 @@ class Media {
         // Picture
         const galleryElementPicture = document.createElement("div");
         galleryElementPicture.classList.add("gallery_element_picture");
+        galleryElementPicture.tabIndex = "0";
         galleryElement.appendChild(galleryElementPicture);
         // Check if video or image
         if (`${this._image}` != "undefined") {
@@ -82,13 +82,10 @@ class Media {
         galleryElementLegendLikesNumber.setAttribute("aria-label", "Nombre de likes de l'image");
         galleryElementLegendLikesNumber.innerHTML = `${this._likes}`;
         galleryElementLegendLikes.appendChild(galleryElementLegendLikesNumber);
-        const galleryElementLegendLikesHeart = document.createElement("div");
-        galleryElementLegendLikesHeart.classList.add("gallery_element_legend_likes_heart");
+        const galleryElementLegendLikesHeart = document.createElement("i");
+        galleryElementLegendLikesHeart.classList.add("fas", "fa-heart", "gallery_element_legend_likes_heart");
+        galleryElementLegendLikesHeart.tabIndex = "0";
         galleryElementLegendLikes.appendChild(galleryElementLegendLikesHeart);
-        const galleryElementLegendLikesHeartIcon = document.createElement("i");
-        galleryElementLegendLikesHeartIcon.classList.add("fas", "fa-heart");
-        galleryElementLegendLikesHeartIcon.setAttribute("aria-label", "Mettre un like");
-        galleryElementLegendLikesHeart.appendChild(galleryElementLegendLikesHeartIcon);
 
         // Date
         const galleryElementDate = document.createElement("div");

@@ -1,7 +1,8 @@
-// ========== HOMEPAGE INITIALIZATION ==========
+// ============================== PHOTOGRAPHER PAGE INITIALIZATION ==============================
 
 /**
  * Get data from JSON file
+ * @param {string} url
  * @returns {array} 
  */
 async function getData(url) {
@@ -24,9 +25,10 @@ async function getData(url) {
     return data
 }
 
+
 /**
  * Get photographer ID from URL
- * @returns {array} 
+ * @returns {string} 
  */
 async function getPhotographerId() {
 
@@ -34,54 +36,141 @@ async function getPhotographerId() {
     return id
 }
 
+
+/**
+ * Get photographer folder name for access to media
+ * @param {array} photographers
+ * @param {string} id
+ * @returns {string} 
+ */
+ async function getPhotographerFolderName(photographers, id) {
+
+    let folderName;
+    photographers.forEach(function(photographer) {
+        if (photographer.id == id) {
+            let photographerModel = new Photographer(photographer);
+            folderName = (photographerModel._name).split(" ")[0].replace(/-/g, " ");
+        }
+    })
+    return folderName
+}
+
+
 /**
  * Display data in HTML file after fetch operation
  * @param {array} photographers
  * @param {array} media
  * @param {string} id
  */
-async function displayData(photographers, media, id) {
+async function displayPhotographerData(photographers, media, id) {
 
     const presentation = document.querySelector(".presentation");
     const presentationContact = document.querySelector(".presentation_contact");
     const bottomBarPrice = document.querySelector(".bottom_bar_price");
     const pageTitle = document.querySelector(".page_title");
     const contactModalPhotographerName = document.querySelector(".contact_text_photographer");
-    let folderName;
 
     photographers.forEach(function(photographer) {
         if (photographer.id == id) {
             // Create photographer presentation
-            const photographerModel = new Photographer(photographer);
-            const {presentationPhotographer, presentationProfilePicture} = photographerModel.createProfile;
+            let photographerModel = new Photographer(photographer);
+            let {presentationPhotographer, presentationProfilePicture} = photographerModel.createProfile;
             presentation.insertBefore(presentationPhotographer, presentationContact);
             presentation.appendChild(presentationProfilePicture);
             // Update information in the page
             bottomBarPrice.innerHTML = photographerModel._price + " € / jour";
             contactModalPhotographerName.innerHTML = photographer.name;
             pageTitle.innerHTML += " - " + photographer.name;
-            // Get path for photographs
-            folderName = (photographerModel._name).split(" ")[0].replace(/-/g, " ");
         }
     })
 
-    const gallery = document.querySelector(".gallery");
     const bottomBarLikesNumber = document.querySelector(".bottom_bar_likes_number");
     let photographerSumLikes = 0;
 
     media.forEach(function(med) {
         if (med.photographerId == id) {
-            // Create media gallery elements
-            const mediaModel = new Media(med);
-            mediaModel._source = "assets/pictures/photographs/" + folderName + "/";
-            const galleryElement = mediaModel.createGalleryElement;
-            gallery.appendChild(galleryElement);
+            let mediaModel = new Media(med);
             // Increase total number of likes
             photographerSumLikes += mediaModel._likes;
         }
     })
     // Update total number of likes
     bottomBarLikesNumber.innerHTML = photographerSumLikes;
+
+}
+
+
+/**
+ * Sort gallery elements by a chosen category (popularity, date or title)
+ * @param {DOMElement} elements 
+ * @param {DOMElement} categoryElements 
+ * @param {string} category 
+ */
+ async function displaySortedMedia(media, id, folderName, category) {
+
+    let medias = [];
+    let mediaCategoryTexts = [];
+    media.forEach(function(med) {
+        if (med.photographerId == id) {
+            // Create media models
+            let mediaModel = new Media(med);
+            mediaModel._source = "assets/pictures/photographs/" + folderName + "/";
+            medias.push(mediaModel);
+
+            // Create category text list
+            let mediaCategoryText;
+            if (category == "popularity") {
+                mediaCategoryText = parseFloat(mediaModel._likes);
+            }
+            if (category == "date") {
+                mediaCategoryText = parseFloat(mediaModel._date.replace(/-/g, ""));
+            }
+            if (category == "title") {
+                mediaCategoryText = mediaModel._title;
+            }
+            mediaCategoryTexts.push(mediaCategoryText);
+        }
+    })
+
+    console.log("mediaCategoryTexts", mediaCategoryTexts);
+
+    // Clone array to sort it
+    let sortedMediaCategoryTexts = [...mediaCategoryTexts];
+    if (category == "popularity" || category == "date") {       // Descending order
+        sortedMediaCategoryTexts.sort(function(a, b) {
+            return b - a;
+        });
+    }
+    if (category == "title") {                                  // Ascending order
+        sortedMediaCategoryTexts.sort();
+    }
+
+    console.log("sortedMediaCategoryTexts", sortedMediaCategoryTexts);
+
+    // Remove property to allow future sortings (otherwise "if (medias[j]._displayed != "yes")" condition is always entered)
+    for (let k = 0; k < medias.length; k++) {
+        medias[k]._displayed = "";
+    }
+
+    // Empty gallery before refilling it
+    const gallery = document.querySelector(".gallery");
+    gallery.innerHTML = "";
+
+    // Go through sorted media category
+    for (let i = 0; i < sortedMediaCategoryTexts.length; i++) {
+        // Go through media
+        for (let j = 0; j < medias.length; j++) {
+            // If category element is similar to sorted category element, display media in gallery
+            if (mediaCategoryTexts[j] == sortedMediaCategoryTexts[i]) {
+                if (medias[j]._displayed != "yes") {     // Only if media hasn't already been displayed
+                    medias[j]._displayed = "yes";
+                    let galleryElement = medias[j].createGalleryElement;
+                    gallery.appendChild(galleryElement);
+                    break;     // To avoid same order for different medias
+                }
+            }
+        }
+    }
 
     // Add a blank div for rendering pictures (not multiple of 3) on wide screens
     if (window.screen.width > 1439) {
@@ -93,127 +182,53 @@ async function displayData(photographers, media, id) {
             blankDiv.style.order = galleryElements.length;
         }
     }
-
 }
 
+
 /**
- * Initialize homepage data
+ * Initialize photographer page data
  */
 async function initPhotographerPage() {
+
+    // Get data
     let jsonUrl = "data/data.json";
     let {photographers, media} = await getData(jsonUrl);
     let id = await getPhotographerId();
-    displayData(photographers, media, id);
+
+    // Display data
+    await displayPhotographerData(photographers, media, id);
+
+    // Sort media
+    let photographerFolderName = await getPhotographerFolderName(photographers, id);
+    await displaySortedMedia(media, id, photographerFolderName, "popularity");
+
     console.log("All done for the photographer page!");
 }
 
 initPhotographerPage();
 
 
-// ============================== EVENTS ==============================
-
-/**
- * Sort gallery elements by a chosen category (popularity, date or title)
- * @param {DOMElement} elements 
- * @param {DOMElement} categoryElements 
- * @param {string} category 
- */
-function sortGalleryByCategory(elements, categoryElements, category) {
-
-    // Create array with text from HTML category elements
-    let categoryElementsText = [];
-    for (let i = 0; i < categoryElements.length; i++) {
-        let categoryElementText;
-        if (category == "popularity" || category == "date") {
-            categoryElementText = parseFloat(categoryElements[i].innerHTML);
-        }
-        if (category == "title") {
-            categoryElementText = categoryElements[i].innerHTML;
-        }
-        categoryElementsText.push(categoryElementText);
-    }
-
-    // Clone array to sort it
-    let sortedCategoryElementsText = [...categoryElementsText];
-    if (category == "popularity" || category == "date") {       // Descending order
-        sortedCategoryElementsText.sort(function(a, b) {
-            return b - a;
-        });
-    }
-    if (category == "title") {                                  // Ascending order
-        sortedCategoryElementsText.sort();
-    }
-
-    // Remove order to allow future sortings (otherwise "if (!element.style.order)" condition is always entered)
-    for (let k = 0; k < elements.length; k++) {
-        elements[k].style.order = "";
-    }
-
-    // Go through sorted array
-    for (let i = 0; i < sortedCategoryElementsText.length; i++) {
-        let sortedCategoryElementText = sortedCategoryElementsText[i];
-
-        // Go through HTML card elements
-        for (let j = 0; j < elements.length; j++) {
-            let element = elements[j];
-            let categoryElementText = categoryElementsText[j];
-
-            // If HTML category element is similar to sorted array element, reorder HTML card element
-            if (categoryElementText == sortedCategoryElementText) {
-                if (!element.style.order) {     // Only if element hasn't already an order
-                    element.style.order = i;
-                    break;     // To avoid same order for different elements
-                }
-            }
-        }
-    }
-}
-
-/**
- * Sort gallery elements, pictures and titles, by order of appearance on screen (sorting)
- * @param {DOMElement} elements 
- * @param {DOMElement} elementsPictures 
- * @param {DOMElement} elementsTitles 
- * @returns {array}
- */
-function getSortedElementsPicturesAndTitles(elements, elementsPictures, elementsTitles) {
-
-    let sortedElements = new Array(elements.length);
-    let sortedElementsPictures = new Array(elements.length);
-    let sortedElementsTitles = new Array(elements.length);
-
-    for (let i = 0; i < elements.length; i++) {
-        let sortedIndex = elements[i].style.getPropertyValue("order");
-        sortedElements[sortedIndex] = elements[i];
-        sortedElementsPictures[sortedIndex] = elementsPictures[i];
-        sortedElementsTitles[sortedIndex] = elementsTitles[i];
-    }
-
-    return {sortedElements, sortedElementsPictures, sortedElementsTitles}
-}
-
-/**
- * Sort gallery by popularity (default option)
- */
-function defaultGallerySorting() {
-
-    setTimeout(function() {
-        const galleryElements = document.querySelectorAll(".gallery_element");
-        const galleryElementsLikesNumbers = document.querySelectorAll(".gallery_element_legend_likes_number");
-        sortGalleryByCategory(galleryElements, galleryElementsLikesNumbers, "popularity");
-
-        // Get sorted elements, pictures and titles
-        const galleryElementsPictures = document.querySelectorAll(".gallery_element_picture");
-        const galleryElementsTitles = document.querySelectorAll(".gallery_element_legend_title");
-        getSortedElementsPicturesAndTitles(galleryElements, galleryElementsPictures, galleryElementsTitles);
-    }, 300);
-}
-
-// Sort gallery by default option on page loading
-
-window.addEventListener("load", defaultGallerySorting);
+// ============================== FUNCTIONS AND EVENTS ==============================
 
 // Sort gallery by categories when choosing a sorting option
+
+async function sortGallery(choice, buttonText) {
+
+    // Get data
+    let jsonUrl = "data/data.json";
+    let {photographers, media} = await getData(jsonUrl);
+    let id = await getPhotographerId();
+    let photographerFolderName = await getPhotographerFolderName(photographers, id);
+
+    // Sort media
+    let selectedChoice = choice.id;
+    buttonText.innerHTML = choice.innerHTML;
+    await displaySortedMedia(media, id, photographerFolderName, selectedChoice);
+
+    console.log("Sorting done.");
+
+}
+
 
 setTimeout(function() {
 
@@ -221,35 +236,15 @@ setTimeout(function() {
     const sortingButtonText = document.querySelector(".sorting_button_text");
     const sortingListChoices = document.querySelectorAll(".sorting_menu_list_choice");
 
-    sortingListChoices.forEach((sortingListChoice) => sortingListChoice.addEventListener("click", function() {
+    sortingListChoices.forEach(function(sortingListChoice) {
 
-        const galleryElements = document.querySelectorAll(".gallery_element");
-        const sortingSelectedChoice = sortingListChoice.id;
-        sortingButtonText.innerHTML = sortingListChoice.innerHTML;
+        sortingListChoice.addEventListener("click", function() {
 
-        // Get HTML elements based on sorting option (likes numbers, dates, or picture titles)
-        let galleryElementsCategory = "";
-        if (sortingSelectedChoice == "popularity") {
-            galleryElementsCategory = document.querySelectorAll(".gallery_element_legend_likes_number");
-        }
-        if (sortingSelectedChoice == "date") {
-            galleryElementsCategory = document.querySelectorAll(".gallery_element_date");
-        }
-        if (sortingSelectedChoice == "title") {
-            galleryElementsCategory = document.querySelectorAll(".gallery_element_legend_title");
-        }
-
-        // Hide sorting options
-        sortingInput.checked = false;
-
-        // Sort gallery elements by chosen option
-        sortGalleryByCategory(galleryElements, galleryElementsCategory, sortingSelectedChoice);
-
-        // Get sorted elements, pictures and titles
-        const galleryElementsPictures = document.querySelectorAll(".gallery_element_picture");
-        const galleryElementsTitles = document.querySelectorAll(".gallery_element_legend_title");
-        getSortedElementsPicturesAndTitles(galleryElements, galleryElementsPictures, galleryElementsTitles);
-    }))
+            sortGallery(sortingListChoice, sortingButtonText);
+            // Hide sorting options
+            sortingInput.checked = false;
+        })
+    })
 
 }, 500);
 
@@ -259,17 +254,31 @@ setTimeout(function() {
 // Increase the number of likes (on the picture and total)
 // if the user likes a picture
 
+async function increaseLikesNumbers(pictureLikesNumber, totalLikesNumber) {
+    // Increase likes number for the picture
+    pictureLikesNumber.innerHTML = parseInt(pictureLikesNumber.innerHTML) + 1;
+    // Increase total number of likes
+    totalLikesNumber.innerHTML = parseInt(totalLikesNumber.innerHTML) + 1;
+}
+
 setTimeout(function() {
 
     const galleryElementLikesHearts = document.querySelectorAll(".gallery_element_legend_likes_heart");
     const photographerTotalLikes = document.querySelector(".bottom_bar_likes_number");
 
-    galleryElementLikesHearts.forEach((heart) => heart.addEventListener("click", function() {
-        // Get likes number for the picture and increase it
-        const likesNumber = heart.parentNode.children[0];
-        likesNumber.innerHTML = parseInt(likesNumber.innerHTML) + 1;
-        // Increase total number of likes
-        photographerTotalLikes.innerHTML = parseInt(photographerTotalLikes.innerHTML) + 1;
-    }))
+    galleryElementLikesHearts.forEach(function(heart) {
+
+        heart.addEventListener("click", function() {
+            let likesNumber = heart.parentNode.children[0];
+            increaseLikesNumbers(likesNumber, photographerTotalLikes);
+        })
+
+        heart.addEventListener("keydown", function(event) {
+            if (event.key == "Enter") {
+                let likesNumber = heart.parentNode.children[0];
+                increaseLikesNumbers(likesNumber, photographerTotalLikes);
+            }
+        })
+    })
 
 }, 500);

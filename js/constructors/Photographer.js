@@ -73,7 +73,7 @@ class Photographer {
         // Tags
         const cardTags = document.createElement("div");
         cardTags.classList.add("photographer_card_tags");
-        const tagList = `${this._tags}`.split(",");
+        let tagList = `${this._tags}`.split(",");
         for (let i = 0; i < tagList.length; i++) {
             // New span for each tag
             const cardTag = document.createElement("span");
@@ -124,7 +124,7 @@ class Photographer {
         const presentationPhotographerTags = document.createElement("div");
         presentationPhotographerTags.classList.add("presentation_photographer_tags");
         presentationPhotographer.appendChild(presentationPhotographerTags);
-        const tagList = `${this._tags}`.split(",");
+        let tagList = `${this._tags}`.split(",");
         for (let i = 0; i < tagList.length; i++) {
             // New span for each tag
             const photographerTag = document.createElement("span");

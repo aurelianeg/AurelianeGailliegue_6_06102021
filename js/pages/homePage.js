@@ -1,7 +1,8 @@
-// ========== HOMEPAGE INITIALIZATION ==========
+// ============================== HOMEPAGE INITIALIZATION ==============================
 
 /**
  * Get data from JSON file
+ * @param {string} url
  * @returns {array} 
  */
 async function getData(url) {
@@ -36,13 +37,13 @@ async function displayData(photographers) {
 
     photographers.forEach(function(photographer) {
         // Create photographer cards
-        const photographerModel = new Photographer(photographer);
-        const photographerCard = photographerModel.createCard;
+        let photographerModel = new Photographer(photographer);
+        let photographerCard = photographerModel.createCard;
         photographersList.appendChild(photographerCard);
 
         // Check if photographer tags are already in the navigation bar
         for (let j = 0; j < photographer.tags.length; j++) {
-            const navTagName = "#" + photographer.tags[j].charAt(0).toUpperCase() + photographer.tags[j].slice(1);
+            let navTagName = "#" + photographer.tags[j].charAt(0).toUpperCase() + photographer.tags[j].slice(1);
             if (navTags.includes(navTagName) == false) {
                 navTags.push(navTagName);
             }
@@ -51,8 +52,8 @@ async function displayData(photographers) {
 
     // Create navigation filters
     navTags.forEach(function(tag) {
-        const navTagModel = new NavTag(tag);
-        const navTag = navTagModel.createTag;
+        let navTagModel = new NavTag(tag);
+        let navTag = navTagModel.createTag;
         nav.appendChild(navTag);
     })
 
@@ -72,7 +73,7 @@ async function initHomepage() {
 initHomepage();
 
 
-// ========== EVENTS AND ACTIONS ==========
+// ============================== EVENTS AND ACTIONS ==============================
 
 /**
  * Filter displayed photographers based on tags
@@ -84,7 +85,7 @@ initHomepage();
 async function filterPhotographersByTags(selectedTag, navTags, photographerCards, photographerCardsTags) {
 
     for (let i = 0; i < navTags.length; i++) {
-        const navTag = navTags[i];
+        let navTag = navTags[i];
 
         if (selectedTag.innerHTML.toLowerCase() == navTag.innerHTML.toLowerCase()) {
             navTag.classList.toggle("nav_tag--active");
@@ -95,7 +96,7 @@ async function filterPhotographersByTags(selectedTag, navTags, photographerCards
 
     // For each photographer
     for (let i = 0; i < photographerCards.length; i++) {
-        const photographerCard = photographerCards[i];
+        let photographerCard = photographerCards[i];
         let photographerTagList = [];
         for (let j = 0; j < photographerCardsTags[i].children.length; j++) {
             photographerTagList.push(photographerCardsTags[i].children[j].innerHTML);
@@ -109,7 +110,7 @@ async function filterPhotographersByTags(selectedTag, navTags, photographerCards
 
         // For each tag in photographer
         for (let k = 0; k < activeNavTags.length; k++) {
-            const activeNavTag = activeNavTags[k].innerHTML.toLowerCase();
+            let activeNavTag = activeNavTags[k].innerHTML.toLowerCase();
 
             // If active tag is not contained in photographer tags, hide photographer
             if (!photographerTagList.includes(activeNavTag)) {
