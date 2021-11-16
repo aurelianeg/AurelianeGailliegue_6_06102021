@@ -57,7 +57,7 @@ class Media {
             galleryElementPicture.appendChild(galleryElementPictureVideo);
             const galleryElementPictureVideoSource = document.createElement("source");
             galleryElementPictureVideoSource.src = `${this._source}${this._video}#t=0.5`; // Set source before function calling
-            galleryElementPictureVideo.ariaLabel = `${this._description}`;
+            galleryElementPictureVideoSource.ariaLabel = `${this._description}`;
             galleryElementPictureVideo.appendChild(galleryElementPictureVideoSource);
         }
 
@@ -95,5 +95,41 @@ class Media {
 
         return galleryElement
     }
+
+    // !!!!!!!!!! TO REMOVE
+    /*get createLightboxPictureAndTitle() {
+
+        //<div class="lightbox_container_picture" aria-label="Image ou vidéo"></div>
+        //<h2 class="lightbox_container_title" aria-label="Titre de l'image ou de la vidéo"></h2>
+
+        // Picture
+        const lightboxPicture = document.createElement("div");
+        lightboxPicture.classList.add("lightbox_container_picture");
+        lightboxPicture.setAttribute("aria-label", "Image ou vidéo");
+
+        // Title
+        const lightboxTitle = document.createElement("h2");
+        lightboxTitle.classList.add("lightbox_container_title");
+        lightboxTitle.setAttribute("aria-label", "Titre de l'image ou de la vidéo");
+        lightboxTitle.innerHTML = `${this._title}`;
+
+        // Check if video or image
+        if (`${this._image}` != "undefined") {
+            const lightboxPictureImage = document.createElement("img");
+            lightboxPictureImage.src = `${this._source}${this._image}`; // Set source before function calling
+            lightboxPictureImage.alt = `${this._description}`;
+            lightboxPicture.appendChild(lightboxPictureImage);
+        }
+        else {
+            const lightboxPictureVideo = document.createElement("video");
+            lightboxPicture.appendChild(lightboxPictureVideo);
+            const lightboxPictureVideoSource = document.createElement("source");
+            lightboxPictureVideoSource.src = `${this._source}${this._video}#t=0.5`; // Set source before function calling
+            lightboxPictureVideoSource.ariaLabel = `${this._description}`;
+            lightboxPictureVideo.appendChild(lightboxPictureVideoSource);
+        }
+
+        return {lightboxPicture, lightboxTitle}
+    }*/
 
 }

@@ -19,7 +19,6 @@ class NavTag {
         navTag.title = `${this._tag}`.split("#")[1];
 
         return navTag
-
     }
 
 

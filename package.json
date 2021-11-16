@@ -2,7 +2,7 @@
   "name": "AurelianeGailliegue_6_06102021",
   "version": "1.0.0",
   "description": "Creation of FishEye website based on the provided models",
-  "main": "index.js",
+  "main": "js/pages/homePage.js",
   "scripts": {
     "sass": "sass --watch ./sass/main.scss:./css/styles.css --style expanded",
     "prefix": "postcss ./css/styles.css --use autoprefixer -d ./css/prefixed/"

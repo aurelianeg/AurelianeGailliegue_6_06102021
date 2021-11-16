@@ -1,21 +1,14 @@
-// ============================== DOM ELEMENTS ==============================
-
-const mainWrapper = document.querySelector(".main");
-
-const contactButton = document.querySelector(".presentation_contact");
-const contactModalBackground = document.querySelector(".contact_background");
-const contactModalContent = document.querySelector(".contact_content");
-const contactModalFormInputs = document.querySelectorAll(".contact_form_input");
-const contactModalCloseCross = document.querySelector(".contact_close");
-const contactModalSubmitButton = document.querySelector(".contact_submit");
-
-
 // ============================== FUNCTIONS ==============================
 
 /**
  * Launch contact modal
  */
 async function launchContactModal() {
+
+    const contactModalBackground = document.querySelector(".contact_background");
+    const contactModalContent = document.querySelector(".contact_content");
+    const mainWrapper = document.querySelector(".main");
+    const contactModalFormInputs = document.querySelectorAll(".contact_form_input");
 
     contactModalBackground.style.display = "block";
     contactModalContent.setAttribute("aria-hidden", "false");
@@ -28,6 +21,10 @@ async function launchContactModal() {
  * Close contact modal (with animation)
  */
 async function closeContactModal() {
+
+    const contactModalBackground = document.querySelector(".contact_background");
+    const contactModalContent = document.querySelector(".contact_content");
+    const mainWrapper = document.querySelector(".main");
 
     contactModalContent.classList.add("isClosed");
     setTimeout(function() {
@@ -144,6 +141,12 @@ async function checkFormValidation(inputs) {
 
 setTimeout(function() {
 
+    const contactButton = document.querySelector(".presentation_contact");
+    const contactModalContent = document.querySelector(".contact_content");
+    const contactModalCloseCross = document.querySelector(".contact_close");
+    const contactFormInputs = document.querySelectorAll(".contact_form_input");
+    const contactModalSubmitButton = document.querySelector(".contact_submit");
+
     // - Opening -
     contactButton.addEventListener("click", launchContactModal);
 
@@ -158,7 +161,6 @@ setTimeout(function() {
     });
 
     // - Closing with submit button -
-    const contactFormInputs = document.querySelectorAll(".contact_form_input");
     contactModalSubmitButton.addEventListener("click", function(event) {
         event.preventDefault();     // Keep form informations if not valid
         if (checkFormValidation(contactFormInputs)) {

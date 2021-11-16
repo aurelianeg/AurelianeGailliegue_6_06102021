@@ -100,21 +100,23 @@ async function displayPhotographerData(photographers, media, id) {
 
 
 /**
- * Sort gallery elements by a chosen category (popularity, date or title)
- * @param {DOMElement} elements 
- * @param {DOMElement} categoryElements 
- * @param {string} category 
+ * Sort media by a chosen category (popularity, date or title)
+ * @param {array} media 
+ * @param {string} id 
+ * @param {string} folderName
+ * @param {string} category
+ * @returns {array, array, array}
  */
-async function displaySortedMedia(media, id, folderName, category) {
+async function sortMedia(media, id, folderName, category) {
 
-    let medias = [];
+    let photographerMedia = [];
     let mediaCategoryTexts = [];
     media.forEach(function(med) {
         if (med.photographerId == id) {
             // Create media models
             let mediaModel = new Media(med);
             mediaModel._source = "assets/pictures/photographs/" + folderName + "/";
-            medias.push(mediaModel);
+            photographerMedia.push(mediaModel);
 
             // Create category text list
             let mediaCategoryText;
@@ -142,9 +144,21 @@ async function displaySortedMedia(media, id, folderName, category) {
         sortedMediaCategoryTexts.sort();
     }
 
+    return {photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts}
+}
+
+
+/**
+ * Display sorted media on photographer page
+ * @param {array} photographerMedia 
+ * @param {array} mediaCategoryTexts 
+ * @param {array} sortedMediaCategoryTexts 
+ */
+async function displaySortedMedia(photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts) {
+
     // Remove property to allow future sortings (otherwise "if (medias[j]._displayed != "yes")" condition is always entered)
-    for (let k = 0; k < medias.length; k++) {
-        medias[k]._displayed = "";
+    for (let i = 0; i < photographerMedia.length; i++) {
+        photographerMedia[i]._displayed = "";
     }
 
     // Empty gallery before refilling it
@@ -154,12 +168,12 @@ async function displaySortedMedia(media, id, folderName, category) {
     // Go through sorted media category
     for (let i = 0; i < sortedMediaCategoryTexts.length; i++) {
         // Go through media
-        for (let j = 0; j < medias.length; j++) {
+        for (let j = 0; j < photographerMedia.length; j++) {
             // If category element is similar to sorted category element, display media in gallery
             if (mediaCategoryTexts[j] == sortedMediaCategoryTexts[i]) {
-                if (medias[j]._displayed != "yes") {     // Only if media hasn't already been displayed
-                    medias[j]._displayed = "yes";
-                    let galleryElement = medias[j].createGalleryElement;
+                if (photographerMedia[j]._displayed != "yes") {     // Only if media hasn't already been displayed
+                    photographerMedia[j]._displayed = "yes";
+                    let galleryElement = photographerMedia[j].createGalleryElement;
                     gallery.appendChild(galleryElement);
                     break;     // To avoid same order for different medias
                 }
@@ -195,18 +209,55 @@ async function initPhotographerPage() {
 
     // Sort media
     let photographerFolderName = await getPhotographerFolderName(photographers, id);
-    await displaySortedMedia(media, id, photographerFolderName, "popularity");
+    let {photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts} = await sortMedia(media, id, photographerFolderName, "popularity");
+    await displaySortedMedia(photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts);
 
     console.log("All done for the photographer page!");
 }
+
 
 initPhotographerPage();
 
 
 // ============================== FUNCTIONS AND EVENTS ==============================
 
-// Sort gallery by categories when choosing a sorting option
+/**
+ * See sorting menu choices
+ * @param {DOMElement} input 
+ * @param {DOMElement} menu 
+ * @param {DOMElement} menuChoices 
+ */
+async function deploySortChoices(input, menu, menuChoices) {
 
+    for (let i = 0; i < menuChoices.length; i++) {
+        menuChoices[i].tabIndex = "0";
+    }
+    menu.setAttribute("aria-expanded", "true");
+    input.checked = true;
+}
+
+
+/**
+ * Hide sorting menu choices
+ * @param {DOMElement} input 
+ * @param {DOMElement} menu 
+ * @param {DOMElement} menuChoices 
+ */
+async function hideSortChoices(input, menu, menuChoices) {
+
+    for (let i = 0; i < menuChoices.length; i++) {
+        menuChoices[i].tabIndex = "-1";
+    }
+    menu.setAttribute("aria-expanded", "false");
+    input.checked = false;
+}
+
+
+/**
+ * Sort gallery based on selected sorting option
+ * @param {DOMElement} choice 
+ * @param {DOMElement} buttonText 
+ */
 async function sortGallery(choice, buttonText) {
 
     // Get data
@@ -218,24 +269,55 @@ async function sortGallery(choice, buttonText) {
     // Sort media
     let selectedChoice = choice.id;
     buttonText.innerHTML = choice.innerHTML;
-    await displaySortedMedia(media, id, photographerFolderName, selectedChoice);
+    let {photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts} = await sortMedia(media, id, photographerFolderName, selectedChoice);
+    await displaySortedMedia(photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts);
 
+    // !!!!!!!! ONLY FOR TESTS: TO REMOVE
     console.log("Sorting done.");
 }
+
+
+// Display sorting choices, choose a sorting option and sort gallery by categories
 
 setTimeout(function() {
 
     const sortingInput = document.querySelector(".sorting_input");
     const sortingButtonText = document.querySelector(".sorting_button_text");
+    const sortingMenu = document.querySelector(".sorting_menu");
     const sortingListChoices = document.querySelectorAll(".sorting_menu_list_choice");
 
+    // Display or hide sorting choices
+    sortingInput.addEventListener("click", function() {
+        if (sortingInput.checked == true) {
+            deploySortChoices(sortingInput, sortingMenu, sortingListChoices);
+        }
+        else {
+            hideSortChoices(sortingInput, sortingMenu, sortingListChoices);
+        }
+    })
+    sortingInput.addEventListener("keydown", function(event) {
+        if (event.key == "Enter") {
+            if (sortingInput.checked == false) {
+                deploySortChoices(sortingInput, sortingMenu, sortingListChoices);
+            }
+            else {
+                hideSortChoices(sortingInput, sortingMenu, sortingListChoices);
+            }
+        }
+    })
+
+    // Choose sorting method and sort gallery
     sortingListChoices.forEach(function(sortingListChoice) {
 
         sortingListChoice.addEventListener("click", function() {
-
             sortGallery(sortingListChoice, sortingButtonText);
-            // Hide sorting options
-            sortingInput.checked = false;
+            hideSortChoices(sortingInput, sortingMenu, sortingListChoices);
+        })
+        sortingListChoice.addEventListener("keydown", function(event) {
+            if (event.key == "Enter") {
+                sortGallery(sortingListChoice, sortingButtonText);
+                hideSortChoices(sortingInput, sortingMenu, sortingListChoices);
+            }
         })
     })
     
@@ -248,11 +330,14 @@ setTimeout(function() {
 // if the user likes a picture
 
 async function increaseLikesNumbers(pictureLikesNumber, totalLikesNumber) {
+
     // Increase likes number for the picture
     pictureLikesNumber.innerHTML = parseInt(pictureLikesNumber.innerHTML) + 1;
     // Increase total number of likes
     totalLikesNumber.innerHTML = parseInt(totalLikesNumber.innerHTML) + 1;
 }
+
+// !!!!!!!!! PROBLÈME APRÈS LE TRI
 
 setTimeout(function() {
 
@@ -265,7 +350,6 @@ setTimeout(function() {
             let likesNumber = heart.parentNode.children[0];
             increaseLikesNumbers(likesNumber, photographerTotalLikes);
         })
-
         heart.addEventListener("keydown", function(event) {
             if (event.key == "Enter") {
                 let likesNumber = heart.parentNode.children[0];
@@ -275,3 +359,12 @@ setTimeout(function() {
     })
 
 }, 500);
+
+// !!!!!!!! ONLY FOR TESTS: TO REMOVE
+setTimeout(function() {
+    window.addEventListener("keydown", function(event) {
+        if (event.key == "Enter") {
+            console.log("target", event.target);
+        }
+    })
+})

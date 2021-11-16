@@ -25,6 +25,7 @@ async function getData(url) {
     return data
 }
 
+
 /**
  * Display data in HTML file after fetch operation
  * @param {array} photographers 
@@ -58,6 +59,7 @@ async function displayData(photographers) {
     })
 }
 
+
 /**
  * Initialize homepage data
  */
@@ -69,6 +71,7 @@ async function initHomepage() {
     displayData(photographers);
     console.log("All done for the homepage!"); 
 }
+
 
 initHomepage();
 
