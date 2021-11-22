@@ -26,7 +26,7 @@
 /* --------------- Color chart --------------- */
 /* --------------- Breakpoints --------------- */
 /* --------------- Sizes --------------- */
-html, .sorting_select, #message {
+html, .sorting_select, #first_name, #last_name, #email, #message, .presentation_contact {
   font-family: "DM Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -81,21 +81,21 @@ body {
   }
 }
 
-.presentation_contact h3 {
-  font-size: 18px;
-}
-@media screen and (max-width: 1023px) {
-  .presentation_contact h3 {
-    font-size: 16px;
-  }
-}
-
 .photographer_card_price {
   font-size: 10px;
 }
 
 .gotomain_button {
   font-size: 16px;
+}
+
+.presentation_contact {
+  font-size: 18px;
+}
+@media screen and (max-width: 1023px) {
+  .presentation_contact {
+    font-size: 16px;
+  }
 }
 
 .photographer_card_tags, nav {
@@ -169,25 +169,25 @@ body {
   font-weight: 500;
 }
 
-.header_logo {
+.header_link_logo {
   width: 250px;
   height: 70px;
   padding: 50px;
 }
 @media screen and (min-width: 768px) and (max-width: 1439px) {
-  .header_logo {
+  .header_link_logo {
     padding-bottom: 25px;
   }
 }
 @media screen and (max-width: 767px) {
-  .header_logo {
+  .header_link_logo {
     width: 125px;
     height: 40px;
     padding: 25px;
   }
 }
 @media screen and (max-width: 767px) {
-  .header_logo--photographerpage {
+  .header_link_logo--photographerpage {
     padding-bottom: 0px;
   }
 }
@@ -206,7 +206,7 @@ body {
   }
 }
 .nav_tag {
-  background-color: "#FFFFFF";
+  background-color: #FFFFFF;
   color: #901C1C;
   border: 0.5px solid #C4C4C4;
   border-radius: 20px;
@@ -584,7 +584,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: space-between;
+  align-items: stretch;
   flex-wrap: wrap;
 }
 
@@ -740,6 +740,7 @@ body {
   border-radius: 5px;
   transition: all 300ms;
   cursor: pointer;
+  margin: 0px;
 }
 @media screen and (min-width: 1440px) {
   .presentation_contact {
@@ -759,9 +760,6 @@ body {
     left: calc(50vw - 85px);
     bottom: 55px;
   }
-}
-.presentation_contact h3 {
-  margin: 0px;
 }
 .presentation_contact:hover {
   background-color: #DB8876;

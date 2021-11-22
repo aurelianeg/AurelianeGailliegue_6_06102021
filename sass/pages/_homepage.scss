@@ -60,7 +60,7 @@
 
 .photographers_list
 {
-    @include flex-row(space-between, space-between);
+    @include flex-row(space-between, stretch);
     flex-wrap: wrap;
 }
 

@@ -23,28 +23,28 @@
 <body>
 
     <header class="header">
-        <a href="index.html"><img class="header_logo header_logo--photographerpage" src="assets/logo/FishEye_logo.svg" alt="Logo de FishEye - Page d'accueil" /></a>
+        <a class="header_link" href="index.html"><img class="header_link_logo header_link_logo--photographerpage" src="assets/logo/FishEye_logo.svg" alt="Logo de FishEye - Page d'accueil" /></a>
     </header>
 
     <main class="main">
 
         <section class="presentation" aria-label="Présentation du photographe">
-            <button class="presentation_contact" aria-label="Contacter le photographe"><h3>Contactez-moi</h3></button>
+            <button class="presentation_contact" aria-label="Contacter le photographe">Contactez-moi</button>
         </section>
 
         <section class="sorting" aria-label="Tri de la galerie">
-            <label for="sorting_wrapper">Trier par</label>
+            <label for="sorting_input">Trier par</label>
             <div class="sorting_wrapper">
                 <input type="checkbox" id="sorting_input" class="sorting_input" aria-label="Choix de l'option de tri" />
                 <label for="sorting_input" class="sorting_button">
                     <span class="sorting_button_text">Popularité</span>
                     <span class="sorting_button_icon"></span>
                 </label>
-                <div class="sorting_menu" aria-expanded="false">
+                <div class="sorting_menu" role="listbox" aria-expanded="false">
                     <ul class="sorting_menu_list">
-                        <li><a class="sorting_menu_list_choice" id="popularity">Popularité</a></li>
-                        <li><a class="sorting_menu_list_choice" id="date">Date</a></li>
-                        <li><a class="sorting_menu_list_choice" id="title">Titre</a></li>
+                        <li><a class="sorting_menu_list_choice" id="popularity" role="option">Popularité</a></li>
+                        <li><a class="sorting_menu_list_choice" id="date" role="option">Date</a></li>
+                        <li><a class="sorting_menu_list_choice" id="title" role="option">Titre</a></li>
                     </ul>
                 </div>
             </div>
@@ -89,7 +89,7 @@
 
                     <div class="contact_form">
                         <label class="contact_form_label" id="message_label" for="message">Votre message</label><br>
-                        <textarea class="contact_form_input" type="text" id="message" name="message" aria-labelledby="message_label" required></textarea>
+                        <textarea class="contact_form_input" id="message" name="message" aria-labelledby="message_label" required></textarea>
                         <br><span class="contact_form_error"></span>
                     </div>
                     
@@ -130,9 +130,9 @@
 
     <script src="js/constructors/Photographer.js"></script>
     <script src="js/constructors/Media.js"></script>
-    <script type="module" src="js/pages/photographerPage.js"></script>
     <script src="js/layout/contactForm.js"></script>
-    <script src="js/layout/lightbox.js"></script>
+    <script type="module" src="js/layout/lightbox.js"></script>
+    <script type="module" src="js/pages/photographerPage.js"></script>
     
 </body>
 

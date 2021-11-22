@@ -1,12 +1,35 @@
 // ============================== FUNCTIONS ==============================
 
 /**
+ * Focus or unfocus page elements when the lightbox is opened or closed
+ * @param {string} tabIndexValue 
+ */
+async function changeTabIndexesBehindLightbox(tabIndexValue) {
+
+    const headerLink = document.querySelector(".header_link");
+    const presentationContact = document.querySelector(".presentation_contact");
+    const sortingInput = document.querySelector(".sorting_input");
+    const galleryElementPictures = document.querySelectorAll(".gallery_element_picture");
+    const galleryElementLegendLikesHearts = document.querySelectorAll(".gallery_element_legend_likes_heart");
+
+    headerLink.tabIndex = tabIndexValue;
+    presentationContact.tabIndex = tabIndexValue;
+    sortingInput.tabIndex = tabIndexValue;
+    for (let i = 0; i < galleryElementPictures.length; i++) {
+        galleryElementPictures[i].tabIndex = tabIndexValue;
+    }
+    for (let j = 0; j < galleryElementLegendLikesHearts.length; j++) {
+        galleryElementLegendLikesHearts[j].tabIndex = tabIndexValue;
+    }
+}
+
+
+/**
  * Launch lightbox modal
  */
 async function launchLightboxModal() {
 
     const mainWrapper = document.querySelector(".main");
-
     const lightboxModalBackground = document.querySelector(".lightbox_background");
     const lightboxModalContent = document.querySelector(".lightbox_content");
     const lightboxModalCloseCross = document.querySelector(".lightbox_close");
@@ -15,6 +38,13 @@ async function launchLightboxModal() {
     lightboxModalContent.setAttribute("aria-hidden", "false");
     mainWrapper.setAttribute("aria-hidden", "true");
     lightboxModalCloseCross.focus();
+
+    changeTabIndexesBehindLightbox("-1");
+    const lightboxModalPreviousButton = document.querySelector(".lightbox_previousbutton");
+    const lightboxModalNextButton = document.querySelector(".lightbox_nextbutton");
+    lightboxModalCloseCross.tabIndex = "0";
+    lightboxModalPreviousButton.tabIndex = "0";
+    lightboxModalNextButton.tabIndex = "0";
 }
 
 
@@ -24,7 +54,6 @@ async function launchLightboxModal() {
 async function closeLightboxModal() {
 
     const mainWrapper = document.querySelector(".main");
-
     const lightboxModalBackground = document.querySelector(".lightbox_background");
     const lightboxModalContent = document.querySelector(".lightbox_content");
 
@@ -35,6 +64,14 @@ async function closeLightboxModal() {
         lightboxModalContent.setAttribute("aria-hidden", "true");
         mainWrapper.setAttribute("aria-hidden", "false");
     }, 300);
+
+    changeTabIndexesBehindLightbox("0");
+    const lightboxModalCloseCross = document.querySelector(".lightbox_close");
+    const lightboxModalPreviousButton = document.querySelector(".lightbox_previousbutton");
+    const lightboxModalNextButton = document.querySelector(".lightbox_nextbutton");
+    lightboxModalCloseCross.tabIndex = "-1";
+    lightboxModalPreviousButton.tabIndex = "-1";
+    lightboxModalNextButton.tabIndex = "-1";
 }
 
 // !!!!!!! TEST

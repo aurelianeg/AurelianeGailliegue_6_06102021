@@ -1,6 +1,30 @@
 // ============================== FUNCTIONS ==============================
 
 /**
+ * Focus or unfocus page elements when the lightbox is opened or closed
+ * @param {string} tabIndexValue 
+ */
+ async function changeTabIndexesBehindContactModal(tabIndexValue) {
+
+    const headerLink = document.querySelector(".header_link");
+    const presentationContact = document.querySelector(".presentation_contact");
+    const sortingInput = document.querySelector(".sorting_input");
+    const galleryElementPictures = document.querySelectorAll(".gallery_element_picture");
+    const galleryElementLegendLikesHearts = document.querySelectorAll(".gallery_element_legend_likes_heart");
+
+    headerLink.tabIndex = tabIndexValue;
+    presentationContact.tabIndex = tabIndexValue;
+    sortingInput.tabIndex = tabIndexValue;
+    for (let i = 0; i < galleryElementPictures.length; i++) {
+        galleryElementPictures[i].tabIndex = tabIndexValue;
+    }
+    for (let j = 0; j < galleryElementLegendLikesHearts.length; j++) {
+        galleryElementLegendLikesHearts[j].tabIndex = tabIndexValue;
+    }
+}
+
+
+/**
  * Launch contact modal
  */
 async function launchContactModal() {
@@ -14,6 +38,8 @@ async function launchContactModal() {
     contactModalContent.setAttribute("aria-hidden", "false");
     mainWrapper.setAttribute("aria-hidden", "true");
     contactModalFormInputs[0].focus();
+
+    changeTabIndexesBehindContactModal("-1");
 }
 
 
@@ -33,6 +59,8 @@ async function closeContactModal() {
         contactModalContent.setAttribute("aria-hidden", "true");
         mainWrapper.setAttribute("aria-hidden", "false");
     }, 300);
+
+    changeTabIndexesBehindContactModal("0");
 }
 
 
