@@ -74,19 +74,6 @@ async function closeLightboxModal() {
     lightboxModalNextButton.tabIndex = "-1";
 }
 
-// !!!!!!! TEST
-/*async function getSortOrder() {
-
-    let jsonUrl = "data/data.json";
-    let {photographers, media} = await getData(jsonUrl);
-    let id = await getPhotographerId();
-    let photographerFolderName = await getPhotographerFolderName(photographers, id);
-
-    // Sort media
-    const sortingButtonText = document.querySelector(".sorting_button_text");
-    console.log("sortingButtonText.innerHTML", sortingButtonText.innerHTML);
-    let {photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts} = await sortMedia(media, id, photographerFolderName, sortingButtonText.innerHTML);
-}*/
 
 /**
  * Get information in clicked HTML gallery element and apply it to the lightbox
@@ -208,6 +195,7 @@ async function getPreviousGalleryElement(lightboxPicture, galleryElements) {
         // Compare source name in lightbox with corresponding gallery source
         let elementPictureSource = await getContentSource(galleryElements[i].firstChild.children[0], true);
         if (lightboxPictureContentSource == elementPictureSource) {
+            console.log("i previous", i);
             // Display lightbox previous and next buttons if it is the first or the last picture
             if (i == 1) {
                 await applyPictureAndTitleToLightbox(galleryElements[i-1], true, false);
@@ -236,6 +224,8 @@ async function getNextGalleryElement(lightboxPicture, galleryElements) {
         // Compare source name in lightbox with corresponding gallery source
         let elementPictureSource = await getContentSource(galleryElements[i].firstChild.children[0], true);
         if (lightboxPictureContentSource == elementPictureSource) {
+            console.log("lightbox source", lightboxPictureContentSource);
+            console.log("i next", i);
             // Display lightbox previous and next buttons if it is the first or the last picture
             if (i == galleryElements.length - 2) {
                 await applyPictureAndTitleToLightbox(galleryElements[i+1], false, true);
@@ -253,21 +243,18 @@ async function getNextGalleryElement(lightboxPicture, galleryElements) {
 
 // ============================== EVENTS ==============================
 
-// Lightbox modal opening, navigation, closing with cross and closing with empty areas
-
-// !!!!!!!!! PROBLÈME APRÈS LE TRI
-
-setTimeout(function() {
+/**
+ * Lightbox modal opening, navigation, closing with cross and closing with empty areas (even after the sorting)
+ */
+export async function listenToLightboxEvents(galleryElements) {
 
     // - Opening -
-    const galleryElements = document.querySelectorAll(".gallery_element");
+    //const galleryElements = document.querySelectorAll(".gallery_element");
 
     galleryElements.forEach(function(galleryElement) {
 
         let galleryElementPicture = galleryElement.firstChild;
         galleryElementPicture.addEventListener("click", function() {
-            console.log('Click');
-            applyPictureAndTitleToLightbox(galleryElement, false, false);
             // Display lightbox previous and next buttons if it is the first or the last picture
             if (galleryElement == galleryElements[0]) {
                 applyPictureAndTitleToLightbox(galleryElement, true, false);
@@ -291,16 +278,20 @@ setTimeout(function() {
 
     // - Navigation between gallery pictures -
     lightboxModalPreviousButton.addEventListener("click", function() {
+        console.log("Click previous");
         getPreviousGalleryElement(lightboxPicture, galleryElements);
     });
     lightboxModalNextButton.addEventListener("click", function() {
+        console.log("Click next");
         getNextGalleryElement(lightboxPicture, galleryElements);
     });
     window.addEventListener("keydown", function(event) {
         if (lightboxModalContent.getAttribute("aria-hidden") == "false" && event.key == "ArrowLeft") {
+            console.log("Key previous");
             getPreviousGalleryElement(lightboxPicture, galleryElements);
         }
         if (lightboxModalContent.getAttribute("aria-hidden") == "false" && event.key == "ArrowRight") {
+            console.log("Key next");
             getNextGalleryElement(lightboxPicture, galleryElements);
         }
     });
@@ -337,12 +328,5 @@ setTimeout(function() {
         if (isClickedEmpty) {
             closeLightboxModal();
         }
-    });
-
-}, 300);
-
-// !!!!!!!! IDEA
-/* - Créer la lightbox pour chaque media
-- Récupérer le choix de tri
-- Récupérer les medias triés
-- Appliquer à la lightbox l'image et le titre*/
+    })
+}

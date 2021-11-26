@@ -1,3 +1,5 @@
+import { listenToLightboxEvents } from "../layout/lightbox.js";
+
 // ============================== PHOTOGRAPHER PAGE INITIALIZATION ==============================
 
 /**
@@ -149,6 +151,40 @@ async function sortMedia(media, id, folderName, category) {
 
 
 /**
+ * Call heart HTML elements (even after the sorting) and increase likes on click
+ */
+async function listenToHeartsEvents() {
+
+    const galleryElementLikesHearts = document.querySelectorAll(".gallery_element_legend_likes_heart");
+    const photographerTotalLikes = document.querySelector(".bottom_bar_likes_number");
+
+    // Increase the number of likes (on the picture and total) if the user likes a picture
+    galleryElementLikesHearts.forEach(function(heart) {
+
+        heart.addEventListener("click", function() {
+            let likesNumber = heart.parentNode.children[0];
+            likesNumber.innerHTML = parseInt(likesNumber.innerHTML) + 1;
+            photographerTotalLikes.innerHTML = parseInt(photographerTotalLikes.innerHTML) + 1;
+        })
+        heart.addEventListener("keydown", function(event) {
+            if (event.key == "Enter") {
+                let likesNumber = heart.parentNode.children[0];
+                likesNumber.innerHTML = parseInt(likesNumber.innerHTML) + 1;
+                photographerTotalLikes.innerHTML = parseInt(photographerTotalLikes.innerHTML) + 1;
+            }
+        })
+    })
+}
+
+
+async function enableLightbox(elements) {
+    setTimeout(function() {
+        listenToLightboxEvents(elements);
+    }, 500);
+}
+
+
+/**
  * Display sorted media on photographer page
  * @param {array} photographerMedia 
  * @param {array} mediaCategoryTexts 
@@ -175,15 +211,17 @@ async function displaySortedMedia(photographerMedia, mediaCategoryTexts, sortedM
                     photographerMedia[j]._displayed = "yes";
                     let galleryElement = photographerMedia[j].createGalleryElement;
                     gallery.appendChild(galleryElement);
+                    console.log("gallery element", galleryElement.firstChild.firstChild);
                     break;     // To avoid same order for different medias
                 }
             }
         }
     }
 
+    const galleryElements = document.querySelectorAll(".gallery_element");
+
     // Add a blank div for rendering pictures (not multiple of 3) on wide screens
     if (window.screen.width > 1439) {
-        const galleryElements = document.querySelectorAll(".gallery_element");
         if (galleryElements.length % 3 == 2) {
             let blankDiv = document.createElement("div");
             gallery.appendChild(blankDiv);
@@ -191,6 +229,14 @@ async function displaySortedMedia(photographerMedia, mediaCategoryTexts, sortedM
             blankDiv.style.order = galleryElements.length;
         }
     }
+
+    galleryElements.forEach(function(galleryElement) {
+        console.log("galleryElement", galleryElement);
+    })
+
+    listenToHeartsEvents();
+    //listenToLightboxEvents();
+    enableLightbox(galleryElements);
 }
 
 
@@ -305,7 +351,7 @@ setTimeout(function() {
             }
         }
     })
-
+    
     // Choose sorting method and sort gallery
     sortingListChoices.forEach(function(sortingListChoice) {
 
@@ -324,46 +370,10 @@ setTimeout(function() {
 }, 500);
 
 
-// ------------------------------------------------------------
-
-// Increase the number of likes (on the picture and total)
-// if the user likes a picture
-
-async function increaseLikesNumbers(pictureLikesNumber, totalLikesNumber) {
-
-    // Increase likes number for the picture
-    pictureLikesNumber.innerHTML = parseInt(pictureLikesNumber.innerHTML) + 1;
-    // Increase total number of likes
-    totalLikesNumber.innerHTML = parseInt(totalLikesNumber.innerHTML) + 1;
-}
-
-// !!!!!!!!! PROBLÈME APRÈS LE TRI
-
-setTimeout(function() {
-
-    const galleryElementLikesHearts = document.querySelectorAll(".gallery_element_legend_likes_heart");
-    const photographerTotalLikes = document.querySelector(".bottom_bar_likes_number");
-
-    galleryElementLikesHearts.forEach(function(heart) {
-
-        heart.addEventListener("click", function() {
-            let likesNumber = heart.parentNode.children[0];
-            increaseLikesNumbers(likesNumber, photographerTotalLikes);
-        })
-        heart.addEventListener("keydown", function(event) {
-            if (event.key == "Enter") {
-                let likesNumber = heart.parentNode.children[0];
-                increaseLikesNumbers(likesNumber, photographerTotalLikes);
-            }
-        })
-    })
-
-}, 500);
-
 // !!!!!!!! ONLY FOR TESTS: TO REMOVE
 setTimeout(function() {
     window.addEventListener("keydown", function(event) {
-        if (event.key == "Enter") {
+        if (event.key == "Tab") {
             console.log("target", event.target);
         }
     })
