@@ -1,4 +1,4 @@
-import { listenToLightboxEvents } from "../layout/lightbox.js";
+import { updateLightbox, initLightboxEvents } from "../layout/lightbox.js";
 
 // ============================== PHOTOGRAPHER PAGE INITIALIZATION ==============================
 
@@ -45,7 +45,7 @@ async function getPhotographerId() {
  * @param {string} id
  * @returns {string} 
  */
- async function getPhotographerFolderName(photographers, id) {
+async function getPhotographerFolderName(photographers, id) {
 
     let folderName;
     photographers.forEach(function(photographer) {
@@ -177,13 +177,6 @@ async function listenToHeartsEvents() {
 }
 
 
-async function enableLightbox(elements) {
-    setTimeout(function() {
-        listenToLightboxEvents(elements);
-    }, 500);
-}
-
-
 /**
  * Display sorted media on photographer page
  * @param {array} photographerMedia 
@@ -211,7 +204,6 @@ async function displaySortedMedia(photographerMedia, mediaCategoryTexts, sortedM
                     photographerMedia[j]._displayed = "yes";
                     let galleryElement = photographerMedia[j].createGalleryElement;
                     gallery.appendChild(galleryElement);
-                    console.log("gallery element", galleryElement.firstChild.firstChild);
                     break;     // To avoid same order for different medias
                 }
             }
@@ -230,13 +222,8 @@ async function displaySortedMedia(photographerMedia, mediaCategoryTexts, sortedM
         }
     }
 
-    galleryElements.forEach(function(galleryElement) {
-        console.log("galleryElement", galleryElement);
-    })
-
     listenToHeartsEvents();
-    //listenToLightboxEvents();
-    enableLightbox(galleryElements);
+    updateLightbox();
 }
 
 
@@ -257,10 +244,10 @@ async function initPhotographerPage() {
     let photographerFolderName = await getPhotographerFolderName(photographers, id);
     let {photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts} = await sortMedia(media, id, photographerFolderName, "popularity");
     await displaySortedMedia(photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts);
+    await initLightboxEvents();
 
     console.log("All done for the photographer page!");
 }
-
 
 initPhotographerPage();
 
@@ -318,7 +305,6 @@ async function sortGallery(choice, buttonText) {
     let {photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts} = await sortMedia(media, id, photographerFolderName, selectedChoice);
     await displaySortedMedia(photographerMedia, mediaCategoryTexts, sortedMediaCategoryTexts);
 
-    // !!!!!!!! ONLY FOR TESTS: TO REMOVE
     console.log("Sorting done.");
 }
 
@@ -368,13 +354,3 @@ setTimeout(function() {
     })
     
 }, 500);
-
-
-// !!!!!!!! ONLY FOR TESTS: TO REMOVE
-setTimeout(function() {
-    window.addEventListener("keydown", function(event) {
-        if (event.key == "Tab") {
-            console.log("target", event.target);
-        }
-    })
-})

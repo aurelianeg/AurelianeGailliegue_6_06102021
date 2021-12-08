@@ -49,7 +49,7 @@
             @include flex-row(normal, center);
             flex-wrap: wrap;
 
-            & span     // !!!!!!! METTRE EN GRAS
+            & span
             {
                 color: $primary-color;
                 border: 0.5px solid $border-grey;
@@ -136,7 +136,7 @@
     }
     @include flex-row(flex-start, center);
 
-    & label     // !!!!!!! METTRE EN GRAS
+    & label
     {
         color: #000000;
         margin-right: 30px;

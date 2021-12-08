@@ -184,10 +184,11 @@ async function getContentSource(content, fromimage) {
 
 /**
  * Get previous gallery element in lightbox
- * @param {DOMElement} lightboxPicture 
- * @param {DOMElement} galleryElements
+ * @param {DOMElement} lightboxPicture
  */
-async function getPreviousGalleryElement(lightboxPicture, galleryElements) {
+export async function getPreviousGalleryElement(lightboxPicture) {
+
+    const galleryElements = document.querySelectorAll(".gallery_element");
 
     let lightboxPictureContentSource = await getContentSource(lightboxPicture.children[0], false);
 
@@ -195,7 +196,6 @@ async function getPreviousGalleryElement(lightboxPicture, galleryElements) {
         // Compare source name in lightbox with corresponding gallery source
         let elementPictureSource = await getContentSource(galleryElements[i].firstChild.children[0], true);
         if (lightboxPictureContentSource == elementPictureSource) {
-            console.log("i previous", i);
             // Display lightbox previous and next buttons if it is the first or the last picture
             if (i == 1) {
                 await applyPictureAndTitleToLightbox(galleryElements[i-1], true, false);
@@ -213,10 +213,11 @@ async function getPreviousGalleryElement(lightboxPicture, galleryElements) {
 
 /**
  * Get next gallery element in lightbox
- * @param {DOMElement} lightboxPicture 
- * @param {DOMElement} galleryElements
+ * @param {DOMElement} lightboxPicture
  */
-async function getNextGalleryElement(lightboxPicture, galleryElements) {
+export async function getNextGalleryElement(lightboxPicture) {
+
+    const galleryElements = document.querySelectorAll(".gallery_element");
 
     let lightboxPictureContentSource = await getContentSource(lightboxPicture.children[0], false);
 
@@ -224,8 +225,6 @@ async function getNextGalleryElement(lightboxPicture, galleryElements) {
         // Compare source name in lightbox with corresponding gallery source
         let elementPictureSource = await getContentSource(galleryElements[i].firstChild.children[0], true);
         if (lightboxPictureContentSource == elementPictureSource) {
-            console.log("lightbox source", lightboxPictureContentSource);
-            console.log("i next", i);
             // Display lightbox previous and next buttons if it is the first or the last picture
             if (i == galleryElements.length - 2) {
                 await applyPictureAndTitleToLightbox(galleryElements[i+1], false, true);
@@ -244,30 +243,9 @@ async function getNextGalleryElement(lightboxPicture, galleryElements) {
 // ============================== EVENTS ==============================
 
 /**
- * Lightbox modal opening, navigation, closing with cross and closing with empty areas (even after the sorting)
+ * Lightbox modal navigation, closing with cross and closing with empty areas (even after the sorting)
  */
-export async function listenToLightboxEvents(galleryElements) {
-
-    // - Opening -
-    //const galleryElements = document.querySelectorAll(".gallery_element");
-
-    galleryElements.forEach(function(galleryElement) {
-
-        let galleryElementPicture = galleryElement.firstChild;
-        galleryElementPicture.addEventListener("click", function() {
-            // Display lightbox previous and next buttons if it is the first or the last picture
-            if (galleryElement == galleryElements[0]) {
-                applyPictureAndTitleToLightbox(galleryElement, true, false);
-            }
-            else if (galleryElement == galleryElements[galleryElements.length - 1]) {
-                applyPictureAndTitleToLightbox(galleryElement, false, true);
-            }
-            else {
-                applyPictureAndTitleToLightbox(galleryElement, false, false);
-            }
-            launchLightboxModal();
-        });
-    })
+export async function initLightboxEvents() {
 
     const lightboxModalBackground = document.querySelector(".lightbox_background");
     const lightboxModalContent = document.querySelector(".lightbox_content");
@@ -278,21 +256,17 @@ export async function listenToLightboxEvents(galleryElements) {
 
     // - Navigation between gallery pictures -
     lightboxModalPreviousButton.addEventListener("click", function() {
-        console.log("Click previous");
-        getPreviousGalleryElement(lightboxPicture, galleryElements);
+        getPreviousGalleryElement(lightboxPicture);
     });
     lightboxModalNextButton.addEventListener("click", function() {
-        console.log("Click next");
-        getNextGalleryElement(lightboxPicture, galleryElements);
+        getNextGalleryElement(lightboxPicture);
     });
     window.addEventListener("keydown", function(event) {
         if (lightboxModalContent.getAttribute("aria-hidden") == "false" && event.key == "ArrowLeft") {
-            console.log("Key previous");
-            getPreviousGalleryElement(lightboxPicture, galleryElements);
+            getPreviousGalleryElement(lightboxPicture);
         }
         if (lightboxModalContent.getAttribute("aria-hidden") == "false" && event.key == "ArrowRight") {
-            console.log("Key next");
-            getNextGalleryElement(lightboxPicture, galleryElements);
+            getNextGalleryElement(lightboxPicture);
         }
     });
 
@@ -328,5 +302,33 @@ export async function listenToLightboxEvents(galleryElements) {
         if (isClickedEmpty) {
             closeLightboxModal();
         }
+    })
+}
+
+
+/**
+ * Lightbox modal opening and update information (picture and title)
+ */
+export async function updateLightbox() {
+
+    // - Opening -
+    const galleryElements = document.querySelectorAll(".gallery_element");
+
+    galleryElements.forEach(function(galleryElement) {
+
+        let galleryElementPicture = galleryElement.firstChild;
+        galleryElementPicture.addEventListener("click", function() {
+            // Display lightbox previous and next buttons if it is the first or the last picture
+            if (galleryElement == galleryElements[0]) {
+                applyPictureAndTitleToLightbox(galleryElement, true, false);
+            }
+            else if (galleryElement == galleryElements[galleryElements.length - 1]) {
+                applyPictureAndTitleToLightbox(galleryElement, false, true);
+            }
+            else {
+                applyPictureAndTitleToLightbox(galleryElement, false, false);
+            }
+            launchLightboxModal();
+        });
     })
 }

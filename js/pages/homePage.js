@@ -72,7 +72,6 @@ async function initHomepage() {
     console.log("All done for the homepage!"); 
 }
 
-
 initHomepage();
 
 
