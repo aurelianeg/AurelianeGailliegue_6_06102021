@@ -330,5 +330,20 @@ export async function updateLightbox() {
             }
             launchLightboxModal();
         });
+        galleryElementPicture.addEventListener("keydown", function(event) {
+            if (event.key == "Enter") {
+                // Display lightbox previous and next buttons if it is the first or the last picture
+                if (galleryElement == galleryElements[0]) {
+                    applyPictureAndTitleToLightbox(galleryElement, true, false);
+                }
+                else if (galleryElement == galleryElements[galleryElements.length - 1]) {
+                    applyPictureAndTitleToLightbox(galleryElement, false, true);
+                }
+                else {
+                    applyPictureAndTitleToLightbox(galleryElement, false, false);
+                }
+                launchLightboxModal();
+            }
+        })
     })
 }
