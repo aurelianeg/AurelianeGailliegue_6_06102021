@@ -20,6 +20,4 @@ class NavTag {
 
         return navTag
     }
-
-
 }
