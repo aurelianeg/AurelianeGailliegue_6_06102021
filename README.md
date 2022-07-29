@@ -1,39 +1,68 @@
-# Site web de FishEye
+# FishEye
 
-***
-## Mission
+FishEye[^1] is a website allowing independent photographers to show their best work.
 
-FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux. Ils ont récemment levé des fonds et aimeraient mettre à jour leur site web. 
+**Goal of this project**: Integration with HTML + CSS + JS, fetch and use of JSON data, and accessibility.
 
-Mon objectif est de construire un prototype fonctionnel de leur nouveau site web. Je suis chargée de fournir tout le HTML, le CSS et le JavaScript nécessaires au prototype. L'équipe de back-end intégrera le système existant de FishEye une fois que le code front-end sera terminé.
+## Load specifications
 
-Voici les principales fonctionnalités et les exigences techniques à mettre en œuvre :
-- Les maquettes approuvées : 
-- Des exemples de photos et de vidéos de FishEye, à utiliser pour la conception des pages : 
-- Des exemples de données au format JSON, que tu pourras utiliser pour créer les différentes pages des photographes de façon dynamique : 
-La seule modification possible est l'ajout d'un champ JSON pour la description de chaque image (pour les lecteurs d'écran).
+### Website designs
 
-Bien que le site web soit un prototype, il devrait correspondre aux maquettes et fonctionner correctement (pas d'erreurs). Le site doit être construit conformément aux exigences d'accessibilité (par exemple utiliser les balises ARIA, assurer la navigation au clavier, passer au vérificateur d’accessibilité comme AChecker, etc.).
+The desktop and mobile designs are available on [Figma](https://www.figma.com/file/pt8xJxC1QffW4HX16QhGZJ/UI-Design-FishEye-FR-OLD). The website must be fully responsive.
 
-Les normes suivantes sont à respecter : 
+![Design for the home page](./assets/design/homepage.png "Design for the home page")
 
-- Le code est séparé en différents fichiers (HTML avec balises d'accessibilité, CSS, JavaScript).
-- ESLint est utilisé (avec les paramètres par défaut) pour t’assurer que ton code est robuste. Ceci est particulièrement facile à intégrer avec l'IDE VSCode.
-- Une version moderne (ES6 ou supérieure) de JavaScript est utilisée et les fonctionnalités obsolètes ne sont pas utilisées.
-- La programmation orientée objet est utilisée.
-- Le code est lisible.
+### Features
 
-***
-## Livrables
+- Home page:
+    * All datas are fetched from a JSON file.
+    * If user clicks on a tag / several tags in the navigation bar, the list of photographers is filtered to only show the ones containing this tag / those tags.
+    * The photographer's page is shown if user clicks on a photographer.
+- Photographer's pages:
+    * A gallery of pictures and videos is shown. If there's a video, a thumbnail is shown.
+    * If user clicks on "Like" icon, the number of likes of the picture and the total number of likes for the photographer is increased.
+    * The total number of likes for the photographer is the sum of all pictures' likes.
+    * If user clicks on a media, the media is shown in a lightbox (with arrows and close cross).
+    * Medias can be sorted by popularity, date or title (and lightbox navigation is updated).
+    * If the contact button is clicked, a modal with a form (first name, last name, e-mail address and message) is shown.
+    * Error messages are shown if the form is invalid. The form is not submitting and data are retained.
 
-Pour ce projet, les livrables à fournir sont :
-- Un dépôt de code sur GitHub avec des fichiers HTML, CSS et JavaScript,
-- Une version mise à jour du JSON (avec alt-text).
+### Technical constraints
 
-***
-## Compétences évaluées
+- Use ESLint to ensure robust code.
+- Use JavaScript ES6+, with no obsolete feature.
+- Use Factory Method pattern to create a modular web application.
+- Ensure accessibility of the website:
+    * Use semantic tags instead of `<div>`or `<span>`.
+    * Use ARIA tags to describe elements.
+    * Verify keyboard navigation for whole website.
+    * Handle events with clicks and keyboard navigation.
+    * Add text description on each picture (with alt-text attributes in JSON).
+    * Check website with AChecker without known issues (WCAG conformity).
+    * Use a screen reader to test website's use.
 
-- Développer une application web modulaire avec des design patterns
-- Assurer l'accessibilité d'un site web
-- Écrire du code JavaScript maintenable
-- Gérer les événements d'un site avec JavaScript
+
+## Launch
+
+### GitHub Pages
+
+The page is available at <https://aurelianeg.github.io/fisheye/> on GitHub Pages.
+
+### Cloning
+
+1. Clone the repository
+
+```sh
+git clone https://github.com/aurelianeg/fisheye.git
+```
+
+2. Launch the project with Live Server
+
+```sh
+live-server
+```
+
+It opens the website to view it in the browser. The page will reload when changes are made in the code.
+
+
+[^1]: This is the 4th project of the "Front-end developer (JS - React)" training by OpenClassrooms.
