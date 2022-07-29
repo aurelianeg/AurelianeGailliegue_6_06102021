@@ -19,6 +19,7 @@ The desktop and mobile designs are available on [Figma](https://www.figma.com/fi
     * If user clicks on a tag / several tags in the navigation bar, the list of photographers is filtered to only show the ones containing this tag / those tags.
     * The photographer's page is shown if user clicks on a photographer.
 - Photographer's pages:
+    * Navigation on a photographer's page is done with their ID as an URL parameter to fetch only one photographer in JSON file.
     * A gallery of pictures and videos is shown. If there's a video, a thumbnail is shown.
     * If user clicks on "Like" icon, the number of likes of the picture and the total number of likes for the photographer is increased.
     * The total number of likes for the photographer is the sum of all pictures' likes.
